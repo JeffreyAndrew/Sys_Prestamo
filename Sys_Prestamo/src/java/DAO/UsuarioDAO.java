@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -119,7 +120,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     }
 
     @Override
-    public ArrayList<UsuarioDTO> readall() {
+    public List<UsuarioDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

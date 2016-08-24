@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -78,7 +79,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     }
 
     @Override
-    public ArrayList<PersonaDTO> readall() {
+    public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

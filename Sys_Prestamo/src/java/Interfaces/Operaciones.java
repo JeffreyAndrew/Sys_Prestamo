@@ -6,6 +6,7 @@
 package Interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,5 +22,5 @@ public interface Operaciones<Entidad> {
 
     public boolean update(Entidad e);
 
-    public ArrayList<Entidad> readall();
+    public List<Entidad> readall();
 }

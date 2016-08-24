@@ -7,6 +7,15 @@ public class PrivilegioDTO {
     private String nombre;
     private String estado;
 
+    public PrivilegioDTO() {
+    }
+
+    public PrivilegioDTO(String nombre, String estado) {
+        this.nombre = nombre;
+        this.estado = estado;
+    }
+
+    
     public PrivilegioDTO(int idprivilegio, String nombre, String estado) {
         this.idprivilegio = idprivilegio;
         this.nombre = nombre;

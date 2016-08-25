@@ -4,10 +4,6 @@
         <servlet-name>Index</servlet-name>
         <servlet-class>controlador.Index</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>Index</servlet-name>
-        <url-pattern>/ci</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

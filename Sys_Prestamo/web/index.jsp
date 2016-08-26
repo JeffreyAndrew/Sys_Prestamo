@@ -115,7 +115,7 @@
                             <a href="#">
                                 <i class="fa fa-dashboard"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
+                                    <i class="fa fa-laptop"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
@@ -124,15 +124,14 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-edit"></i> <span>ALGO</span>
+                                <i class="fa fa-edit"></i> <span>Equipos</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Opcion 1</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Opcion 2</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Opcion 3</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Registrar</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>
                     </ul>

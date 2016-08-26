@@ -7,6 +7,11 @@ package DAO;
 
 import DTO.PrestamoDTO;
 import Interfaces.Operaciones;
+import config.conexion;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -15,9 +20,25 @@ import java.util.List;
  */
 public class PrestamoDAO implements Operaciones<PrestamoDTO> {
 
+    private String sql;
+    private Connection cn;
+    private PreparedStatement ps;
+    private CallableStatement cs;
+    private ResultSet rs;
+
     @Override
-    public boolean create(PrestamoDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(PrestamoDTO p) {
+        sql = "INSERT INTO PRESTAMO (idPrestamo ,idUsuario,PersonaRes,fechaPrestamo,fechaDevolucion,lugar,comentariop,comentariod,estado) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+
+            int r = ps.executeUpdate();
+            return r > 0;
+        } catch (Exception e) {
+            System.out.println("Error al agregar Escuela " + e);
+            return false;
+        }
     }
 
     @Override
@@ -39,5 +60,5 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
     public List<PrestamoDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

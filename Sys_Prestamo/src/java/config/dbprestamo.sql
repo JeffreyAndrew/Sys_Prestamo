@@ -32,23 +32,23 @@ CREATE TABLE EQUIPO(
     PRIMARY KEY(idEquipo)
 );
 CREATE TABLE DET_PRESTAMO(
-    idDet_Prestamo INTEGER NOT NULL AUTO_INCREMENT,
-    idEquipo INTEGER(6) NOT NULL,
-    ESTADO CHAR(1) NOT NULL,
-    PRIMARY KEY(idDet_Prestamo),
-    FOREIGN KEY(idEquipo) REFERENCES EQUIPO(idEquipo)
+    idPrestamo INTEGER NOT NULL,
+    idEquipo INTEGER(6) NOT NULL,    
+    FOREIGN KEY(idEquipo) REFERENCES EQUIPO(idEquipo),
+    FOREIGN KEY(idPrestamo) REFERENCES PRESTAMO(idPrestamo)
 );
 CREATE TABLE PRESTAMO(
     idPrestamo INTEGER NOT NULL AUTO_INCREMENT,
     idUsuario INTEGER NOT NULL,
-    idDet_Prestamo INTEGER(6) NOT NULL,
+    PersonaRes INT NOT NULL,
     fechaPrestamo DATE NOT NULL,
     fechaDevolucion DATE NOT NULL,
     lugar VARCHAR(45) NOT NULL,
-    comentario VARCHAR(120) , 
+    comentariop VARCHAR(120) ,
+    comentariod VARCHAR(120) ,
+    estado CHAR(1) NOT NULL, 
     PRIMARY KEY(idPrestamo),
-    FOREIGN KEY(idUsuario) REFERENCES USUARIO(idUsuario),
-    FOREIGN KEY(idDet_Prestamo) REFERENCES DET_PRESTAMO(idDet_Prestamo)
+    FOREIGN KEY(idUsuario) REFERENCES USUARIO(idUsuario)
 );
 
 

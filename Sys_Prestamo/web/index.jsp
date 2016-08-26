@@ -113,13 +113,13 @@
                         <li class="header">MENÚ</li>
                         <li class="active treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Gestión Prestamo</span>
+                                <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
-                                    <i class="fa fa-laptop"></i>
+                                    <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-book"></i> Prestamo de Equipo</a></li>
+                                <li class="active"><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

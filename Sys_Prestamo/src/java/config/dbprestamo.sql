@@ -26,15 +26,22 @@ CREATE TABLE EQUIPO(
     idEquipo INTEGER NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(30) NOT NULL,
     serie VARCHAR(30) NOT NULL,
-    cantidad INT(3) NOT NULL,
-    descripcion VARCHAR(120) NOT NULL,
-    ESTADO CHAR(1) NOT NULL,
+    tipo VARCHAR(120) NOT NULL,
     PRIMARY KEY(idEquipo)
+);
+CREATE TABLE DET_EQUIPO(
+    idDet_Equipo INTEGER NOT NULL AUTO_INCREMENT,
+    idEquipo INTEGER NOT NULL,
+    codigo VARCHAR(30) NOT NULL,
+    descripcion VARCHAR(120) NOT NULL,
+    estado CHAR(1) NOT NULL,
+    FOREIGN KEY(idEquipo) REFERENCES EQUIPO(idEquipo),
+    PRIMARY KEY(idDet_Equipo)
 );
 CREATE TABLE DET_PRESTAMO(
     idPrestamo INTEGER NOT NULL,
-    idEquipo INTEGER(6) NOT NULL,    
-    FOREIGN KEY(idEquipo) REFERENCES EQUIPO(idEquipo),
+    idDet_Equipo INTEGER(6) NOT NULL,    
+    FOREIGN KEY(idEquipo) REFERENCES DET_EQUIPO(idDet_Equipo),
     FOREIGN KEY(idPrestamo) REFERENCES PRESTAMO(idPrestamo)
 );
 CREATE TABLE PRESTAMO(

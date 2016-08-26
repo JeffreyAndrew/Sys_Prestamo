@@ -38,12 +38,6 @@ CREATE TABLE DET_EQUIPO(
     FOREIGN KEY(idEquipo) REFERENCES EQUIPO(idEquipo),
     PRIMARY KEY(idDet_Equipo)
 );
-CREATE TABLE DET_PRESTAMO(
-    idPrestamo INTEGER NOT NULL,
-    idDet_Equipo INTEGER(6) NOT NULL,    
-    FOREIGN KEY(idDet_Equipo) REFERENCES DET_EQUIPO(idDet_Equipo),
-    FOREIGN KEY(idPrestamo) REFERENCES PRESTAMO(idPrestamo)
-);
 CREATE TABLE PRESTAMO(
     idPrestamo INTEGER NOT NULL AUTO_INCREMENT,
     idUsuario INTEGER NOT NULL,
@@ -56,6 +50,12 @@ CREATE TABLE PRESTAMO(
     estado CHAR(1) NOT NULL, 
     PRIMARY KEY(idPrestamo),
     FOREIGN KEY(idUsuario) REFERENCES USUARIO(idUsuario)
+);
+CREATE TABLE DET_PRESTAMO(
+    idPrestamo INTEGER NOT NULL,
+    idDet_Equipo INTEGER(6) NOT NULL,    
+    FOREIGN KEY(idDet_Equipo) REFERENCES DET_EQUIPO(idDet_Equipo),
+    FOREIGN KEY(idPrestamo) REFERENCES PRESTAMO(idPrestamo)
 );
 
 

@@ -10,9 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-        <%@include file="WEB-INF/jspf/import.jspf" %>
     </head>
     <body>
     </body>
-        
+
 </html>

@@ -7,6 +7,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author USER
  */
 public class PrestamoController extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,17 +33,29 @@ public class PrestamoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PrestamoController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PrestamoController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        System.out.println("hey");
+        String meth = request.getParameter("mt");
+        int op = Integer.parseInt(request.getParameter("op"));
+        String pagina = "";
+        RequestDispatcher dispatcher;
+        try {
+            switch (meth) {
+                case "rd":
+                    switch (op) {
+                        case 1:
+                            pagina = "/vistas/prestamo/tprestamo.jsp";
+                            dispatcher = getServletContext().getRequestDispatcher(pagina);
+                            dispatcher.forward(request, response);
+                            break;
+                    }
+                    break;
+                case "add":
+                    break;
+                case "list":
+                    break;
+
+            }
+        } catch (Exception e) {
         }
     }
 

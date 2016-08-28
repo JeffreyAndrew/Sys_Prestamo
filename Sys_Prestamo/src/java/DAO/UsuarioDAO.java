@@ -77,7 +77,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     }
 
     @Override
-    public UsuarioDTO read(int key) {
+    public List<UsuarioDTO> read(int key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

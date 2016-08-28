@@ -5,9 +5,9 @@
  */
 package DAO;
 
-import DTO.RolDTO;
-import config.conexion;
+import DTO.EquipoDTO;
 import Interfaces.Operaciones;
+import config.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,46 +16,51 @@ import java.util.List;
 
 /**
  *
- * @author admin-david.orrego
+ * @author CESAR
  */
-public class RolDAO implements Operaciones<RolDTO> {
+public class EquipoDAO implements Operaciones<EquipoDTO>{
 
     private PreparedStatement ps;
+    private Connection cn;
     private ResultSet rs;
     private String sql;
-    private Connection cn;
+    
 
     @Override
-    public boolean create(RolDTO e) {
+    public boolean create(EquipoDTO e) {
         boolean m = false;
-        sql = "insert into rol (idrol,rol) values ( NULL , ? )";
+        sql = "INSERT INTO equipo(idEquipo,nombre,serie,tipo) VALUES(NULL,?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(0, e.getRol());
+            ps.setString(0, e.getNombre());
+            ps.setString(1, e.getSerie());
+            ps.setString(2, e.getTipo());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
             }
-        } catch (Exception ex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        } catch (Exception p) {
+            System.out.println("Error al Crear equipo " + p);
         }
         return m;
     }
 
     @Override
-    public List<RolDTO> read(int key) {
-        List<RolDTO> lista = new ArrayList();
-        sql = "select * from rol where idrol= ? ";
+    public List<EquipoDTO> read(int key) {
+        List<EquipoDTO> lista = new ArrayList();
+        EquipoDTO dto = new EquipoDTO();
+        sql = "select * from equipo where idEquipo= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setInt(0, key);
             rs = ps.executeQuery();
             while (rs.next()) {
-                RolDTO dto = new RolDTO();
-                dto.setIdrol(rs.getInt("idrol"));
-                dto.setRol(rs.getString("rol"));
+                dto.setIdEquipo(rs.getInt("idEquipo"));
+                dto.setNombre(rs.getString("nombre"));
+                dto.setSerie(rs.getString("serie"));
+                dto.setTipo(rs.getString("tipo"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
@@ -67,7 +72,7 @@ public class RolDAO implements Operaciones<RolDTO> {
     @Override
     public boolean delete(int key) {
         boolean m = false;
-        sql = "delete from rol where idrol= ? ";
+        sql = "delete from equipo where idequipo= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -83,14 +88,16 @@ public class RolDAO implements Operaciones<RolDTO> {
     }
 
     @Override
-    public boolean update(RolDTO e) {
+    public boolean update(EquipoDTO e) {
         boolean m = false;
-        sql = "update rol set rol= ? where idrol= ? ";
+        sql = "update equipo set nombre= ? ,serie= ? ,tipo= ? where idequipo= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(0, e.getRol());
-            ps.setInt(1, e.getIdrol());
+            ps.setString(0, e.getNombre());
+            ps.setString(1, e.getSerie());
+            ps.setString(2, e.getTipo());
+            ps.setInt(3, e.getIdEquipo());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -102,17 +109,19 @@ public class RolDAO implements Operaciones<RolDTO> {
     }
 
     @Override
-    public List<RolDTO> readall() {
-        List<RolDTO> lista = new ArrayList();
+    public List<EquipoDTO> readall() {
+        List<EquipoDTO> lista = new ArrayList();
         sql = "select * from rol";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                RolDTO dto = new RolDTO();
-                dto.setIdrol(rs.getInt("idrol"));
-                dto.setRol(rs.getString("rol"));
+                EquipoDTO dto = new EquipoDTO();
+                dto.setIdEquipo(rs.getInt("idequipo"));
+                dto.setNombre(rs.getString("nombre"));
+                dto.setSerie(rs.getString("serie"));
+                dto.setTipo(rs.getString("tipo"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
@@ -120,5 +129,5 @@ public class RolDAO implements Operaciones<RolDTO> {
         }
         return lista;
     }
-
+    
 }

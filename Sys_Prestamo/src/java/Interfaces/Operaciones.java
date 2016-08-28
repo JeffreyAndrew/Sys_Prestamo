@@ -16,7 +16,7 @@ public interface Operaciones<Entidad> {
 
     public boolean create(Entidad e);
 
-    public Entidad read(int key);
+    public List<Entidad> read(int key);
 
     public boolean delete(int key);
 

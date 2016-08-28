@@ -28,7 +28,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     @Override
     public boolean create(PersonaDTO e) {
         boolean m = false;
-        sql = "INSERT INTO PERSONA PERSONA(NOMBRE,APELLIDOS,DNI,ID_ROL,FACULTAD,ESCUELA,CELULAR,CORREO) VALUES(?,?,?,?,?,?,?,?)";
+        sql = "INSERT INTO PERSONA(NOMBRE,APELLIDOS,DNI,ID_ROL,FACULTAD,ESCUELA,CELULAR,CORREO) VALUES(?,?,?,?,?,?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -51,7 +51,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     }
 
     @Override
-    public PersonaDTO read(int key) {
+    public List<PersonaDTO> read(int key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

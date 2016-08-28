@@ -42,7 +42,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
     }
 
     @Override
-    public PrestamoDTO read(int key) {
+    public List<PrestamoDTO> read(int key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

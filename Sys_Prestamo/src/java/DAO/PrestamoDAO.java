@@ -36,7 +36,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
             int r = ps.executeUpdate();
             return r > 0;
         } catch (Exception e) {
-            System.out.println("Error al agregar Escuela " + e);
+            System.out.println("Error al agregar Prestamo " + e);
             return false;
         }
     }

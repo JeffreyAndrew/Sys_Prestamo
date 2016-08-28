@@ -43,7 +43,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="datepicker">
+                                <input type="text" class="form-control pull-right" id="datepicker" placeholder="Fecha de Devolución">
                             </div>
                         </div>                       
                     </form>
@@ -51,7 +51,7 @@
                         <div class="box-header">
                             <h3 class="box-title">Equipo(s) a Prestar</h3>
                         </div>
-                        <button class="btn btn-danger"><i class="fa fa-plus"></i>   Añadir</button>
+                        <button class="btn btn-warning"><i class="fa fa-plus"></i>   Añadir</button>
                         <div class="box-body no-padding">
                             <table class="table table-condensed">
                                 <thead>
@@ -65,6 +65,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <button class="btn btn-danger" type="button"><i class="fa fa-send"></i>   Guardar</button>
                     </div>
                 </div>
             </div>

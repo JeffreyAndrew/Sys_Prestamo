@@ -384,40 +384,39 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form">
+                                <form role="form" method="post" action="ec">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="nombre">Nombre</label>
-                                            <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre" placeholder="Nombre">
+                                            <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre" name="nombre" placeholder="Nombre">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="serie">Serie</label>
-                                            <input type="text" required="" maxlength="30" class="form-control input-lg" id="serie" placeholder="Serie">
+                                            <input type="text" required="" maxlength="30" class="form-control input-lg" id="serie" name="serie" placeholder="Serie">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="tipo">Tipo</label>
-                                            <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" placeholder="Tipo">
+                                            <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" name="tipo" placeholder="Tipo">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="codigo">Codigo</label>
-                                            <input type="text" required="" maxlength="30"  class="form-control input-lg" id="codigo" placeholder="Cantidad">
+                                            <input type="text" required="" maxlength="30"  class="form-control input-lg" id="codigo" name="codigo" placeholder="Código">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="descripcion">Descripcion</label>
-                                            <textarea type="text"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" placeholder="Descripcion"></textarea>
+                                            <textarea type="text"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" name="descripcion" placeholder="Descripcion"></textarea>
                                         </div>
-
+                                        
                                         <div class="form-group">
-                                            <label for="estado">Estado</label>
-                                            <input type="text" required="" maxlength="10" class="form-control input-lg" id="estado" placeholder="Estado">
+                                            <input type="hidden" name="ge" value="5">
                                         </div>
-
+                                        
                                         <div class="box-footer">
-                                            <button type="button" class="btn btn-danger" href="#cancelar" data-toggle="modal">Cancelar</button>
+                                            <a role="button" class="btn btn-danger" href="ce?ge=1" data-toggle="modal">Cancelar</a>
                                             <button type="button" class="btn btn-info pull-right" href="#registrar" data-toggle="modal">Registrar</button>
                                         </div> 
                                         
@@ -429,10 +428,10 @@
                                                         <center><h1 class="modal-title">Atención</h1></center>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h2 style="text-align: justify">Esta seguro de que desea registrar este nuevo equipo, si es posible verifique los campos.</h2>
+                                                        <h2 style="text-align: justify">¿Esta seguro de que desea registrar este nuevo equipo? Si es necesario verifique los campos nuevamente.</h2>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-default btn-lg">Registrar</button>
+                                                        <input type="submit" class="btn btn-default btn-lg" value="Registrar">
                                                         <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
                                                     </div>
                                                 </div>

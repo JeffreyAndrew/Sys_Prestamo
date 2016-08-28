@@ -29,7 +29,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
     @Override
     public boolean create(EquipoDTO e) {
         boolean m = false;
-        sql = "INSERT INTO equipo(idEquipo,nombre,serie,tipo) VALUES(NULL,?,?,?)";
+        sql = "INSERT INTO equipo(idEquipo,nombre,serie,tipo) VALUES(NULL, ? , ? , ? )";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, key);
+            ps.setInt(1, key);
             rs = ps.executeQuery();
             while (rs.next()) {
                 dto.setIdEquipo(rs.getInt("idEquipo"));
@@ -76,7 +76,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, key);
+            ps.setInt(1, key);
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -119,6 +119,30 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
             while (rs.next()) {
                 EquipoDTO dto = new EquipoDTO();
                 dto.setIdEquipo(rs.getInt("idequipo"));
+                dto.setNombre(rs.getString("nombre"));
+                dto.setSerie(rs.getString("serie"));
+                dto.setTipo(rs.getString("tipo"));
+                lista.add(dto);
+            }
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return lista;
+    }
+    
+    public List<EquipoDTO> especifiedread(EquipoDTO e) {
+        List<EquipoDTO> lista = new ArrayList();
+        EquipoDTO dto = new EquipoDTO();
+        sql = "select * from equipo where nombre= ? and serie= ? and tipo= ? ";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, e.getNombre());
+            ps.setString(2, e.getSerie());
+            ps.setString(3, e.getTipo());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                dto.setIdEquipo(rs.getInt("idEquipo"));
                 dto.setNombre(rs.getString("nombre"));
                 dto.setSerie(rs.getString("serie"));
                 dto.setTipo(rs.getString("tipo"));

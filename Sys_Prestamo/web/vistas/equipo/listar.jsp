@@ -421,8 +421,8 @@
                                                     }
                                                 %>
                                                 <td><a href="ec?eg=3"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                                <td><a data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                        <div class="modal modal-warning fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <td><a data-toggle="modal" data-target="#delete<%=deq.getIdDet_Equipo() %>"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <div class="modal modal-warning fade" id="delete<%=deq.getIdDet_Equipo() %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

@@ -74,6 +74,11 @@ public class EquipoController extends HttpServlet {
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
+            case 2:
+                pag = "/vistas/equipo/registro.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
+                break;
         }
     }
 

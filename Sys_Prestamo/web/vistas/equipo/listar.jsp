@@ -352,7 +352,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Registrar</a></li>
+                                <li><a href="ec?ge=2"><i class="fa fa-circle-o"></i> Registrar</a></li>
                                 <li class="active"><a href="ec?ge=1"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>

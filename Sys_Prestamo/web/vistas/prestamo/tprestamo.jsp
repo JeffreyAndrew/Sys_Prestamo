@@ -64,7 +64,7 @@
                         </div>
                         <br/><br/>
                         <center>
-                            <button class="btn btn-danger" type="button">Guardar</button>
+                            <button class="btn btn-danger hidden" type="button">Guardar</button>
                         </center>
                     </div>
                 </div>
@@ -96,27 +96,57 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Buscar Equipo</h4>
+                        <h4 class="modal-title">Escoger Equipo(s)</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
-                        </form>
+                            <div class="box-body">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Lista de Equipos disponibles</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <table id="tabEquipo" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Serie</th>
+                                                    <th>Tipo</th>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Laptop</td>
+                                                    <td>Internet Explorer 7</td>
+                                                    <td>Win XP SP2+</td>
+                                                    <td>7</td>
+                                                    <td>blanfjanfj af aklsfjak fsajkfh asjkfha</td>
+                                                    <td><a class="btn btn-success"><i class="fa fa-check"></i>   Escoger</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
         <script>
             $(document).ready(function () {
-
+                $("#tabEquipo").DataTable();
             });
-
             $("#regp").click(function () {
                 validar();
             });
+            function listaequipos(){
+                
+            }
             function confirmloan(prest, doc, lug, fec) {
                 $("#regp").attr("class", "hidden");
                 $("#idescd").attr("class", "hidden");
@@ -168,7 +198,7 @@
                     }
                 }
             }
-            function addloan(user, persona, lugar,fecha) {
+            function addloan(user, persona, lugar, fecha) {
                 var orf = fecha.split("/");
                 var dia = orf[1];
                 var mes = orf[0];
@@ -181,7 +211,7 @@
                 data += "&lugar=" + lugar;
                 $.post(url, data, function (objJson) {
                     var idprestamo = objJson.idprestamo;
-                    $("#iprestamo").attr("value",idprestamo);
+                    $("#iprestamo").attr("value", idprestamo);
                 });
             }
 

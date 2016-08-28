@@ -11,6 +11,7 @@ import config.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,6 +153,30 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
         return lista;
+    }
+     @Override
+    public List<EquipoDTO> buscarPersona(String cadena) {
+        conexion oConexion = new conexion();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM EQUIPO WHERE NOMBRE LIKE '").append(cadena);
+        sql.append("%'");
+        List<EquipoDTO> list = new ArrayList<EquipoDTO>();
+        try {
+            ResultSet rs = oConexion.query(sql.toString());
+            while(rs.next()){
+            EquipoDTO producto = new EquipoDTO();
+            producto.setIdEquipo(rs.getInt("IDEQUIPO"));
+            producto.setNombre(rs.getString("NOMBRE"));
+            producto.setSerie(rs.getString("SERIE"));
+            producto.setTipo(rs.getString("TIPO"));
+           
+            list.add(producto);
+            }
+        } catch (SQLException e) {
+        } finally{
+           
+        }
+        return list;
     }
     
 }

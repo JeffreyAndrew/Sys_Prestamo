@@ -23,4 +23,6 @@ public interface Operaciones<Entidad> {
     public boolean update(Entidad e);
 
     public List<Entidad> readall();
+            
+   public List<Entidad> buscarPersona(String b);
 }

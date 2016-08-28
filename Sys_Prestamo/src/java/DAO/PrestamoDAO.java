@@ -73,4 +73,9 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
         return p;
     }
 
+    @Override
+    public List<PrestamoDTO> buscarPersona(String b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

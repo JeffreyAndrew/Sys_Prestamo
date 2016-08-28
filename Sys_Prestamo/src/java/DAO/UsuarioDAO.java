@@ -124,4 +124,9 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<UsuarioDTO> buscarPersona(String b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

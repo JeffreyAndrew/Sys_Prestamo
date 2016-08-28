@@ -165,4 +165,9 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         }
         return lista3;
     }
+
+    @Override
+    public List<Det_EquipoDTO> buscarPersona(String b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

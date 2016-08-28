@@ -8,6 +8,14 @@
         <servlet-name>EquipoController</servlet-name>
         <servlet-class>Controller.EquipoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SVL_Persona</servlet-name>
+        <servlet-class>Controller.SVL_Persona</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SVL_Equipo</servlet-name>
+        <servlet-class>Controller.SVL_Equipo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrestamoController</servlet-name>
         <url-pattern>/loan</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>EquipoController</servlet-name>
         <url-pattern>/ec</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SVL_Persona</servlet-name>
+        <url-pattern>/SVLP</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SVL_Equipo</servlet-name>
+        <url-pattern>/SVLE</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,6 +10,8 @@ import Interfaces.Operaciones;
 import config.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,5 +84,31 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Override
+    public List<PersonaDTO> buscarPersona(String cadena) {
+        conexion oConexion = new conexion();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM PERSONA WHERE NOMBRE LIKE '").append(cadena);
+        sql.append("%'");
+        List<PersonaDTO> list = new ArrayList<PersonaDTO>();
+        try {
+            ResultSet rs = oConexion.query(sql.toString());
+            while(rs.next()){
+            PersonaDTO producto = new PersonaDTO();
+            producto.setIdpersona(rs.getInt("IDPERSONA"));
+            producto.setIdrol(rs.getInt("IDROL"));
+            producto.setNombre(rs.getString("NOMBRE"));
+            producto.setApellido(rs.getString("APELLIDOS"));
+            producto.setDNI(rs.getInt("DNI"));
+            producto.setTelefono(rs.getInt("CELULAR"));
+            producto.setCorreo(rs.getString("CORREO"));
+           
+            list.add(producto);
+            }
+        } catch (SQLException e) {
+        } finally{
+           
+        }
+        return list;
+    }
 }

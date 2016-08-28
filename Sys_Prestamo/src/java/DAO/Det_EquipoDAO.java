@@ -33,10 +33,10 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, e.getIdEquipo());
-            ps.setInt(1, e.getCodigo());
-            ps.setString(2, e.getDescripcion());
-            ps.setString(3, e.getEstado());
+            ps.setInt(1, e.getIdEquipo());
+            ps.setInt(2, e.getCodigo());
+            ps.setString(3, e.getDescripcion());
+            ps.setString(4, e.getEstado());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -78,7 +78,7 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, key);
+            ps.setInt(1, key);
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -96,11 +96,11 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, e.getIdEquipo());
-            ps.setInt(1, e.getCodigo());
-            ps.setString(2, e.getDescripcion());
-            ps.setString(3, e.getEstado());
-            ps.setInt(4, e.getIdDet_Equipo());
+            ps.setInt(1, e.getIdEquipo());
+            ps.setInt(2, e.getCodigo());
+            ps.setString(3, e.getDescripcion());
+            ps.setString(4, e.getEstado());
+            ps.setInt(5, e.getIdDet_Equipo());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;

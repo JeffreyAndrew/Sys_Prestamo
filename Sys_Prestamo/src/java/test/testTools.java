@@ -5,6 +5,7 @@
  */
 package test;
 
+import DAO.Det_EquipoDAO;
 import DAO.EquipoDAO;
 import config.conexion;
 import java.sql.Connection;
@@ -16,11 +17,11 @@ import java.sql.Connection;
 public class testTools {
 
     public static Connection cx;
-    
+
     public static void main(String[] args) {
-        readallEquipo();
+        deleteEquipo();
     }
-    
+
     static void conex() {
         cx = conexion.getConexion();
         if (cx != null) {
@@ -29,8 +30,13 @@ public class testTools {
             System.out.println("Error al conectar");
         }
     }
-    static void readallEquipo(){
-        EquipoDAO eqdao=new EquipoDAO();
-        System.out.println(eqdao.readall().get(0).getNombre());
+
+    static void deleteEquipo() {
+        Det_EquipoDAO eqdao = new Det_EquipoDAO();
+        if (eqdao.delete(2)) {
+            System.out.println("Aqui esta bien");
+        }else{
+            System.out.println("error");
+        }
     }
 }

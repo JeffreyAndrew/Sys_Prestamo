@@ -64,7 +64,7 @@ public class EquipoController extends HttpServlet {
         PrintWriter out = response.getWriter();
         RequestDispatcher dispatcher;
         String pag;
-        Det_EquipoDAO deqdao=new Det_EquipoDAO();
+        Det_EquipoDAO deqdao = new Det_EquipoDAO();
         HttpSession session = request.getSession(true);
         int ge = Integer.parseInt(request.getParameter("ge"));
         switch (ge) {
@@ -78,6 +78,22 @@ public class EquipoController extends HttpServlet {
                 pag = "/vistas/equipo/registro.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
+                break;
+            case 3:
+                pag = "/vistas/equipo/editar.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
+                break;
+            case 4:
+                pag = "/ec?ge=1";
+                int id = Integer.parseInt(request.getParameter("id"));
+                if (deqdao.delete(id) == true) {
+                    dispatcher = getServletContext().getRequestDispatcher(pag);
+                    dispatcher.forward(request, response);
+                }
+                else{
+                    out.println("Error al eliminar");
+                }
                 break;
         }
     }

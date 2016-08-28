@@ -32,8 +32,8 @@ public class Det_PrestamoDAO implements Operaciones<Det_PrestamoDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, e.getIdPrestamo());
-            ps.setInt(1, e.getIdDet_Equipo());
+            ps.setInt(1, e.getIdPrestamo());
+            ps.setInt(2, e.getIdDet_Equipo());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;

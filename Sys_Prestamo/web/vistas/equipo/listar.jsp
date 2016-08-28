@@ -341,7 +341,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
+                                <li><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
                             </ul>
                         </li>
                         <li class="treeview active">
@@ -394,6 +394,7 @@
                                                 <th>Código</th>
                                                 <th>Descripción</th>
                                                 <th>Estado</th>
+                                                <th colspan="2">Gestionar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -415,12 +416,34 @@
                                                 <%
                                                     if ("D".equals(deq.getEstado())) {
                                                 %><td><span class="label label-success">Disponible</span></td><%
-                                                } else if ("N".equals(deq.getEstado())){
+                                                } else if ("N".equals(deq.getEstado())) {
                                                 %><td><span class="label label-danger">No Disponible</span></td><%
                                                     }
-                                                    %>
-                                            </tr>
-                                            <% }%>
+                                                %>
+                                                <td><a href="ec?eg=3"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                                <td><a data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <div class="modal modal-warning fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="delete">Eliminar</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>¿Está seguro que desea eliminar este item del inventario?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+                                                        <a href="ec?ge=4&id=<%=deq.getIdDet_Equipo() %>" role="button" class="btn btn-outline">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        </tr>
+                                        <% }%>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -429,6 +452,7 @@
                                                 <th>Código</th>
                                                 <th>Descripción</th>
                                                 <th>Estado</th>
+                                                <th colspan="2">Gestionar</th>
                                             </tr>
                                         </tfoot>
                                     </table>

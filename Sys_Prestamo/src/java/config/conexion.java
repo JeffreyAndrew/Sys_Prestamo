@@ -19,7 +19,7 @@ public class conexion {
 
     private static final String URL="jdbc:mysql://localhost:3306/dbprestamo";
     private static final String USER = "root";
-    private static final String PASS = "shinoyojona1";
+    private static final String PASS = "root";
     private static final String DRIVER="com.mysql.jdbc.Driver";
     private static Connection cn = null;
 

@@ -53,9 +53,9 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
     public List<PrestamoDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public int add(Object t){
-        int p=0;
+
+    public int add(Object t) {
+        int p = 0;
         sql = "{CALL REG_PRESTAMO(?, ?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) t;
         try {
@@ -67,10 +67,10 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
             cs.setString(4, m.get("lugar").toString());
             rs = cs.executeQuery();
             while (rs.next()) {
-                p= rs.getInt("idPRESTAMO");
+                p = rs.getInt("idPRESTAMO");
             }
         } catch (Exception e) {
-            System.out.println("Error al agregar prestamo "+e);
+            System.out.println("Error al agregar prestamo " + e);
         }
         return p;
     }
@@ -91,7 +91,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
                 m.put("descripcion", rs.getString("DESCRIPCION"));
                 m.put("nombre", rs.getString("NOMBRE"));
                 m.put("serie", rs.getString("SERIE"));
-                m.put("tipo", rs.getString("TIPO"));                
+                m.put("tipo", rs.getString("TIPO"));
                 lista.add(m);
             }
         } catch (Exception e) {
@@ -100,6 +100,69 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
         }
         return lista;
     }
+
+    public boolean addeqprestamo(int p, int e) {
+        boolean m = false;
+        sql = "INSERT INTO DET_PRESTAMO (idPRESTAMO ,idDET_EQUIPO) VALUES(?,?)";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, p);
+            ps.setInt(2, e);
+            int r = ps.executeUpdate();
+            if (r > 0) {
+                m = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error al agregar Equipo al Prestamo " + ex);
+        }
+        return m;
+    }
     
+    public boolean changeestatus(int e) {
+        boolean m = false;
+        sql = "UPDATE DET_EQUIPO SET ESTADO='0' WHERE IDDET_EQUIPO=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, e);
+            int r = ps.executeUpdate();
+            if (r > 0) {
+                m = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error cambiar estado de un equipo " + ex);
+        }
+        return m;
+    }
+
+    public ArrayList<Map<String, ?>> listareq(int idprestamo) {
+        sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,E.CODIGO,E.DESCRIPCION,EQ.NOMBRE,EQ.SERIE,EQ.TIPO "
+                + "FROM DET_PRESTAMO D,DET_EQUIPO E,EQUIPO EQ "
+                + "WHERE IDPRESTAMO="+idprestamo+" "
+                + "AND E.IDDET_EQUIPO=D.IDDET_EQUIPO "
+                + "AND EQ.IDEQUIPO=E.IDEQUIPO;";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
+                m.put("iddet", rs.getInt("IDDET_EQUIPO"));
+                m.put("idequipo", rs.getInt("IDEQUIPO"));
+                m.put("codigo", rs.getString("CODIGO"));
+                m.put("descripcion", rs.getString("DESCRIPCION"));
+                m.put("nombre", rs.getString("NOMBRE"));
+                m.put("serie", rs.getString("SERIE"));
+                m.put("tipo", rs.getString("TIPO"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar Equipos del Prestamo " + e);
+            return null;
+        }
+        return lista;
+    }
 
 }

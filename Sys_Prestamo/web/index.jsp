@@ -110,7 +110,7 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">MENÚ</li>
+                        <li class="header">MENÚ</li>                        
                         <li class="active treeview">
                             <a href="#">
                                 <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>

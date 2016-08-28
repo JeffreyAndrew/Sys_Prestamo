@@ -26,6 +26,8 @@ public class PrestamoController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     Map<String, Object> mp = new HashMap<>();
+    PrestamoDAO pD = new PrestamoDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,15 +41,15 @@ public class PrestamoController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        PrestamoDAO pD = new PrestamoDAO();        
         String meth = request.getParameter("mt");
         int op = Integer.parseInt(request.getParameter("op"));
         String pagina = "";
         int idprestamo = 0;
+        int iddeteq = 0;
         Map<String, Object> c = new HashMap<>();
         RequestDispatcher dispatcher;
         try {
-            switch (meth) {                
+            switch (meth) {
                 case "rd":
                     switch (op) {
                         case 1:
@@ -75,25 +77,36 @@ public class PrestamoController extends HttpServlet {
                             c.put("lugar", lugar);
                             mp.put("idprestamo", pD.add(c));
                             break;
-                        case 3:
-                            /*idprestamo = Integer.parseInt(request.getParameter("idp"));
-                            ArrayList<Map<String, ?>> lista = pD.listarEquipos(idprestamo);
-                            mp.put("lista", lista);*/
+                        case 2:
+                            idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
+                            iddeteq = Integer.parseInt(request.getParameter("iddet"));
+                            mp.put("response", pD.addeqprestamo(idprestamo, iddeteq));
                             break;
                     }
                     break;
                 case "list":
-                    switch(op){
+                    switch (op) {
+                        case 1:
+                            idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
+                            ArrayList<Map<String, ?>> listae = pD.listareq(idprestamo);
+                            mp.put("lista", listae);
+                            break;
                         case 2:
-                            System.out.println("llega");
                             ArrayList<Map<String, ?>> lista = pD.listared();
                             mp.put("lista", lista);
                             break;
                     }
                     break;
-
+                case "update":
+                    switch (op) {
+                        case 1:
+                            iddeteq = Integer.parseInt(request.getParameter("iddet"));
+                            pD.changeestatus(iddeteq);
+                            break;
+                    }
+                    break;
             }
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             mp.put("error", e.getMessage());
         }

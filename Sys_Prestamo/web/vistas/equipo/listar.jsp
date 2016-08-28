@@ -527,7 +527,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="inventario" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
@@ -948,11 +948,11 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
+                                                <th>Nombre</th>
+                                                <th>Serie</th>
+                                                <th>Descripción</th>
+                                                <th>Cantidad</th>
+                                                <th>N° Disponibles</th>
                                             </tr>
                                         </tfoot>
                                     </table>

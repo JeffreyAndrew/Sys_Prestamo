@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.EquipoDAO;
+import DAO.PersonaDAO;
 import DTO.EquipoDTO;
 import Interfaces.Operaciones;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class SVL_Equipo extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
          RequestDispatcher dispatcher;
-        Operaciones aO = new EquipoDAO();
+         EquipoDAO aO = new EquipoDAO();
         PrintWriter out = response.getWriter();
      String b = request.getParameter("busqueda"); 
         if(b!=null && b!=""){

@@ -65,7 +65,7 @@ public class SVL_Persona extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
           RequestDispatcher dispatcher;
-        Operaciones aO = new PersonaDAO();
+        PersonaDAO aO = new PersonaDAO();
         PrintWriter out = response.getWriter();
      String b = request.getParameter("busqueda"); 
         if(b!=null && b!=""){

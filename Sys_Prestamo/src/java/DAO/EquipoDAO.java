@@ -154,7 +154,6 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
         }
         return lista;
     }
-     @Override
     public List<EquipoDTO> buscarPersona(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();

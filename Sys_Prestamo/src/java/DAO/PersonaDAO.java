@@ -84,7 +84,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    @Override
+
     public List<PersonaDTO> buscarPersona(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();

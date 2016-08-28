@@ -59,7 +59,7 @@
                         <div class="box-header">
                             <h3 class="box-title">Equipo(s) a Prestar</h3>
                         </div>
-                        <button class="btn btn-warning" data-toggle="modal" data-target="#equipoModal" style="float: right;"><i class="fa fa-plus"></i>   Añadir</button>
+                        <button id="idaddeq" class="btn btn-warning" data-toggle="modal" data-target="#equipoModal" style="float: right;"><i class="fa fa-plus"></i>   Añadir</button>
                         <div class="box-body no-padding">                            
                         </div>
                         <br/><br/>
@@ -99,37 +99,15 @@
                         <h4 class="modal-title">Escoger Equipo(s)</h4>
                     </div>
                     <div class="modal-body">
-                            <div class="box-body">
-                                <div class="box">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Lista de Equipos disponibles</h3>
-                                    </div>
-                                    <div class="box-body">
-                                        <table id="tabEquipo" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Serie</th>
-                                                    <th>Tipo</th>
-                                                    <th>Código</th>
-                                                    <th>Descripción</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Laptop</td>
-                                                    <td>Internet Explorer 7</td>
-                                                    <td>Win XP SP2+</td>
-                                                    <td>7</td>
-                                                    <td>blanfjanfj af aklsfjak fsajkfh asjkfha</td>
-                                                    <td><a class="btn btn-success"><i class="fa fa-check"></i>   Escoger</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        <div class="box-body">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Lista de Equipos disponibles</h3>
+                                </div>
+                                <div class="box-body">                                        
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -144,8 +122,29 @@
             $("#regp").click(function () {
                 validar();
             });
-            function listaequipos(){
-                
+            $("#idaddeq").click(function(){
+                listaequiposdis();
+            });
+            function listaequiposdis() {
+                var url = "loan?mt=list";
+                var data = "op=2";
+                $.post(url, data, function (objJson) {
+                    var lista = objJson.lista;
+                    alert(lista.length);
+                    if (lista.length > 0) {
+                        for (var i = 0; i < lista.length; i++) {
+                        }
+                    } else {
+                        new PNotify({
+                            title: "Equipos No Disponibles",
+                            type: "warning",
+                            text: "Ningun equipo se encuentra disponible en este momento",
+                            nonblock: {
+                                nonblock: true
+                            }
+                        });
+                    }
+                });
             }
             function confirmloan(prest, doc, lug, fec) {
                 $("#regp").attr("class", "hidden");
@@ -239,6 +238,26 @@
                 t += '</table>';
                 return t;
             }
+            function createTableEq() {
+                var m = '<table id="tabEquipo" class="table table-bordered table-striped">';
+                m += '<thead>';
+                m += '<tr>';
+                m += '<th>Nombre</th>';
+                m += '<th>Serie</th>';
+                m += '<th>Tipo</th>';
+                m += '<th>Código</th>';
+                m += '<th>Descripción</th>';
+                m += '<th></th>';
+                m += '</tr>';
+                m += '</thead>';
+                m += '<tbody id="dataeqdis">';
+                m += '</tbody>';
+                m += '</table>';
+                return m;
+            }
+
+
+
         </script>
     </body>
 

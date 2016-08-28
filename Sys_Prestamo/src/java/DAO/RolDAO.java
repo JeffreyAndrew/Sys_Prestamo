@@ -121,9 +121,4 @@ public class RolDAO implements Operaciones<RolDTO> {
         return lista;
     }
 
-    @Override
-    public List<RolDTO> buscarPersona(String b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

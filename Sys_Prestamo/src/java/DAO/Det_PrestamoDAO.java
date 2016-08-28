@@ -108,9 +108,4 @@ public class Det_PrestamoDAO implements Operaciones<Det_PrestamoDTO> {
         return lista;
     }
 
-    @Override
-    public List<Det_PrestamoDTO> buscarPersona(String b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

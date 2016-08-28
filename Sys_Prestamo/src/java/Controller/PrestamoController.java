@@ -83,6 +83,13 @@ public class PrestamoController extends HttpServlet {
                     }
                     break;
                 case "list":
+                    switch(op){
+                        case 2:
+                            System.out.println("llega");
+                            ArrayList<Map<String, ?>> lista = pD.listared();
+                            mp.put("lista", lista);
+                            break;
+                    }
                     break;
 
             }

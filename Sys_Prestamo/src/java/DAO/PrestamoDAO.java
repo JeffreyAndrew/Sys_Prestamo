@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -28,17 +29,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
 
     @Override
     public boolean create(PrestamoDTO p) {
-        sql = "INSERT INTO PRESTAMO (idPrestamo ,idUsuario,PersonaRes,fechaPrestamo,fechaDevolucion,lugar,comentariop,comentariod,estado) VALUES (?,?,?,?,?,?,?,?,?)";
-        try {
-            cn = conexion.getConexion();
-            ps = cn.prepareStatement(sql);
-
-            int r = ps.executeUpdate();
-            return r > 0;
-        } catch (Exception e) {
-            System.out.println("Error al agregar Prestamo " + e);
-            return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -59,6 +50,27 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
     @Override
     public List<PrestamoDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public int add(Object t){
+        int p=0;
+        sql = "{CALL REG_PRESTAMO(?, ?, ?, ?)}";
+        Map<String, Object> m = (Map<String, Object>) t;
+        try {
+            cn = conexion.getConexion();
+            cs = cn.prepareCall(sql);
+            cs.setInt(1, Integer.parseInt(m.get("idusuario").toString()));
+            cs.setInt(2, Integer.parseInt(m.get("persona").toString()));
+            cs.setString(3, m.get("fecha").toString());
+            cs.setString(4, m.get("lugar").toString());
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                p= rs.getInt("idPRESTAMO");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al agregar prestamo "+e);
+        }
+        return p;
     }
 
 }

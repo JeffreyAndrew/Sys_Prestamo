@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import DAO.PrestamoDAO;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PrestamoController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    Map<String, Object> mp = new HashMap<>();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,14 +37,17 @@ public class PrestamoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        System.out.println("hey");
+        response.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        PrestamoDAO pD = new PrestamoDAO();        
         String meth = request.getParameter("mt");
         int op = Integer.parseInt(request.getParameter("op"));
         String pagina = "";
+        int idprestamo = 0;
+        Map<String, Object> c = new HashMap<>();
         RequestDispatcher dispatcher;
         try {
-            switch (meth) {
+            switch (meth) {                
                 case "rd":
                     switch (op) {
                         case 1:
@@ -50,13 +58,45 @@ public class PrestamoController extends HttpServlet {
                     }
                     break;
                 case "add":
+                    int idusuario = 0;
+                    int idper = 0;
+                    String fecha = "";
+                    String lugar = "";
+                    String comentarioa = "";
+                    switch (op) {
+                        case 1:
+                            idusuario = Integer.parseInt(request.getParameter("iduser"));
+                            idper = Integer.parseInt(request.getParameter("idpersona"));
+                            fecha = request.getParameter("fecha");
+                            lugar = request.getParameter("lugar");
+                            c.put("idusuario", idusuario);
+                            c.put("persona", idper);
+                            c.put("fecha", fecha);
+                            c.put("lugar", lugar);
+                            mp.put("idprestamo", pD.add(c));
+                            break;
+                        case 3:
+                            /*idprestamo = Integer.parseInt(request.getParameter("idp"));
+                            ArrayList<Map<String, ?>> lista = pD.listarEquipos(idprestamo);
+                            mp.put("lista", lista);*/
+                            break;
+                    }
                     break;
                 case "list":
                     break;
 
             }
-        } catch (Exception e) {
+        }  catch (Exception e) {
+            e.printStackTrace();
+            mp.put("error", e.getMessage());
         }
+
+        Gson gson = new Gson();
+
+        out.println(gson.toJson(mp));
+        out.flush();
+
+        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

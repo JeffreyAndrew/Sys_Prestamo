@@ -63,8 +63,8 @@
                         <form role="form" method="post" action="ec">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="nombre">Marca</label>
-                                    <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre" name="marca" placeholder="Nombre">
+                                    <label for="marca">Marca</label>
+                                    <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="marca" name="marca" placeholder="Marca">
                                 </div>
 
                                 <div class="form-group">

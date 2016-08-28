@@ -73,8 +73,8 @@
                                     eqdto = (EquipoDTO) lista3.get(0);
                                 %>
                                 <div class="form-group">
-                                    <label for="nombre">Marca</label>
-                                    <input type="text" name="marca" required="" maxlength="30" value="<%=eqdto.getMarca()%>" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre">
+                                    <label for="marca">Marca</label>
+                                    <input type="text" name="marca" required="" maxlength="30" value="<%=eqdto.getMarca()%>" onkeypress="return soloLetras(event)" class="form-control input-lg" id="marca">
                                 </div>
 
                                 <div class="form-group">

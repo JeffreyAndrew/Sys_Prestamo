@@ -394,7 +394,8 @@
                                                 <th>Código</th>
                                                 <th>Descripción</th>
                                                 <th>Estado</th>
-                                                <th colspan="2">Gestionar</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -420,7 +421,7 @@
                                                 %><td><span class="label label-danger">No Disponible</span></td><%
                                                     }
                                                 %>
-                                                <td><a href="ec?eg=3"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                                <td><a href="ec?ge=3&id=<%=deq.getIdDet_Equipo() %>&id2=<%=deq.getIdEquipo()%>"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                                 <td><a data-toggle="modal" data-target="#delete<%=deq.getIdDet_Equipo() %>"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         <div class="modal modal-warning fade" id="delete<%=deq.getIdDet_Equipo() %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog">
@@ -452,7 +453,8 @@
                                                 <th>Código</th>
                                                 <th>Descripción</th>
                                                 <th>Estado</th>
-                                                <th colspan="2">Gestionar</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
                                             </tr>
                                         </tfoot>
                                     </table>

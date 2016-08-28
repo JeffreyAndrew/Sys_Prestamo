@@ -4,14 +4,20 @@
     Author     : CESAR
 --%>
 
+<%@page import="DTO.EquipoDTO"%>
+<%@page import="DTO.Det_EquipoDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="lista2" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean id="lista3" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Editar Equipos</title>
+        <!-- iCheck for checkboxes and radio inputs -->
+        <link rel="stylesheet" href="plugins/iCheck/all.css">
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -38,11 +44,11 @@
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="../../index2.html" class="logo">
+                <a href="index.jsp" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
+                    <span class="logo-lg"><b>SPE</b>UPeU</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -253,13 +259,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                                     <span class="hidden-xs">Alexander Pierce</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                         <p>
                                             Alexander Pierce - Web Developer
@@ -307,7 +313,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>Alexander Pierce</p>
@@ -327,175 +333,30 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="treeview">
+                        <li class="header">MENÚ</li>
+                        <li class="active treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                                <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-files-o"></i>
-                                <span>Layout Options</span>
-                                <span class="pull-right-container">
-                                    <span class="label label-primary pull-right">4</span>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                                <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                                <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                                <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-pie-chart"></i>
-                                <span>Charts</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                                <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                                <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                                <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>UI Elements</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                                <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                                <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                                <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                                <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                                <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                                <li><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
                             </ul>
                         </li>
                         <li class="treeview active">
                             <a href="#">
-                                <i class="fa fa-edit"></i> <span>Forms</span>
+                                <i class="fa fa-edit"></i> <span>Equipos</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a href="general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                                <li><a href="advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                                <li><a href="editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                                <li><a href="ec?ge=2"><i class="fa fa-circle-o"></i> Registrar</a></li>
+                                <li class="active"><a href="ec?ge=1"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Tables</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                                <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-red">3</small>
-                                    <small class="label pull-right bg-blue">17</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../mailbox/mailbox.html">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-yellow">12</small>
-                                    <small class="label pull-right bg-green">16</small>
-                                    <small class="label pull-right bg-red">5</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-folder"></i> <span>Examples</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                                <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-                                <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                                <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                                <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                                <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                                <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                                <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                                <li><a href="../examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-share"></i> <span>Multilevel</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                                <li>
-                                    <a href="#"><i class="fa fa-circle-o"></i> Level One
-                                        <span class="pull-right-container">
-                                            <i class="fa fa-angle-left pull-right"></i>
-                                        </span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-                        <li class="header">LABELS</li>
-                        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -528,44 +389,72 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
-                               <form role="form">
+                                <form role="form" method="post" action="ec">
                                     <div class="box-body">
+                                        <%
+                                            Det_EquipoDTO deqdto = new Det_EquipoDTO();
+                                            deqdto = (Det_EquipoDTO) lista2.get(0);
+                                            EquipoDTO eqdto = new EquipoDTO();
+                                            eqdto = (EquipoDTO) lista3.get(0);
+                                        %>
                                         <div class="form-group">
                                             <label for="nombre">Nombre</label>
-                                            <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre" placeholder="Nombre">
+                                            <input type="text" name="nombre" required="" maxlength="30" value="<%=eqdto.getNombre()%>" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="serie">Serie</label>
-                                            <input type="text" required="" maxlength="30" class="form-control input-lg" id="serie" placeholder="Serie">
+                                            <input type="text" name="serie" required="" maxlength="30" value="<%=eqdto.getSerie()%>" class="form-control input-lg" id="serie">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="tipo">Tipo</label>
-                                            <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" placeholder="Tipo">
+                                            <input type="text" name="tipo" required="" maxlength="120" value="<%=eqdto.getTipo()%>" class="form-control input-lg" id="tipo">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="codigo">Codigo</label>
-                                            <input type="text" required="" maxlength="30"  class="form-control input-lg" id="codigo" placeholder="Cantidad">
+                                            <input type="text" name="codigo" required="" maxlength="30" value="<%=deqdto.getCodigo()%>"  class="form-control input-lg" id="codigo" placeholder="Código">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="descripcion">Descripcion</label>
-                                            <textarea type="text"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" placeholder="Descripcion"></textarea>
+                                            <textarea type="text" name="descripcion"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" placeholder="Descripcion"><%=deqdto.getDescripcion()%></textarea>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="estado">Estado</label>
-                                            <input type="text" required="" maxlength="10" class="form-control input-lg" id="estado" placeholder="Estado">
-                                        </div>
+                                            <label>Estado</label><br>
+                                            <%
+                                                if ("N".equals(deqdto.getEstado())) {
+                                            %>
+                                            <label>
+                                                <input type="radio" name="estado" value="N" class="rojo" checked>No Disponible
+                                            </label><br>
+                                            <label>
+                                                <input type="radio" name="estado" value="D" class="verde" >Disponible
+                                            </label>
 
+                                            <%} else if ("D".equals(deqdto.getEstado())) {%>
+                                            <label>
+                                                <input type="radio" name="estado" value="N" class="rojo">No Disponible
+                                            </label><br>
+                                            <label>
+                                                <input type="radio" name="estado" value="D" class="verde" checked>Disponible
+                                            </label>
+                                            <%}%>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="hidden" name="ge" value="6">
+                                            <input type="hidden" name="id" value="<%=deqdto.getIdDet_Equipo() %>">
+                                        </div>
+                                        
                                         <div class="box-footer">
                                             <button type="button" class="btn btn-danger" href="#cancelar" data-toggle="modal">Cancelar</button>
                                             <button type="button" class="btn btn-info pull-right" href="#editar" data-toggle="modal">Registrar</button>
                                         </div> 
-                                        
-                                        <div class="modal fade" id="editar">
+
+                                        <div class="modal modal-success fade" id="editar">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -573,17 +462,17 @@
                                                         <center><h1 class="modal-title">Atención</h1></center>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h2 style="text-align: justify">Esta seguro de que desea editar los datos de este equipo, si es posible verifique los campos.</h2>
+                                                        <h2 style="text-align: justify">¿Esta seguro de que desea editar los datos de este item? Si es necesario verifique los campos nuevamente.</h2>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-default btn-lg">Editar</button>
+                                                        <input type="submit" class="btn btn-default btn-lg" value="Editar">
                                                         <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="modal fade" id="cancelar">
+
+                                        <div class="modal modal-primary fade" id="cancelar">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -591,11 +480,11 @@
                                                         <center><h1 class="modal-title">Atención</h1></center>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h2 style="text-align: justify">Esta seguro de que desea cancelar la edición.</h2>
+                                                        <h2 style="text-align: justify">¿Esta seguro de que desea cancelar la edición?</h2>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
-                                                        <a class="btn btn-danger btn-lg" href="../../index.jsp">Si</a>                                                        
+                                                        <a class="btn btn-danger btn-lg" href="ec?ge=1">Si</a>                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -822,14 +711,27 @@
         <!-- ./wrapper -->
 
         <!-- jQuery 2.2.3 -->
-        <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
-        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- FastClick -->
-        <script src="../../plugins/fastclick/fastclick.js"></script>
+        <script src="plugins/fastclick/fastclick.js"></script>
         <!-- AdminLTE App -->
-        <script src="../../dist/js/app.min.js"></script>
+        <script src="dist/js/app.min.js"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="../../dist/js/demo.js"></script>
+        <script src="dist/js/demo.js"></script>
+        <script src="plugins/iCheck/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.rojo').iCheck({
+                    radioClass: 'iradio_square-red',
+                    increaseArea: '20%' // optional
+                });
+                $('.verde').iCheck({
+                    radioClass: 'iradio_square-green',
+                    increaseArea: '20%' // optional
+                });
+            });
+        </script>
     </body>
 </html>

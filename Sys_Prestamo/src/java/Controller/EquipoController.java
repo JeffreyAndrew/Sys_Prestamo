@@ -68,6 +68,7 @@ public class EquipoController extends HttpServlet {
         PrintWriter out = response.getWriter();
         RequestDispatcher dispatcher;
         String pag;
+        EquipoDAO eqdao = new EquipoDAO();
         Det_EquipoDAO deqdao = new Det_EquipoDAO();
         HttpSession session = request.getSession(true);
         int ge = Integer.parseInt(request.getParameter("ge"));
@@ -85,12 +86,16 @@ public class EquipoController extends HttpServlet {
                 break;
             case 3:
                 pag = "/vistas/equipo/editar.jsp";
+                int id = Integer.parseInt(request.getParameter("id"));
+                int id2 = Integer.parseInt(request.getParameter("id2"));
+                session.setAttribute("lista2", deqdao.read(id));
+                session.setAttribute("lista3", eqdao.read(id2));
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
             case 4:
                 pag = "/ec?ge=1";
-                int id = Integer.parseInt(request.getParameter("id"));
+                id = Integer.parseInt(request.getParameter("id"));
                 if (deqdao.delete(id) == true) {
                     dispatcher = getServletContext().getRequestDispatcher(pag);
                     dispatcher.forward(request, response);
@@ -131,7 +136,6 @@ public class EquipoController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case 5:
-                pag = "/ec?ge=1";
                 eq.setNombre(request.getParameter("nombre"));
                 eq.setSerie(request.getParameter("serie"));
                 eq.setTipo(request.getParameter("tipo"));
@@ -162,6 +166,48 @@ public class EquipoController extends HttpServlet {
                     deq.setCodigo(Integer.parseInt(request.getParameter("codigo")));
                     deq.setIdEquipo(eq.getIdEquipo());
                     if (deqdao.create(deq) == true) {
+                        pag = "/ec?ge=1";
+                        dispatcher = getServletContext().getRequestDispatcher(pag);
+                        dispatcher.forward(request, response);
+                    } else {
+                        out.println("Error al crear Det_equipo");
+                    }
+                }
+                break;
+            case 6:
+                eq.setNombre(request.getParameter("nombre"));
+                eq.setSerie(request.getParameter("serie"));
+                eq.setTipo(request.getParameter("tipo"));
+                lista = eqdao.especifiedread(eq);
+                if (lista.isEmpty()) {
+                    if (eqdao.create(eq) == true) {
+                        lista = eqdao.especifiedread(eq);
+                        eq = lista.get(0);
+                        deq.setIdDet_Equipo(Integer.parseInt(request.getParameter("id")));
+                        deq.setDescripcion(request.getParameter("descripcion"));
+                        deq.setEstado(request.getParameter("estado"));
+                        deq.setCodigo(Integer.parseInt(request.getParameter("codigo")));
+                        deq.setIdEquipo(eq.getIdEquipo());
+                        if (deqdao.update(deq) == true) {
+                            pag = "/ec?ge=1";
+                            dispatcher = getServletContext().getRequestDispatcher(pag);
+                            dispatcher.forward(request, response);
+                        } else {
+                            out.println("Error al crear Det_equipo 1");
+                        }
+                    } else {
+                        out.println("No se crea equipo");
+                    }
+
+                } else if (lista.size() == 1) {
+                    eq = lista.get(0);
+                    deq.setIdDet_Equipo(Integer.parseInt(request.getParameter("id")));
+                    deq.setDescripcion(request.getParameter("descripcion"));
+                    deq.setEstado(request.getParameter("estado"));
+                    deq.setCodigo(Integer.parseInt(request.getParameter("codigo")));
+                    deq.setIdEquipo(eq.getIdEquipo());
+                    if (deqdao.update(deq) == true) {
+                        pag = "/ec?ge=1";
                         dispatcher = getServletContext().getRequestDispatcher(pag);
                         dispatcher.forward(request, response);
                     } else {

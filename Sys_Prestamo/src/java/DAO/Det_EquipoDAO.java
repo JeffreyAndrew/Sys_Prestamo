@@ -54,7 +54,7 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(0, key);
+            ps.setInt(1, key);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Det_EquipoDTO dto = new Det_EquipoDTO();

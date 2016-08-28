@@ -380,7 +380,7 @@
                             <!-- general form elements -->
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <center> <h3 class="box-title">Registrar Equipos</h3> </center>
+                                    <center> <h1 class="box-title" style="font-size: 50px">Registrar Equipos</h1> </center>
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
@@ -388,33 +388,74 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="nombre">Nombre</label>
-                                            <input type="text" required="" class="form-control input-lg" id="nombre" placeholder="Nombre">
+                                            <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre" placeholder="Nombre">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="serie">Serie</label>
-                                            <input type="text" required="" class="form-control input-lg" id="serie" placeholder="Serie">
+                                            <input type="text" required="" maxlength="30" class="form-control input-lg" id="serie" placeholder="Serie">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="cantidad">Cantidad</label>
-                                            <input type="number" required="" class="form-control input-lg" id="cantidad" placeholder="Cantidad">
+                                            <label for="tipo">Tipo</label>
+                                            <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" placeholder="Tipo">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="codigo">Codigo</label>
+                                            <input type="text" required="" maxlength="30"  class="form-control input-lg" id="codigo" placeholder="Cantidad">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="descripcion">Descripcion</label>
-                                            <input type="text"  required="" class="form-control input-lg" id="descripcion" placeholder="Descripcion">
+                                            <textarea type="text"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" placeholder="Descripcion"></textarea>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="estado">Estado</label>
-                                            <input type="text" required="" class="form-control input-lg" id="estado" placeholder="Estado">
+                                            <input type="text" required="" maxlength="10" class="form-control input-lg" id="estado" placeholder="Estado">
                                         </div>
 
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-danger">Cancelar</button>
-                                            <button type="submit" class="btn btn-info pull-right">Registrar</button>
-                                        </div>              
+                                            <button type="button" class="btn btn-danger" href="#cancelar" data-toggle="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-info pull-right" href="#registrar" data-toggle="modal">Registrar</button>
+                                        </div> 
+                                        
+                                        <div class="modal fade" id="registrar">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <center><h1 class="modal-title">Atención</h1></center>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h2 style="text-align: justify">Esta seguro de que desea registrar este nuevo equipo, si es posible verifique los campos.</h2>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-default btn-lg">Registrar</button>
+                                                        <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="modal fade" id="cancelar">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <center><h1 class="modal-title">Atención</h1></center>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h2 style="text-align: justify">Esta seguro de que desea cancelar el registro.</h2>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
+                                                        <a class="btn btn-danger btn-lg" href="../../index.jsp">Si</a>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
 
@@ -635,7 +676,7 @@
             <div class="control-sidebar-bg"></div>
         </div>
         <!-- ./wrapper -->
-
+        <script src="../../bootstrap/js/formulario.js" type="text/javascript"></script>
         <!-- jQuery 2.2.3 -->
         <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- Bootstrap 3.3.6 -->

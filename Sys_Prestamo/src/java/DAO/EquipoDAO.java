@@ -30,11 +30,11 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
     @Override
     public boolean create(EquipoDTO e) {
         boolean m = false;
-        sql = "INSERT INTO equipo(idEquipo,nombre,serie,tipo) VALUES(NULL, ? , ? , ? )";
+        sql = "INSERT INTO equipo(idEquipo,marca,serie,tipo) VALUES(NULL, ? , ? , ? )";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getNombre());
+            ps.setString(1, e.getMarca());
             ps.setString(2, e.getSerie());
             ps.setString(3, e.getTipo());
             int a = ps.executeUpdate();
@@ -59,7 +59,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
             rs = ps.executeQuery();
             while (rs.next()) {
                 dto.setIdEquipo(rs.getInt("idEquipo"));
-                dto.setNombre(rs.getString("nombre"));
+                dto.setMarca(rs.getString("marca"));
                 dto.setSerie(rs.getString("serie"));
                 dto.setTipo(rs.getString("tipo"));
                 lista.add(dto);
@@ -91,11 +91,11 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
     @Override
     public boolean update(EquipoDTO e) {
         boolean m = false;
-        sql = "update equipo set nombre= ? ,serie= ? ,tipo= ? where idequipo= ? ";
+        sql = "update equipo set marca= ? ,serie= ? ,tipo= ? where idequipo= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getNombre());
+            ps.setString(1, e.getMarca());
             ps.setString(2, e.getSerie());
             ps.setString(3, e.getTipo());
             ps.setInt(4, e.getIdEquipo());
@@ -120,7 +120,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
             while (rs.next()) {
                 EquipoDTO dto = new EquipoDTO();
                 dto.setIdEquipo(rs.getInt("idequipo"));
-                dto.setNombre(rs.getString("nombre"));
+                dto.setMarca(rs.getString("marca"));
                 dto.setSerie(rs.getString("serie"));
                 dto.setTipo(rs.getString("tipo"));
                 lista.add(dto);
@@ -134,17 +134,17 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
     public List<EquipoDTO> especifiedread(EquipoDTO e) {
         List<EquipoDTO> lista = new ArrayList();
         EquipoDTO dto = new EquipoDTO();
-        sql = "select * from equipo where nombre= ? and serie= ? and tipo= ? ";
+        sql = "select * from equipo where marca= ? and serie= ? and tipo= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getNombre());
+            ps.setString(1, e.getMarca());
             ps.setString(2, e.getSerie());
             ps.setString(3, e.getTipo());
             rs = ps.executeQuery();
             while (rs.next()) {
                 dto.setIdEquipo(rs.getInt("idEquipo"));
-                dto.setNombre(rs.getString("nombre"));
+                dto.setMarca(rs.getString("marca"));
                 dto.setSerie(rs.getString("serie"));
                 dto.setTipo(rs.getString("tipo"));
                 lista.add(dto);
@@ -157,7 +157,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
     public List<EquipoDTO> buscarPersona(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM EQUIPO WHERE NOMBRE LIKE '").append(cadena);
+        sql.append("SELECT * FROM EQUIPO WHERE MARCA LIKE '").append(cadena);
         sql.append("%'");
         List<EquipoDTO> list = new ArrayList<EquipoDTO>();
         try {
@@ -165,7 +165,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
             while(rs.next()){
             EquipoDTO producto = new EquipoDTO();
             producto.setIdEquipo(rs.getInt("IDEQUIPO"));
-            producto.setNombre(rs.getString("NOMBRE"));
+            producto.setMarca(rs.getString("MARCA"));
             producto.setSerie(rs.getString("SERIE"));
             producto.setTipo(rs.getString("TIPO"));
            

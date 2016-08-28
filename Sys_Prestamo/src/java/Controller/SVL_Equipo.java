@@ -85,7 +85,7 @@ public class SVL_Equipo extends HttpServlet {
                     EquipoDTO equipo = new EquipoDTO();
                     equipo= (EquipoDTO)ListaResultado.get(i);
                     out.print("<tr>");
-                    out.print("<td>"+equipo.getNombre()+"</td>");
+                    out.print("<td>"+equipo.getMarca()+"</td>");
                     out.print("<td>"+equipo.getSerie()+"</td>");
                     out.print("<td>"+equipo.getTipo()+"</td>");
                     out.print("</tr>");

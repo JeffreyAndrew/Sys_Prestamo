@@ -152,7 +152,7 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
                 dto.setEstado(rs.getString("estado"));
                 dto.setDescripcion(rs.getString("descripcion"));
                 dto2.setIdEquipo(rs.getInt("idequipo"));
-                dto2.setNombre(rs.getString("nombre"));
+                dto2.setMarca(rs.getString("marca"));
                 dto2.setSerie(rs.getString("serie"));
                 dto2.setTipo(rs.getString("tipo"));
                 lista.add(dto);

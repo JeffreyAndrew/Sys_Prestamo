@@ -40,674 +40,145 @@
         <![endif]-->
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
+        <section class="content-header">
+            <h1>
+                Gestión de Equipos
+                <small>SPE UPeU</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="index.jsp"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                <li><a href="#">Equipos</a></li>
+                <li class="active">Editar</li>
+            </ol>
+        </section>
 
-            <header class="main-header">
-                <!-- Logo -->
-                <a href="index.jsp" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>A</b>LT</span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>SPE</b>UPeU</span>
-                </a>
-                <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 4 messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <!-- end message -->
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        AdminLTE Design Team
-                                                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Developers
-                                                        <small><i class="fa fa-clock-o"></i> Today</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Sales Department
-                                                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Reviewers
-                                                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">See All Messages</a></li>
-                                </ul>
-                            </li>
-                            <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                                    page and may cause design problems
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-red"></i> 5 new members joined
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-user text-red"></i> You changed your username
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
-                            <!-- Tasks: style can be found in dropdown.less -->
-                            <li class="dropdown tasks-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">9</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 9 tasks</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Design some buttons
-                                                        <small class="pull-right">20%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">20% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- end task item -->
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Create a nice theme
-                                                        <small class="pull-right">40%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">40% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- end task item -->
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Some task I need to do
-                                                        <small class="pull-right">60%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">60% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- end task item -->
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Make beautiful transitions
-                                                        <small class="pull-right">80%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">80% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- end task item -->
-                                        </ul>
-                                    </li>
-                                    <li class="footer">
-                                        <a href="#">View all tasks</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- User Account: style can be found in dropdown.less -->
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                                        <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Followers</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Sales</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Friends</a>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Control Sidebar Toggle Button -->
-                            <li>
-                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div style="margin: 40px 20px 0px 20px">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <center> <h3 class="box-title" style="font-size: 50px">Editar Equipos</h3> </center>
                         </div>
-                        <div class="pull-left info">
-                            <p>Alexander Pierce</p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
-                    <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="header">MENÚ</li>
-                        <li class="active treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview active">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Equipos</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="ec?ge=2"><i class="fa fa-circle-o"></i> Registrar</a></li>
-                                <li class="active"><a href="ec?ge=1"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        General Form Elements
-                        <small>Preview</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Forms</a></li>
-                        <li class="active">General Elements</li>
-                    </ol>
-                </section>
-
-                <!-- Main content -->
-                <section class="content">
-                    <div class="row">
-                        <!-- left column -->
-                        <div style="margin: 40px 20px 0px 20px">
-                            <!-- general form elements -->
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <center> <h3 class="box-title" style="font-size: 50px">Editar Equipos</h3> </center>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form role="form" method="post" action="ec">
+                            <div class="box-body">
+                                <%
+                                    Det_EquipoDTO deqdto = new Det_EquipoDTO();
+                                    deqdto = (Det_EquipoDTO) lista2.get(0);
+                                    EquipoDTO eqdto = new EquipoDTO();
+                                    eqdto = (EquipoDTO) lista3.get(0);
+                                %>
+                                <div class="form-group">
+                                    <label for="nombre">Marca</label>
+                                    <input type="text" name="marca" required="" maxlength="30" value="<%=eqdto.getMarca()%>" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre">
                                 </div>
-                                <!-- /.box-header -->
-                                <!-- form start -->
-                                <form role="form" method="post" action="ec">
-                                    <div class="box-body">
-                                        <%
-                                            Det_EquipoDTO deqdto = new Det_EquipoDTO();
-                                            deqdto = (Det_EquipoDTO) lista2.get(0);
-                                            EquipoDTO eqdto = new EquipoDTO();
-                                            eqdto = (EquipoDTO) lista3.get(0);
-                                        %>
-                                        <div class="form-group">
-                                            <label for="nombre">Nombre</label>
-                                            <input type="text" name="nombre" required="" maxlength="30" value="<%=eqdto.getNombre()%>" onkeypress="return soloLetras(event)" class="form-control input-lg" id="nombre">
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="serie">Serie</label>
-                                            <input type="text" name="serie" required="" maxlength="30" value="<%=eqdto.getSerie()%>" class="form-control input-lg" id="serie">
-                                        </div>
+                                <div class="form-group">
+                                    <label for="serie">Serie</label>
+                                    <input type="text" name="serie" required="" maxlength="30" value="<%=eqdto.getSerie()%>" class="form-control input-lg" id="serie">
+                                </div>
 
-                                        <div class="form-group">
-                                            <label for="tipo">Tipo</label>
-                                            <input type="text" name="tipo" required="" maxlength="120" value="<%=eqdto.getTipo()%>" class="form-control input-lg" id="tipo">
-                                        </div>
+                                <div class="form-group">
+                                    <label for="tipo">Tipo</label>
+                                    <input type="text" name="tipo" required="" maxlength="120" value="<%=eqdto.getTipo()%>" class="form-control input-lg" id="tipo">
+                                </div>
 
-                                        <div class="form-group">
-                                            <label for="codigo">Codigo</label>
-                                            <input type="text" name="codigo" required="" maxlength="30" value="<%=deqdto.getCodigo()%>"  class="form-control input-lg" id="codigo" placeholder="Código">
-                                        </div>
+                                <div class="form-group">
+                                    <label for="codigo">Codigo</label>
+                                    <input type="text" name="codigo" required="" maxlength="30" value="<%=deqdto.getCodigo()%>"  class="form-control input-lg" id="codigo" placeholder="Código">
+                                </div>
 
-                                        <div class="form-group">
-                                            <label for="descripcion">Descripcion</label>
-                                            <textarea type="text" name="descripcion"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" placeholder="Descripcion"><%=deqdto.getDescripcion()%></textarea>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="descripcion">Descripcion</label>
+                                    <textarea type="text" name="descripcion"  required="" maxlength="120" class="form-control input-lg" rows="5" id="descripcion" placeholder="Descripcion"><%=deqdto.getDescripcion()%></textarea>
+                                </div>
 
-                                        <div class="form-group">
-                                            <label>Estado</label><br>
-                                            <%
-                                                if ("N".equals(deqdto.getEstado())) {
-                                            %>
-                                            <label>
-                                                <input type="radio" name="estado" value="N" class="rojo" checked>No Disponible
-                                            </label><br>
-                                            <label>
-                                                <input type="radio" name="estado" value="D" class="verde" >Disponible
-                                            </label>
+                                <div class="form-group">
+                                    <label>Estado</label><br>
+                                    <%
+                                        if ("0".equals(deqdto.getEstado())) {
+                                    %>
+                                    <label>
+                                        <input type="radio" name="estado" value="0" class="rojo" checked>No Disponible
+                                    </label><br>
+                                    <label>
+                                        <input type="radio" name="estado" value="1" class="verde" >Disponible
+                                    </label>
 
-                                            <%} else if ("D".equals(deqdto.getEstado())) {%>
-                                            <label>
-                                                <input type="radio" name="estado" value="N" class="rojo">No Disponible
-                                            </label><br>
-                                            <label>
-                                                <input type="radio" name="estado" value="D" class="verde" checked>Disponible
-                                            </label>
-                                            <%}%>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <input type="hidden" name="ge" value="6">
-                                            <input type="hidden" name="id" value="<%=deqdto.getIdDet_Equipo() %>">
-                                        </div>
-                                        
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-danger" href="#cancelar" data-toggle="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-info pull-right" href="#editar" data-toggle="modal">Registrar</button>
-                                        </div> 
+                                    <%} else if ("1".equals(deqdto.getEstado())) {%>
+                                    <label>
+                                        <input type="radio" name="estado" value="0" class="rojo">No Disponible
+                                    </label><br>
+                                    <label>
+                                        <input type="radio" name="estado" value="1" class="verde" checked>Disponible
+                                    </label>
+                                    <%}%>
+                                </div>
 
-                                        <div class="modal modal-success fade" id="editar">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <center><h1 class="modal-title">Atención</h1></center>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h2 style="text-align: justify">¿Esta seguro de que desea editar los datos de este item? Si es necesario verifique los campos nuevamente.</h2>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <input type="submit" class="btn btn-default btn-lg" value="Editar">
-                                                        <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
-                                                    </div>
-                                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="ge" value="6">
+                                    <input type="hidden" name="id" value="<%=deqdto.getIdDet_Equipo()%>">
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-danger" href="#cancelar" data-toggle="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-info pull-right" href="#editar" data-toggle="modal">Registrar</button>
+                                </div> 
+
+                                <div class="modal modal-success fade" id="editar">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <center><h1 class="modal-title">Atención</h1></center>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h2 style="text-align: justify">¿Esta seguro de que desea editar los datos de este item? Si es necesario verifique los campos nuevamente.</h2>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" class="btn btn-default btn-lg" value="Editar">
+                                                <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="modal modal-primary fade" id="cancelar">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <center><h1 class="modal-title">Atención</h1></center>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h2 style="text-align: justify">¿Esta seguro de que desea cancelar la edición?</h2>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
-                                                        <a class="btn btn-danger btn-lg" href="ec?ge=1">Si</a>                                                        
-                                                    </div>
-                                                </div>
+                                <div class="modal modal-primary fade" id="cancelar">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <center><h1 class="modal-title">Atención</h1></center>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h2 style="text-align: justify">¿Esta seguro de que desea cancelar la edición?</h2>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
+                                                <a class="btn btn-danger btn-lg" href="ec?ge=1">Si</a>                                                        
                                             </div>
                                         </div>
-
                                     </div>
+                                </div>
 
-                                </form>
                             </div>
-                            <!-- /.box -->                       
 
-
-                        </div>
-                        <!--/.col (left) -->
-                        <!-- right column HASTA AQUI -->                        
-                    </div>
-                    <!-- /.row -->
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.6
-                </div>
-                <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-                reserved.
-            </footer>
-
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Create the tabs -->
-                <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                    <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!-- Home tab content -->
-                    <div class="tab-pane" id="control-sidebar-home-tab">
-                        <h3 class="control-sidebar-heading">Recent Activity</h3>
-                        <ul class="control-sidebar-menu">
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                                    <div class="menu-info">
-                                        <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                        <p>Will be 23 on April 24th</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <i class="menu-icon fa fa-user bg-yellow"></i>
-
-                                    <div class="menu-info">
-                                        <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                                        <p>New phone +1(800)555-1234</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-                                    <div class="menu-info">
-                                        <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                                        <p>nora@example.com</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-                                    <div class="menu-info">
-                                        <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                                        <p>Execution time 5 seconds</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- /.control-sidebar-menu -->
-
-                        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                        <ul class="control-sidebar-menu">
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <h4 class="control-sidebar-subheading">
-                                        Custom Template Design
-                                        <span class="label label-danger pull-right">70%</span>
-                                    </h4>
-
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <h4 class="control-sidebar-subheading">
-                                        Update Resume
-                                        <span class="label label-success pull-right">95%</span>
-                                    </h4>
-
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <h4 class="control-sidebar-subheading">
-                                        Laravel Integration
-                                        <span class="label label-warning pull-right">50%</span>
-                                    </h4>
-
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <h4 class="control-sidebar-subheading">
-                                        Back End Framework
-                                        <span class="label label-primary pull-right">68%</span>
-                                    </h4>
-
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- /.control-sidebar-menu -->
-
-                    </div>
-                    <!-- /.tab-pane -->
-                    <!-- Stats tab content -->
-                    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                    <!-- /.tab-pane -->
-                    <!-- Settings tab content -->
-                    <div class="tab-pane" id="control-sidebar-settings-tab">
-                        <form method="post">
-                            <h3 class="control-sidebar-heading">General Settings</h3>
-
-                            <div class="form-group">
-                                <label class="control-sidebar-subheading">
-                                    Report panel usage
-                                    <input type="checkbox" class="pull-right" checked>
-                                </label>
-
-                                <p>
-                                    Some information about this general settings option
-                                </p>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label class="control-sidebar-subheading">
-                                    Allow mail redirect
-                                    <input type="checkbox" class="pull-right" checked>
-                                </label>
-
-                                <p>
-                                    Other sets of options are available
-                                </p>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label class="control-sidebar-subheading">
-                                    Expose author name in posts
-                                    <input type="checkbox" class="pull-right" checked>
-                                </label>
-
-                                <p>
-                                    Allow the user to show his name in blog posts
-                                </p>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-                            <div class="form-group">
-                                <label class="control-sidebar-subheading">
-                                    Show me as online
-                                    <input type="checkbox" class="pull-right" checked>
-                                </label>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label class="control-sidebar-subheading">
-                                    Turn off notifications
-                                    <input type="checkbox" class="pull-right">
-                                </label>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label class="control-sidebar-subheading">
-                                    Delete chat history
-                                    <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                                </label>
-                            </div>
-                            <!-- /.form-group -->
                         </form>
                     </div>
-                    <!-- /.tab-pane -->
+                    <!-- /.box -->                       
+
+
                 </div>
-            </aside>
-            <!-- /.control-sidebar -->
-            <!-- Add the sidebar's background. This div must be placed
-                 immediately after the control sidebar -->
-            <div class="control-sidebar-bg"></div>
-        </div>
+                <!--/.col (left) -->
+                <!-- right column HASTA AQUI -->                        
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
         <!-- ./wrapper -->
 
         <!-- jQuery 2.2.3 -->
@@ -722,16 +193,16 @@
         <script src="dist/js/demo.js"></script>
         <script src="plugins/iCheck/icheck.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $('.rojo').iCheck({
-                    radioClass: 'iradio_square-red',
-                    increaseArea: '20%' // optional
-                });
-                $('.verde').iCheck({
-                    radioClass: 'iradio_square-green',
-                    increaseArea: '20%' // optional
-                });
-            });
+                                        $(document).ready(function () {
+                                            $('.rojo').iCheck({
+                                                radioClass: 'iradio_square-red',
+                                                increaseArea: '20%' // optional
+                                            });
+                                            $('.verde').iCheck({
+                                                radioClass: 'iradio_square-green',
+                                                increaseArea: '20%' // optional
+                                            });
+                                        });
         </script>
     </body>
 </html>

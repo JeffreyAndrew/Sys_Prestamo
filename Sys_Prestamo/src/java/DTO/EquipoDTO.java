@@ -12,7 +12,7 @@ package DTO;
 public class EquipoDTO {
     
    private int idEquipo;
-   private String nombre;
+   private String marca;
    private String serie;
    private String tipo;
 
@@ -24,12 +24,12 @@ public class EquipoDTO {
         this.idEquipo = idEquipo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getSerie() {
@@ -50,13 +50,13 @@ public class EquipoDTO {
 
     public EquipoDTO(int idEquipo, String nombre, String serie, String tipo) {
         this.idEquipo = idEquipo;
-        this.nombre = nombre;
+        this.marca = nombre;
         this.serie = serie;
         this.tipo = tipo;
     }
     
     public EquipoDTO(String nombre, String serie, String tipo) {
-        this.nombre = nombre;
+        this.marca = nombre;
         this.serie = serie;
         this.tipo = tipo;
     }

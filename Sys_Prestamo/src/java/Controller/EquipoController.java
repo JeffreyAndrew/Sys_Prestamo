@@ -136,7 +136,7 @@ public class EquipoController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case 5:
-                eq.setNombre(request.getParameter("nombre"));
+                eq.setMarca(request.getParameter("marca"));
                 eq.setSerie(request.getParameter("serie"));
                 eq.setTipo(request.getParameter("tipo"));
                 lista = eqdao.especifiedread(eq);
@@ -145,7 +145,7 @@ public class EquipoController extends HttpServlet {
                         lista = eqdao.especifiedread(eq);
                         eq = lista.get(0);
                         deq.setDescripcion(request.getParameter("descripcion"));
-                        deq.setEstado("D");
+                        deq.setEstado("1");
                         deq.setCodigo(Integer.parseInt(request.getParameter("codigo")));
                         deq.setIdEquipo(eq.getIdEquipo());
                         if (deqdao.create(deq) == true) {
@@ -162,7 +162,7 @@ public class EquipoController extends HttpServlet {
                 } else if (lista.size() == 1) {
                     eq = lista.get(0);
                     deq.setDescripcion(request.getParameter("descripcion"));
-                    deq.setEstado("D");
+                    deq.setEstado("1");
                     deq.setCodigo(Integer.parseInt(request.getParameter("codigo")));
                     deq.setIdEquipo(eq.getIdEquipo());
                     if (deqdao.create(deq) == true) {
@@ -175,7 +175,7 @@ public class EquipoController extends HttpServlet {
                 }
                 break;
             case 6:
-                eq.setNombre(request.getParameter("nombre"));
+                eq.setMarca(request.getParameter("marca"));
                 eq.setSerie(request.getParameter("serie"));
                 eq.setTipo(request.getParameter("tipo"));
                 lista = eqdao.especifiedread(eq);

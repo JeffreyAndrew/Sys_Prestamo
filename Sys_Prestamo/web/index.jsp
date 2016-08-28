@@ -130,8 +130,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="ec?ge=2"><i class="fa fa-circle-o"></i> Registrar</a></li>
-                                <li><a href="ec?ge=1"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
+                                <li><a href="ec?ge=2" target="box"><i class="fa fa-circle-o"></i> Registrar</a></li>
+                                <li><a href="ec?ge=1" target="box"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -144,15 +144,10 @@
                 <!-- Content Header (Page header) -->
 
                 <!-- Main content -->
-                <section class="content">
                     <!-- Main row -->
-                    <div class="row">
                         <iframe name="box" id="idboxload" onload="loadFrame(this.contentWindow.location);"
-                                style="height: 650px;width: 103%; border: none; overflow-y: hidden">
+                                style="height: 87vh;width: 100%; border: none; overflow-y: hidden">
                         </iframe>
-                    </div>
-
-                </section>
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->

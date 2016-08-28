@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Det_EquipoDTO;
+import DTO.EquipoDTO;
 import Interfaces.Operaciones;
 import config.conexion;
 import java.sql.Connection;
@@ -133,4 +134,35 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         return lista;
     }
 
+    public ArrayList especifiedreadall() {
+        ArrayList lista3=new ArrayList();
+        List<Det_EquipoDTO> lista = new ArrayList();
+        List<EquipoDTO> lista2 = new ArrayList();
+        sql = "select * from det_equipo a,equipo b where a.idequipo=b.idequipo";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                EquipoDTO dto2 = new EquipoDTO();
+                Det_EquipoDTO dto = new Det_EquipoDTO();
+                dto.setIdDet_Equipo(rs.getInt("iddet_equipo"));
+                dto.setIdEquipo(rs.getInt("idequipo"));
+                dto.setCodigo(rs.getInt("codigo"));
+                dto.setEstado(rs.getString("estado"));
+                dto.setDescripcion(rs.getString("descripcion"));
+                dto2.setIdEquipo(rs.getInt("idequipo"));
+                dto2.setNombre(rs.getString("nombre"));
+                dto2.setSerie(rs.getString("serie"));
+                dto2.setTipo(rs.getString("tipo"));
+                lista.add(dto);
+                lista2.add(dto2);
+            }
+            lista3.add(lista);
+            lista3.add(lista2);
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return lista3;
+    }
 }

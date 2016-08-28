@@ -5,6 +5,7 @@
  */
 package test;
 
+import DAO.EquipoDAO;
 import config.conexion;
 import java.sql.Connection;
 
@@ -17,7 +18,7 @@ public class testTools {
     public static Connection cx;
     
     public static void main(String[] args) {
-        conex();
+        readallEquipo();
     }
     
     static void conex() {
@@ -27,5 +28,9 @@ public class testTools {
         } else {
             System.out.println("Error al conectar");
         }
+    }
+    static void readallEquipo(){
+        EquipoDAO eqdao=new EquipoDAO();
+        System.out.println(eqdao.readall().get(0).getNombre());
     }
 }

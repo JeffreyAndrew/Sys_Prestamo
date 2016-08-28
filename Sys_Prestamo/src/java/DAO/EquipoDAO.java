@@ -111,7 +111,7 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
     @Override
     public List<EquipoDTO> readall() {
         List<EquipoDTO> lista = new ArrayList();
-        sql = "select * from rol";
+        sql = "select * from equipo";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

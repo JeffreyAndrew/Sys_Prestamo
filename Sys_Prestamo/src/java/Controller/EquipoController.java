@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import DAO.Det_EquipoDAO;
+import DAO.EquipoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -32,18 +34,18 @@ public class EquipoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
- /*out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EquipoController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EquipoController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");*/
-        }
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet EquipoController</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet EquipoController at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,6 +61,20 @@ public class EquipoController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        RequestDispatcher dispatcher;
+        String pag;
+        Det_EquipoDAO deqdao=new Det_EquipoDAO();
+        HttpSession session = request.getSession(true);
+        int ge = Integer.parseInt(request.getParameter("ge"));
+        switch (ge) {
+            case 1:
+                pag = "/vistas/equipo/listar.jsp";
+                session.setAttribute("lista", deqdao.especifiedreadall());
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
+                break;
+        }
     }
 
     /**
@@ -73,19 +89,6 @@ public class EquipoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        PrintWriter out = response.getWriter();
-        RequestDispatcher dispatcher;
-        String pagina;
-        HttpSession session = request.getSession(true);
-        int ge;
-        ge = Integer.parseInt(request.getParameter("ge"));
-        switch (ge) {
-            case 1:
-                pagina = "/vistas/equipo/listar.jsp";
-                dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-                break;
-        }
 
     }
 

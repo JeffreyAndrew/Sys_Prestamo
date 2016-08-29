@@ -141,10 +141,10 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
         <script>
             var id_rol;
           $( document ).ready(function() {
-              listarrol();
+              listarrol();// funcion para listar los roles con ajax
               
     $('#setrol').on('click', function () {
-      var datos = $('#formrol').serializeArray();
+      var datos = $('#formrol').serializeArray();// sacamos los datos del formulario y lo ponemos en un Objet
      
       
       $.ajax({
@@ -153,11 +153,11 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
           success: function (data) {
                         if(data == "true"){
                           $('#formulario').hide();
-                          $('#true').show(200);
-                            setTimeout(function(){
-                                    $('#myModal').modal('toggle');
+                          $('#true').show(200);// mostrar el div con la inagen success
+                            setTimeout(function(){ // pausar el codigo
+                                    $('#myModal').modal('toggle');// cerrar el modal despues del tiempo
                                     listarrol();
-                                    }, 2000);
+                                    }, 2000);// tiempo de la pausa del codigo
 
                         }else{
                           $('#formulario').hide();

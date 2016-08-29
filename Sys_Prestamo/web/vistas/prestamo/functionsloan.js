@@ -50,26 +50,13 @@ function addequipo(id) {
         $('#equipoModal').modal('hide');
         if (objJson.resp) {
             var url = "loan?mt=update&op=1";
-            var data = "iddet=" + id;
+            var data = "estado=0";
+            data += "&iddet=" + id;
             $.post(url, data);
-            new PNotify({
-                title: "Equipo Añadido",
-                type: "success",
-                text: "Agregado Correctamente",
-                nonblock: {
-                    nonblock: true
-                }
-            });
+            swal("Equipo añadido", "El equipo fue añadido correctamente", "success");
             listarequipos(idpres);
         } else {
-            new PNotify({
-                title: "Error al agregar",
-                type: "error",
-                text: "Ha ocurrido un error al agregar equipo",
-                nonblock: {
-                    nonblock: true
-                }
-            });
+            swal("Ups..", "Ocurrio un error al añadir el equipo", "error");
         }
     });
 }
@@ -92,34 +79,13 @@ function validar() {
     } else {
         if (doc === "" || lug === "" || fec === "") {
             if (doc === "") {
-                new PNotify({
-                    title: "Docente no escogido",
-                    type: "error",
-                    text: "Debe escoger el docente al que se hará el prestamo",
-                    nonblock: {
-                        nonblock: true
-                    }
-                });
+                swal("¡Hey!", "Debe escoger el docente a quien se le prestará el/los equipo(s)", "warning");
             }
             if (lug === "") {
-                new PNotify({
-                    title: "Lugar no especificado",
-                    type: "error",
-                    text: "No especificó el lugar",
-                    nonblock: {
-                        nonblock: true
-                    }
-                });
+                swal("¡Hey!", "Debe ingresar el lugar en donde se usará el/los equipo(s)", "warning");
             }
             if (fec === "") {
-                new PNotify({
-                    title: "Fecha no especificada",
-                    type: "error",
-                    text: "No especificó la fecha de devolución",
-                    nonblock: {
-                        nonblock: true
-                    }
-                });
+                swal("¡Hey!", "Debe escoger la fecha límite en la que se debe devolver el/los equipo(s)", "warning");
             }
         }
     }
@@ -158,7 +124,7 @@ function listarequipos(id) {
                 m += '<td>' + lista[i].tipo + '</td>';
                 m += '<td>' + lista[i].codigo + '</td>';
                 m += '<td>' + lista[i].descripcion + '</td>';
-                m += '<td><button type="button" onclick="addequipo(this.value)" class="btn btn-danger"><i class="fa fa-close" value="' + lista[i].iddet + '"></i></button></td>';
+                m += '<td><button type="button" onclick="removeeq(' + lista[i].iddet + ')" class="btn btn-danger"><i class="fa fa-close"></i></button></td>';
                 m += '</tr>';
             }
             var d = createTable();
@@ -210,12 +176,29 @@ function regcom() {
     data += "&idprestamo=" + $("#iprestamo").val();
     $.post(url, data, function (objJson) {
         if (objJson.resp) {
-            location.href="loan?mt=rd&op=1";
-        }else{
-            
+            location.href = "loan?mt=rd&op=1";
+        } else {
+
         }
     });
 }
 
+function removeeq(id) {
+    var url = "loan?mt=remove&op=1";
+    var data = "iddet=" + id;
+    data += "&idprestamo=" + $("#iprestamo").val();
+    $.post(url, data, function (objJson) {
+        if (objJson.rp) {
+            var url = "loan?mt=update&op=1";
+            var data = "iddet=" + id;
+            data += "&estado=1";
+            $.post(url, data);
+            $("#eqpres").empty();
+            listarequipos($("#iprestamo").val());
+        } else {
+            swal("Ups...", "Ocurrió un error al desvincular este equipo", "error");
+        }
+    });
+}
 
 

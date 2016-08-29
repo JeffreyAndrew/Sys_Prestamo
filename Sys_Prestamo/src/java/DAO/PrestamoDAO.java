@@ -6,7 +6,6 @@
 package DAO;
 
 import DTO.PrestamoDTO;
-import Interfaces.Operaciones;
 import config.conexion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -22,38 +21,13 @@ import java.util.Map;
  *
  * @author LEANDRO
  */
-public class PrestamoDAO implements Operaciones<PrestamoDTO> {
+public class PrestamoDAO {
 
     private String sql;
     private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
-
-    @Override
-    public boolean create(PrestamoDTO p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<PrestamoDTO> read(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean delete(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean update(PrestamoDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<PrestamoDTO> readall() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public int add(Object t) {
         int p = 0;
@@ -76,6 +50,24 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
         return p;
     }
 
+    public boolean removeeq(int p,int e) {
+        boolean m = false;
+        sql = "DELETE FROM DET_PRESTAMO WHERE IDPRESTAMO=? AND IDDET_EQUIPO=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, p);
+            ps.setInt(2, e);
+            int r = ps.executeUpdate();
+            if (r > 0) {
+                m = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error al quitar equipo del prestamo " + ex);
+        }
+        return m;
+    }
+    
     public ArrayList<Map<String, ?>> listared() {
         sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,D.CODIGO,D.DESCRIPCION,E.MARCA,E.SERIE,E.TIPO "
                 + " FROM DET_EQUIPO D,EQUIPO E WHERE ESTADO=1 AND D.IDEQUIPO=E.IDEQUIPO;";
@@ -120,13 +112,14 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
         return m;
     }
     
-    public boolean changeestatus(int e) {
+    public boolean changeestatus(String a,int e) {
         boolean m = false;
-        sql = "UPDATE DET_EQUIPO SET ESTADO='0' WHERE IDDET_EQUIPO=?";
+        sql = "UPDATE DET_EQUIPO SET ESTADO=? WHERE IDDET_EQUIPO=?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setInt(1, e);
+            ps.setString(1, a);
+            ps.setInt(2, e);
             int r = ps.executeUpdate();
             if (r > 0) {
                 m = true;
@@ -183,6 +176,10 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
         }
         return lista;
     }
+    
+    
+    
+    
     public List<PrestamoDTO> buscarPrestamo(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();

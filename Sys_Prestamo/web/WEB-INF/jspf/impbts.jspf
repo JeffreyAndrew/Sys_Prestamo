@@ -28,10 +28,9 @@
 <script src="plugins/fastclick/fastclick.js"></script>
 <script src="dist/js/app.min.js"></script>
 <script src="dist/js/demo.js"></script>
-<script src="tools/js/customNotify.js" type="text/javascript"></script>
-<script src="tools/js/pnotify.buttons.js" type="text/javascript"></script>
-<script src="tools/js/pnotify.core.js" type="text/javascript"></script>
-<script src="tools/js/pnotify.nonblock.js" type="text/javascript"></script>
+<script src="tools/js/sweetalert-dev.js" type="text/javascript"></script>
+<link href="tools/css/sweetalert.css" rel="stylesheet" type="text/css"/>
+<script src="tools/js/sweetalert.min.js" type="text/javascript"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements

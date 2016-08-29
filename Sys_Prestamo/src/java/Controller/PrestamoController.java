@@ -101,13 +101,23 @@ public class PrestamoController extends HttpServlet {
                     switch (op) {
                         case 1:
                             iddeteq = Integer.parseInt(request.getParameter("iddet"));
-                            pD.changeestatus(iddeteq);
+                            String est=request.getParameter("estado");
+                            pD.changeestatus(est,iddeteq);
                             break;
                         case 2:
-                            comentarioa=request.getParameter("com");
+                            comentarioa = request.getParameter("com");
                             idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
-                            boolean m=pD.changecom(comentarioa, idprestamo);
+                            boolean m = pD.changecom(comentarioa, idprestamo);
                             mp.put("resp", m);
+                    }
+                    break;
+                case "remove":
+                    switch (op) {
+                        case 1:
+                            iddeteq = Integer.parseInt(request.getParameter("iddet"));
+                            idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
+                            mp.put("rp", pD.removeeq(idprestamo, iddeteq));
+                            break;
                     }
                     break;
             }

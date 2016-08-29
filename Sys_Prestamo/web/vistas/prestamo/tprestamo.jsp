@@ -31,7 +31,8 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </div>
-                                <input id="iddoc" type="text" class="form-control" value="1" disabled>
+                                <input id="idocente" type="text" class="form-control" value="1" disabled>
+                                <input id="iddoc" type="hidden" class="form-control" value="0">
                             </div>
                             <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right"><i class="fa fa-search"></i>   Escoger</button>
                         </div> 
@@ -101,8 +102,19 @@
                         <h4 class="modal-title">Buscar Docente</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
-                        </form>
+                        <div class="box-body">
+                            <div id="iadviced" class="callout callout-danger">
+                                <h4>Ups..</h4>
+                                <p>No hay docentes habilitados para prestarse equipos</p>
+                            </div>
+                            <div id="conTDoc" class="box hidden">
+                                <div class="box-header">
+                                    <h3 class="box-title">Lista de Docentes habilitados</h3>
+                                </div>
+                                <div id="iboxd" class="box-body">                                        
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

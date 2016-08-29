@@ -64,7 +64,7 @@
                         </div>
                         <br/><br/>
                         <center>
-                            <button class="btn btn-danger hidden" type="button">Guardar</button>
+                            <button id="isave" class="btn btn-danger hidden" data-toggle="modal" data-target="#finalModal" type="button">Guardar</button>
                         </center>
                     </div>
                 </div>
@@ -72,7 +72,27 @@
             </div>
 
         </div>
-
+        <div class="modal fade" id="finalModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Detalle del Prestamo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Comentario</label>
+                            <textarea id="icom" class="form-control" rows="3" placeholder="Escriba un comentario sobre el prestamo..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-default">Omitir</button>
+                        <button type="button" onclick="regcom()" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="docenteModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

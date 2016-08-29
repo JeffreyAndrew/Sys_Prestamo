@@ -77,7 +77,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
     }
 
     public ArrayList<Map<String, ?>> listared() {
-        sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,D.CODIGO,D.DESCRIPCION,E.NOMBRE,E.SERIE,E.TIPO "
+        sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,D.CODIGO,D.DESCRIPCION,E.MARCA,E.SERIE,E.TIPO "
                 + " FROM DET_EQUIPO D,EQUIPO E WHERE ESTADO=1 AND D.IDEQUIPO=E.IDEQUIPO;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
@@ -90,7 +90,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
                 m.put("idequipo", rs.getInt("IDEQUIPO"));
                 m.put("codigo", rs.getString("CODIGO"));
                 m.put("descripcion", rs.getString("DESCRIPCION"));
-                m.put("nombre", rs.getString("NOMBRE"));
+                m.put("marca", rs.getString("MARCA"));
                 m.put("serie", rs.getString("SERIE"));
                 m.put("tipo", rs.getString("TIPO"));
                 lista.add(m);
@@ -137,8 +137,26 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
         return m;
     }
 
+    public boolean changecom(String com,int id){
+        boolean m=false;
+        sql = "UPDATE PRESTAMO SET COMENTARIOP=? WHERE IDPRESTAMO=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, com);
+            ps.setInt(2, id);
+            int r = ps.executeUpdate();
+            if (r > 0) {
+                m = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error comentar el prestamo " + ex);
+        }
+        return m;
+    }
+    
     public ArrayList<Map<String, ?>> listareq(int idprestamo) {
-        sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,E.CODIGO,E.DESCRIPCION,EQ.NOMBRE,EQ.SERIE,EQ.TIPO "
+        sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,E.CODIGO,E.DESCRIPCION,EQ.MARCA,EQ.SERIE,EQ.TIPO "
                 + "FROM DET_PRESTAMO D,DET_EQUIPO E,EQUIPO EQ "
                 + "WHERE IDPRESTAMO="+idprestamo+" "
                 + "AND E.IDDET_EQUIPO=D.IDDET_EQUIPO "
@@ -154,7 +172,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
                 m.put("idequipo", rs.getInt("IDEQUIPO"));
                 m.put("codigo", rs.getString("CODIGO"));
                 m.put("descripcion", rs.getString("DESCRIPCION"));
-                m.put("nombre", rs.getString("NOMBRE"));
+                m.put("marca", rs.getString("MARCA"));
                 m.put("serie", rs.getString("SERIE"));
                 m.put("tipo", rs.getString("TIPO"));
                 lista.add(m);

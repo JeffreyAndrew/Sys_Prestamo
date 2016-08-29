@@ -44,6 +44,11 @@ public class PrestamoController extends HttpServlet {
         String meth = request.getParameter("mt");
         int op = Integer.parseInt(request.getParameter("op"));
         String pagina = "";
+        int idusuario = 0;
+        int idper = 0;
+        String fecha = "";
+        String lugar = "";
+        String comentarioa = "";
         int idprestamo = 0;
         int iddeteq = 0;
         Map<String, Object> c = new HashMap<>();
@@ -60,11 +65,6 @@ public class PrestamoController extends HttpServlet {
                     }
                     break;
                 case "add":
-                    int idusuario = 0;
-                    int idper = 0;
-                    String fecha = "";
-                    String lugar = "";
-                    String comentarioa = "";
                     switch (op) {
                         case 1:
                             idusuario = Integer.parseInt(request.getParameter("iduser"));
@@ -80,14 +80,14 @@ public class PrestamoController extends HttpServlet {
                         case 2:
                             idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
                             iddeteq = Integer.parseInt(request.getParameter("iddet"));
-                            mp.put("response", pD.addeqprestamo(idprestamo, iddeteq));
+                            mp.put("resp", pD.addeqprestamo(idprestamo, iddeteq));
                             break;
                     }
                     break;
                 case "list":
                     switch (op) {
                         case 1:
-                            idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
+                            idprestamo = Integer.parseInt(request.getParameter("idp"));
                             ArrayList<Map<String, ?>> listae = pD.listareq(idprestamo);
                             mp.put("lista", listae);
                             break;
@@ -103,6 +103,11 @@ public class PrestamoController extends HttpServlet {
                             iddeteq = Integer.parseInt(request.getParameter("iddet"));
                             pD.changeestatus(iddeteq);
                             break;
+                        case 2:
+                            comentarioa=request.getParameter("com");
+                            idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
+                            boolean m=pD.changecom(comentarioa, idprestamo);
+                            mp.put("resp", m);
                     }
                     break;
             }

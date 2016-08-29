@@ -20,8 +20,8 @@ function listaequiposdis() {
             $("#iadvice").attr("class", "hidden");
             $("#contab").attr("class", "box");
             for (var i = 0; i < lista.length; i++) {
-                m = '<tr>';
-                m += '<td>' + lista[i].nombre + '</td>';
+                m += '<tr>';
+                m += '<td>' + lista[i].marca + '</td>';
                 m += '<td>' + lista[i].serie + '</td>';
                 m += '<td>' + lista[i].tipo + '</td>';
                 m += '<td>' + lista[i].codigo + '</td>';
@@ -48,7 +48,7 @@ function addequipo(id) {
     data += "&iddet=" + id;
     $.post(url, data, function (objJson) {
         $('#equipoModal').modal('hide');
-        if (objJson.response) {
+        if (objJson.resp) {
             var url = "loan?mt=update&op=1";
             var data = "iddet=" + id;
             $.post(url, data);
@@ -142,22 +142,23 @@ function addloan(user, persona, lugar, fecha) {
 }
 
 function listarequipos(id) {
-    var url = "loan?meth=list&op=1";
+    var url = "loan?mt=list&op=1";
     var data = "idp=" + id;
     $.post(url, data, function (objJson) {
         var lista = objJson.lista;
         if (lista.length > 0) {
+            $("#isave").attr("class", "btn btn-danger");
             var m = "";
             $("#iadvice").attr("class", "hidden");
             $("#contab").attr("class", "box");
             for (var i = 0; i < lista.length; i++) {
-                m = '<tr>';
-                m += '<td>' + lista[i].nombre + '</td>';
+                m += '<tr>';
+                m += '<td>' + lista[i].marca + '</td>';
                 m += '<td>' + lista[i].serie + '</td>';
                 m += '<td>' + lista[i].tipo + '</td>';
                 m += '<td>' + lista[i].codigo + '</td>';
                 m += '<td>' + lista[i].descripcion + '</td>';
-                m += '<td><button type="button" onclick="addequipo(this.value)" class="btn btn-success"><i class="fa fa-check" value="' + lista[i].iddet + '"></i></button></td>';
+                m += '<td><button type="button" onclick="addequipo(this.value)" class="btn btn-danger"><i class="fa fa-close" value="' + lista[i].iddet + '"></i></button></td>';
                 m += '</tr>';
             }
             var d = createTable();
@@ -172,10 +173,11 @@ function createTable() {
     var t = '<table class="table table-condensed">';
     t += '<thead>';
     t += '<tr>';
-    t += '<th><i class="fa fa-laptop"></i>Nombre</th>';
+    t += '<th><i class="fa fa-laptop"></i>Marca</th>';
     t += '<th>Serie</th>';
-    t += '<th>Descripción</th>';
+    t += '<th>Tipo</th>';
     t += '<th>Codigo</th>';
+    t += '<th>Descripción</th>';
     t += '<th></th>';
     t += '</tr>';
     t += '</thead>';
@@ -188,7 +190,7 @@ function createTableEq() {
     var m = '<table id="tabEquipo" class="table table-bordered table-striped">';
     m += '<thead>';
     m += '<tr>';
-    m += '<th>Nombre</th>';
+    m += '<th>Marca</th>';
     m += '<th>Serie</th>';
     m += '<th>Tipo</th>';
     m += '<th>Código</th>';
@@ -202,6 +204,18 @@ function createTableEq() {
     return m;
 }
 
+function regcom() {
+    var url = "loan?mt=update&op=2";
+    var data = "com=" + $("#icom").val();
+    data += "&idprestamo=" + $("#iprestamo").val();
+    $.post(url, data, function (objJson) {
+        if (objJson.resp) {
+            location.href="loan?mt=rd&op=1";
+        }else{
+            
+        }
+    });
+}
 
 
 

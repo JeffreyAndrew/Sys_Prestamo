@@ -37,8 +37,14 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
 .in-wrap{overflow: hidden;height: 100%;}
 #search-box {width: 50%;height: 42px;border: 1px solid #ACACAC;border-left: none;border-right: none;line-height: 25px;font-size: 18px;padding-left: 10px;}.light-table-filter{width: 100%;}
 
+#cargando{
+   
+    width: 100%;
+    height: 100%;
+    background: #fff url(img/ajax-loader.gif) no-repeat center;
+}
   </style>
-     
+ 
   
   <script type="text/javascript">
         
@@ -83,7 +89,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
                     dataType: "html",
                     beforeSend: function(){
                           //imagen de carga
-                          $("#resultado").html("<p align='center'><img src='/img/gif-carga.gif'> </p>");
+                          $("#window").html("<p align='center'><img src='img/ajax-loader.gif'/></p>");
                     },
                     error: function(){
                           alert("error petición ajax");
@@ -102,7 +108,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
                     dataType: "html",
                     beforeSend: function(){
                           //imagen de carga
-                          $("#resultado").html("<p align='center'><img src='/img/gif-carga.gif'/></p>");
+                          $("#window").html("<p align='center'><img src='img/ajax-loader.gif'/></p>");
                     },
                     error: function(){
                           alert("error petición ajax");
@@ -121,7 +127,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
                     dataType: "html",
                     beforeSend: function(){
                           //imagen de carga
-                          $("#resultado").html("<p align='center'><img src='/img/gif-carga.gif'/></p>");
+                          $("#resultado").html("<p align='center'><img src='img/ajax-loader.gif'/></p>");
                     },
                     error: function(){
                           alert("error petición ajax");
@@ -147,9 +153,12 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
  
 </script>
     </head>
+    
+    
     <body>
  
-     
+
+<div id="cargando"></div>     
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buscador</button>
 
@@ -179,7 +188,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
 </span>
    <form>
   <div class="in-wrap">
-   <input type="search" class="light-table-filter form-control" name="busqueda"  id="busqueda" onkeyup="autocompletado()" placeholder="Search">
+   <input type="search" class="light-table-filter form-control" name="busqueda"  id="busqueda" onkeyup="autocompletado()" placeholder="Buscar">
    
   </div>
        <!--<div id="resultado" class="datagrid"></div>-->
@@ -201,7 +210,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
   </div>
 </div>
  
-   
+
    
   
     </body>

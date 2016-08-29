@@ -153,7 +153,7 @@
             <!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.6
+                    <b>Version</b> 1.0.0
                 </div>
                 <strong>Copyright &copy;Ingeniería de Sistemas IV CICLO || 2016-II</strong> All rights
                 reserved.

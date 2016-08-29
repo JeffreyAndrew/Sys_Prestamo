@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SVL_Prestamo</servlet-name>
-        <url-pattern>/SVL_Prestamo</url-pattern>
+        <url-pattern>/SVLPR</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

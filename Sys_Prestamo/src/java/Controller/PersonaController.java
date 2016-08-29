@@ -84,6 +84,8 @@ public class PersonaController extends HttpServlet {
 
                 PersonaDTO u = new PersonaDTO(op, nombre, apellido, Integer.parseInt(dni), Integer.parseInt(idRol), facultad, escuela, op, correo);
                 boolean r = aO.create(u);
+                
+//                Agregar Usuario
                 UsuarioDTO usu = new UsuarioDTO(Integer.parseInt(id), nombre, dni);
                 boolean n = uO.create(usu);
 

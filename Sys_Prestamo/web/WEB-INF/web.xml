@@ -16,6 +16,10 @@
         <servlet-name>SVL_Equipo</servlet-name>
         <servlet-class>Controller.SVL_Equipo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SVL_Prestamo</servlet-name>
+        <servlet-class>Controller.SVL_Prestamo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrestamoController</servlet-name>
         <url-pattern>/loan</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>SVL_Equipo</servlet-name>
         <url-pattern>/SVLE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SVL_Prestamo</servlet-name>
+        <url-pattern>/SVL_Prestamo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -112,7 +112,26 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
                           $("#resultado").append(data);
                                                              
                     }
-              });
+                });
+                }else if (combo==3){
+                     $.ajax({
+                    type: "POST",
+                    url: "SVLPR" ,
+                    data: "busqueda="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#resultado").html("<p align='center'><img src='/img/gif-carga.gif'/></p>");
+                    },
+                    error: function(){
+                          alert("error petición ajax");
+                    },
+                    success: function(data){                                                    
+                          $("#resultado").empty();
+                          $("#resultado").append(data);
+                                                             
+                    }
+                });
                 }
               
               //$('#thisdiv').load(document.URL +  ' #thisdiv');
@@ -152,6 +171,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
     <select id="dropdown" class="form-control">
     <option value="1">Equipo</option>
     <option value="2">Personas</option>
+    <option value="2">Prestamos</option>
     <!--<option value="3">Fecha</option>
     <option value="4">Otro</option>-->
  

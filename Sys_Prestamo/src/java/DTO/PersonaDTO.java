@@ -1,50 +1,61 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DTO;
 
+import config.conexion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author garcia
+ */
 public class PersonaDTO {
-    
-    private int idpersona;
+
+    public int getIdPersona() {
+        return idPersona;
+    }
+    private int idPersona;
+    private int idRol;
     private String nombre;
-    private String apellido;
-    private int DNI;
-    private int idrol;
-    private String facultad;
-    private String escuela;
-    private int telefono;
+    private String apellidos;
+    private int dni;
+    private int celular;
     private String correo;
 
     public PersonaDTO() {
     }
 
-    public PersonaDTO(String nombre, String apellido, int DNI, int idrol, String facultad, String escuela, int telefono, String correo) {
+    public PersonaDTO(int idRol, String nombre, String apellidos, int dni, int celular, String correo) {
+        this.idRol = idRol;
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.DNI = DNI;
-        this.idrol = idrol;
-        this.facultad = facultad;
-        this.escuela = escuela;
-        this.telefono = telefono;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.celular = celular;
         this.correo = correo;
     }
 
-    public PersonaDTO(int idpersona, String nombre, String apellido, int DNI, int idrol, String facultad, String escuela, int telefono, String correo) {
-        this.idpersona = idpersona;
+    public PersonaDTO(int idPersona, int idRol, String nombre, String apellidos, int dni, int celular, String correo) {
+        this.idPersona = idPersona;
+        this.idRol = idRol;
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.DNI = DNI;
-        this.idrol = idrol;
-        this.facultad = facultad;
-        this.escuela = escuela;
-        this.telefono = telefono;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.celular = celular;
         this.correo = correo;
     }
 
-    public int getIdpersona() {
-        return idpersona;
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setIdpersona(int idpersona) {
-        this.idpersona = idpersona;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
     public String getNombre() {
@@ -55,52 +66,28 @@ public class PersonaDTO {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public int getDNI() {
-        return DNI;
+    public int getDni() {
+        return dni;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
-    public int getIdrol() {
-        return idrol;
+    public int getCelular() {
+        return celular;
     }
 
-    public void setIdrol(int idrol) {
-        this.idrol = idrol;
-    }
-
-    public String getFacultad() {
-        return facultad;
-    }
-
-    public void setFacultad(String facultad) {
-        this.facultad = facultad;
-    }
-
-    public String getEscuela() {
-        return escuela;
-    }
-
-    public void setEscuela(String escuela) {
-        this.escuela = escuela;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setCelular(int celular) {
+        this.celular = celular;
     }
 
     public String getCorreo() {
@@ -111,7 +98,6 @@ public class PersonaDTO {
         this.correo = correo;
     }
 
-    
     
 
 }

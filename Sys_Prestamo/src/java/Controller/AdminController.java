@@ -34,15 +34,15 @@ public class AdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
-       PrintWriter out = response.getWriter();
-       HttpSession session = request.getSession(true);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
         Operaciones rol = new RolDAO();
         String op = request.getParameter("op");
         String id = request.getParameter("id");
         RolDTO r = new RolDTO();
-         RequestDispatcher dispatcher;
-         String pagina = "";
+        RequestDispatcher dispatcher;
+        String pagina = "";
         try {
             if (op.equals("1")) {    // link
                 pagina = "/vistas/admin/index.jsp";
@@ -84,21 +84,19 @@ public class AdminController extends HttpServlet {
                 } else {
                     out.print("false");
                 }
-            } else if(op.equals("list_id")){// get datos por id
+            } else if (op.equals("list_id")) {// get datos por id
                 Operaciones aO = new RolDAO();
-                    RolDTO ro = (RolDTO) aO.read(Integer.parseInt(id));
-                    String datos="<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>"+ 
-                                 "<input type=\"hidden\" name=\"id\" id=\"id_rol\" value=\""+ro.getIdrol()+"\">\n" +
-                                 "<input type=\"text\" class=\"form-control\" value=\""+ro.getRol()+"\" name=\"rol_name\" placeholder=\"Nombre del rol\"/>";
-                    out.print(datos);
+                RolDTO ro = (RolDTO) aO.read(Integer.parseInt(id));
+                String datos = "<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>"
+                        + "<input type=\"hidden\" name=\"id\" id=\"id_rol\" value=\"" + ro.getIdrol() + "\">\n"
+                        + "<input type=\"text\" class=\"form-control\" value=\"" + ro.getRol() + "\" name=\"rol_name\" placeholder=\"Nombre del rol\"/>";
+                out.print(datos);
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -12,6 +12,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -163,6 +164,35 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
             return null;
         }
         return lista;
+    }
+    public List<PrestamoDTO> buscarPrestamo(String cadena) {
+        conexion oConexion = new conexion();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM PERSONA WHERE NOMBRE LIKE '").append(cadena);
+        sql.append("%'");
+        List<PrestamoDTO> list = new ArrayList<PrestamoDTO>();
+        try {
+            ResultSet rs = oConexion.query(sql.toString());
+            while(rs.next()){
+            PrestamoDTO prestamo = new PrestamoDTO();
+            
+            prestamo.setIdPrestamo(rs.getInt("IDPRESTAMO"));
+            prestamo.setIdUsuario(rs.getInt("IDUSUARIO"));
+            prestamo.setPersonaRes(rs.getInt("PERSONARES"));
+            prestamo.setFechaPrestamo(rs.getString("FECHAPRESTAMO"));
+            prestamo.setFechaDevolucion(rs.getString("FECHADEVOLUCION"));
+            prestamo.setLugar(rs.getString("LUGAR"));
+            prestamo.setComentariop(rs.getString("COMENTARIOP"));
+            prestamo.setComentariod(rs.getString("COMENTARIOD"));
+            prestamo.setEstado(rs.getString("ESTADO"));
+           
+            list.add(prestamo);
+            }
+        } catch (SQLException e) {
+        } finally{
+           
+        }
+        return list;
     }
 
 }

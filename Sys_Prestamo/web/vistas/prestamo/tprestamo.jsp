@@ -23,8 +23,7 @@
                 </div>
                 <div class="panel-body">
                     <form>
-                        <label>Prestamista :</label>
-                        <input id="idprest" type="text" class="form-control" disabled value="1">
+                        <input id="idprest" type="hidden" class="form-control" disabled value="1">
                         <div class="form-group">
                             <label>Docente :</label>
                             <div class="input-group">

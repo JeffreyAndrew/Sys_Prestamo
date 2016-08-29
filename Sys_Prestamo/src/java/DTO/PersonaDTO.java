@@ -16,38 +16,48 @@ import java.util.List;
  * @author garcia
  */
 public class PersonaDTO {
-
-    public int getIdPersona() {
-        return idPersona;
-    }
     private int idPersona;
     private int idRol;
     private String nombre;
     private String apellidos;
     private int dni;
-    private int celular;
+    private int telefono;
     private String correo;
+    private String facultad;
+    private String escuela;
 
     public PersonaDTO() {
     }
 
-    public PersonaDTO(int idRol, String nombre, String apellidos, int dni, int celular, String correo) {
+    public PersonaDTO(int idRol, String nombre, String apellidos, int dni, int telefono, String correo, String facultad, String escuela) {
         this.idRol = idRol;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
-        this.celular = celular;
+        this.telefono = telefono;
         this.correo = correo;
+        this.facultad = facultad;
+        this.escuela = escuela;
     }
 
-    public PersonaDTO(int idPersona, int idRol, String nombre, String apellidos, int dni, int celular, String correo) {
+    public PersonaDTO(int idPersona, int idRol, String nombre, String apellidos, int dni, int telefono, String correo, String facultad, String escuela) {
         this.idPersona = idPersona;
         this.idRol = idRol;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
-        this.celular = celular;
+        this.telefono = telefono;
         this.correo = correo;
+        this.facultad = facultad;
+        this.escuela = escuela;
+    }
+
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public int getIdRol() {
@@ -82,12 +92,12 @@ public class PersonaDTO {
         this.dni = dni;
     }
 
-    public int getCelular() {
-        return celular;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setCelular(int celular) {
-        this.celular = celular;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     public String getCorreo() {
@@ -96,6 +106,22 @@ public class PersonaDTO {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getFacultad() {
+        return facultad;
+    }
+
+    public void setFacultad(String facultad) {
+        this.facultad = facultad;
+    }
+
+    public String getEscuela() {
+        return escuela;
+    }
+
+    public void setEscuela(String escuela) {
+        this.escuela = escuela;
     }
 
     

@@ -34,9 +34,9 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setString(1, e.getNombre());
-            ps.setString(2, e.getApellido());
-            ps.setInt(3, e.getDNI());
-            ps.setInt(4, e.getIdrol());
+            ps.setString(2, e.getApellidos());
+            ps.setInt(3, e.getDni());
+            ps.setInt(4, e.getIdRol());
             ps.setString(5, e.getFacultad());
             ps.setString(6, e.getEscuela());
             ps.setInt(7, e.getTelefono());
@@ -94,11 +94,11 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             ResultSet rs = oConexion.query(sql.toString());
             while(rs.next()){
             PersonaDTO producto = new PersonaDTO();
-            producto.setIdpersona(rs.getInt("IDPERSONA"));
-            producto.setIdrol(rs.getInt("IDROL"));
+            producto.setIdPersona(rs.getInt("IDPERSONA"));
+            producto.setIdRol(rs.getInt("IDROL"));
             producto.setNombre(rs.getString("NOMBRE"));
-            producto.setApellido(rs.getString("APELLIDOS"));
-            producto.setDNI(rs.getInt("DNI"));
+            producto.setApellidos(rs.getString("APELLIDOS"));
+            producto.setDni(rs.getInt("DNI"));
             producto.setTelefono(rs.getInt("CELULAR"));
             producto.setCorreo(rs.getString("CORREO"));
            

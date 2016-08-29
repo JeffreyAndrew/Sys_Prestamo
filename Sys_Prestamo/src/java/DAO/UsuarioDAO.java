@@ -43,11 +43,11 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while (rs.next()) {
-                m.setIdpersona(Integer.parseInt(rs.getString("idPersona")));
-                m.setIdrol(Integer.parseInt(rs.getString("idRol")));
+                m.setIdPersona(Integer.parseInt(rs.getString("idPersona")));
+                m.setIdRol(Integer.parseInt(rs.getString("idRol")));
                 m.setNombre(rs.getString("nombre"));
-                m.setApellido(rs.getString("apellidos"));
-                m.setDNI(Integer.parseInt(rs.getString("dni")));
+                m.setApellidos(rs.getString("apellidos"));
+                m.setDni(Integer.parseInt(rs.getString("dni")));
                 m.setFacultad(rs.getString("facultad"));
                 m.setEscuela(rs.getString("escuela"));
                 m.setCorreo(rs.getString("correo"));

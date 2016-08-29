@@ -171,7 +171,7 @@ line-height: 0;position: absolute;right: 8px;top: 14px;}
     <select id="dropdown" class="form-control">
     <option value="1">Equipo</option>
     <option value="2">Personas</option>
-    <option value="2">Prestamos</option>
+    <option value="3">Prestamos</option>
     <!--<option value="3">Fecha</option>
     <option value="4">Otro</option>-->
  

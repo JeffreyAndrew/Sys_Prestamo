@@ -73,11 +73,15 @@ public class SVL_Prestamo extends HttpServlet {
               out.print("</br><table class='table table-responsive'>"+
 	    " <th>"+
                " <tr class='titulo'> "+
-			"<td><strong>NOMBRE<strong></td>"+
-			"<td><strong>APELLIDO<strong></td>"+
-			"<td><strong>DNI<strong></td>"+
-                        "<td><strong>CELULAR<strong></td>"+
-			"<td><strong>CORREO<strong></td>"+
+			"<td><strong>ID PRESTAMO<strong></td>"+
+			"<td><strong>ID USUARIO<strong></td>"+
+			"<td><strong>PERSONARES<strong></td>"+
+                        "<td><strong>FECHA DEL PRESTAMO<strong></td>"+
+                        "<td><strong>FECHA DE LA DEVOLUCION<strong></td>"+
+                        "<td><strong>LUGAR<strong></td>"+
+                        "<td><strong>COMENTARIOS DEL PRESTAMO<strong></td>"+
+			"<td><strong>COMENTARIOS DE LA DEVOLUCION<strong></td>"+
+                        "<td><strong>ESTADO<strong></td>"+
 		"</tr>"+
 	   "</th>"+
 	"<tbody>");

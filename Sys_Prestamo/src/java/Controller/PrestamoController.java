@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USER
+ * @author LEANDRO
  */
 public class PrestamoController extends HttpServlet {
 
@@ -59,6 +59,11 @@ public class PrestamoController extends HttpServlet {
                     switch (op) {
                         case 1:
                             pagina = "/vistas/prestamo/tprestamo.jsp";
+                            dispatcher = getServletContext().getRequestDispatcher(pagina);
+                            dispatcher.forward(request, response);
+                            break;
+                        case 2:
+                            pagina = "/vistas/prestamo/tdevolucion.jsp";
                             dispatcher = getServletContext().getRequestDispatcher(pagina);
                             dispatcher.forward(request, response);
                             break;
@@ -101,8 +106,8 @@ public class PrestamoController extends HttpServlet {
                     switch (op) {
                         case 1:
                             iddeteq = Integer.parseInt(request.getParameter("iddet"));
-                            String est=request.getParameter("estado");
-                            pD.changeestatus(est,iddeteq);
+                            String est = request.getParameter("estado");
+                            pD.changeestatus(est, iddeteq);
                             break;
                         case 2:
                             comentarioa = request.getParameter("com");

@@ -27,7 +27,7 @@
 
             %>
                 $("#Equipos").show();
-                 $("#listarU").show();
+                $("#listarU").show();
             <% }%>
 
 
@@ -83,8 +83,8 @@
                                                 <a href="#">Friends</a>
                                             </div>
                                         </div>
-                                        <!-- /.row 
-                                    </li>-->
+                                    <!-- /.row 
+                                </li>-->
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -121,7 +121,7 @@
                     <!-- search form -->
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <input type="text" name="q" class="form-control" placeholder="Buscar...">
                             <span class="input-group-btn">
                                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                                 </button>
@@ -141,6 +141,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li class="active"><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
+                                <li class="active"><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -176,10 +177,10 @@
                 <!-- Content Header (Page header) -->
 
                 <!-- Main content -->
-                    <!-- Main row -->
-                        <iframe name="box" id="idboxload" onload="loadFrame(this.contentWindow.location);"
-                                style="height: 87vh;width: 100%; border: none; overflow-y: hidden">
-                        </iframe>
+                <!-- Main row -->
+                <iframe name="box" id="idboxload" onload="loadFrame(this.contentWindow.location);"
+                        style="height: 87vh;width: 100%; border: none; overflow-y: hidden">
+                </iframe>
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->

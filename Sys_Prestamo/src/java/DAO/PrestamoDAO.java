@@ -186,7 +186,7 @@ public class PrestamoDAO implements Operaciones<PrestamoDTO> {
     public List<PrestamoDTO> buscarPrestamo(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM PERSONA WHERE NOMBRE LIKE '").append(cadena);
+        sql.append("SELECT * FROM PRESTAMO WHERE FECHAPRESTAMO LIKE '").append(cadena);
         sql.append("%'");
         List<PrestamoDTO> list = new ArrayList<PrestamoDTO>();
         try {

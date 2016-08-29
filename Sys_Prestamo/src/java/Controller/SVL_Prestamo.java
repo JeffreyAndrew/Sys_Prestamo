@@ -74,13 +74,13 @@ public class SVL_Prestamo extends HttpServlet {
 	    " <th>"+
                " <tr class='titulo'> "+
 			"<td><strong>ID PRESTAMO<strong></td>"+
-			"<td><strong>ID USUARIO<strong></td>"+
-			"<td><strong>PERSONARES<strong></td>"+
+		      //"<td><strong>ID USUARIO<strong></td>"+
+		      //"<td><strong>PERSONARES<strong></td>"+
                         "<td><strong>FECHA DEL PRESTAMO<strong></td>"+
                         "<td><strong>FECHA DE LA DEVOLUCION<strong></td>"+
                         "<td><strong>LUGAR<strong></td>"+
-                        "<td><strong>COMENTARIOS DEL PRESTAMO<strong></td>"+
-			"<td><strong>COMENTARIOS DE LA DEVOLUCION<strong></td>"+
+                       // "<td><strong>COMENTARIOS DEL PRESTAMO<strong></td>"+
+		       //"<td><strong>COMENTARIOS DE LA DEVOLUCION<strong></td>"+
                         "<td><strong>ESTADO<strong></td>"+
 		"</tr>"+
 	   "</th>"+
@@ -91,13 +91,13 @@ public class SVL_Prestamo extends HttpServlet {
                     prestamo= (PrestamoDTO)ListaResultado.get(i);
                     out.print("<tr>");
                     out.print("<td>"+prestamo.getIdPrestamo()+"</td>");
-                    out.print("<td>"+prestamo.getIdUsuario()+"</td>");
-                    out.print("<td>"+prestamo.getPersonaRes()+"</td>");
+                  //  out.print("<td>"+prestamo.getIdUsuario()+"</td>");
+                  //  out.print("<td>"+prestamo.getPersonaRes()+"</td>");
                     out.print("<td>"+prestamo.getFechaPrestamo()+"</td>");
                     out.print("<td>"+prestamo.getFechaDevolucion()+"</td>");
                     out.print("<td>"+prestamo.getLugar()+"</td>");
-                    out.print("<td>"+prestamo.getComentariop()+"</td>");
-                    out.print("<td>"+prestamo.getComentariod()+"</td>");
+                 //   out.print("<td>"+prestamo.getComentariop()+"</td>");
+                 //  out.print("<td>"+prestamo.getComentariod()+"</td>");
                     out.print("<td>"+prestamo.getEstado()+"</td>");
                     out.print("</tr>");
              }

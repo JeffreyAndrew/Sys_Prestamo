@@ -1,7 +1,7 @@
 <%-- 
     Document   : Test-Search
     Created on : 28/08/2016, 03:24:37 PM
-    Author     : Dante
+    Author     : IgorCB
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

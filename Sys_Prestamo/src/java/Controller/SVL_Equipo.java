@@ -74,7 +74,7 @@ public class SVL_Equipo extends HttpServlet {
               out.print("</br><table class='table table-responsive'>"+
 	    " <th>"+
                " <tr class='titulo'> "+
-			"<td><strong>NOMBRE<strong></td>"+
+			"<td><strong>MARCA<strong></td>"+
 			"<td><strong>SERIE<strong></td>"+
 			"<td><strong>TIPO<strong></td>"+
 		"</tr>"+

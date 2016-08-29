@@ -4,6 +4,7 @@
     Author     : LEANDRO
 --%>
 
+<%@page import="DTO.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>SPE || UPeU</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <script>
+            $(document).ready(function () {
+                alert("holaaaaa");
+
+            <%  PersonaDTO p = new PersonaDTO();
+                if (p.getIdrol() == 2) {
+
+            %>
+                $("#Equipos").hide();
+                $("#listarU").hide();
+            <%  } else {
+
+            %>
+                $("#Equipos").show();
+                 $("#listarU").show();
+            <% }%>
+
+
+            });
+        </script>
         <%@include file="WEB-INF/jspf/import.jspf" %>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">

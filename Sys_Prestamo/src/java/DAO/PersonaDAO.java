@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package DAO;
-
 import DTO.PersonaDTO;
 import Interfaces.Operaciones;
 import config.conexion;

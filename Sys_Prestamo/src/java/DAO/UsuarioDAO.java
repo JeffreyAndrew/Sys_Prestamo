@@ -26,13 +26,16 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     private Connection cn;
     private String sql;
     private ResultSet rs;
+    private final String SQL_READALL = "SELECT * FROM usuario";
+    private final String SQL_READ = "SELECT * FROM usuario WHERE idUsuario=?";
+    private final String DELETE = "DELETE FROM usuario WHERE idUsuario=?";
 
     public PersonaDTO validar(String user, String pass) {
         PersonaDTO m = new PersonaDTO();
-        sql = "SELECT P.NOMBRE,P.IDPERSONA,P.APELLIDOS,P.DNI,P.IDROL,P.FACULTAD,P.ESCUELA,P.CELULAR,P.CORREO "
-                + "FROM USUARIO U,PERSONA P "
-                + "WHERE U.USER=? AND U.PASSWORD=? "
-                + "AND U.IDPERSONA=P.IDPERSONA";
+        sql = "SELECT P.nombre,P.idPersona,P.apellidos,P.dni,P.idRol,P.facultad, P.escuela,P.celular,P.correo "
+                + "FROM usuario U,persona P "
+                + "WHERE U.usuario=? AND U.clave=? "
+                + "AND U.idPersona=P.idPersona";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -40,13 +43,15 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while (rs.next()) {
-                m.setIdpersona(Integer.parseInt(rs.getString("IDPERSONA")));
-                m.setIdrol(Integer.parseInt(rs.getString("IDROL")));
-                m.setNombre(rs.getString("NOMBRE"));
-                m.setApellido(rs.getString("APELLIDOS"));
-                m.setDNI(Integer.parseInt(rs.getString("DNI")));
-                m.setCorreo(rs.getString("CORREO"));
-                m.setTelefono(Integer.parseInt(rs.getString("CELULAR")));
+                m.setIdpersona(Integer.parseInt(rs.getString("idPersona")));
+                m.setIdrol(Integer.parseInt(rs.getString("idRol")));
+                m.setNombre(rs.getString("nombre"));
+                m.setApellido(rs.getString("apellidos"));
+                m.setDNI(Integer.parseInt(rs.getString("dni")));
+                m.setFacultad(rs.getString("facultad"));
+                m.setEscuela(rs.getString("escuela"));
+                m.setCorreo(rs.getString("correo"));
+                m.setTelefono(Integer.parseInt(rs.getString("celular")));
             }
 
         } catch (SQLException | NumberFormatException e) {
@@ -59,7 +64,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     @Override
     public boolean create(UsuarioDTO e) {
         boolean m = false;
-        sql = "INSERT INTO USUARIO (IDPERSONA,USER,PASSWORD) VALUES(?,?,?)";
+        sql = "INSERT INTO usuario (idPersona,usuario,clave) VALUES(?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -78,23 +83,41 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
 
     @Override
     public List<UsuarioDTO> read(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<UsuarioDTO> list = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(SQL_READ);
+            ps.setInt(1, (int) key);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                UsuarioDTO us = new UsuarioDTO();
+                us.setIdusuario(rs.getInt("idUsuario"));
+                us.setUser(rs.getString("usuario"));
+                us.setPassword(rs.getString("clave"));
+                list.add(us);
+
+            }
+
+        } catch (Exception e) {
+
+        }
+        return list;
+
     }
 
     @Override
     public boolean delete(int key) {
         boolean m = false;
-        sql = "DELETE FROM USUARIO WHERE IDUSUARIO=?";
         try {
             cn = conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = cn.prepareStatement(DELETE);
             ps.setInt(1, key);
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
             }
-        } catch (Exception e) {
-            System.out.println("Error al eliminar usuario " + e);
+        } catch (Exception ex) {
+            System.out.println("Error al eliminar usuario " + ex);
         }
         return m;
     }
@@ -121,8 +144,23 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
 
     @Override
     public List<UsuarioDTO> readall() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
+        List<UsuarioDTO> list = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(SQL_READALL);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                UsuarioDTO us = new UsuarioDTO();
+                us.setIdusuario(rs.getInt("idUsuario"));
+                us.setUser(rs.getString("usuario"));
+                us.setPassword(rs.getString("clave"));
+                list.add(us);
+            }
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return list;
+    }
 
 }

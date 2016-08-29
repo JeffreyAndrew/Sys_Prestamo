@@ -30,8 +30,8 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </div>
-                                <input id="idocente" type="text" class="form-control" value="1" disabled>
-                                <input id="iddoc" type="hidden" class="form-control" value="0">
+                                <input id="idocente" type="text" class="form-control" value="Leandro Burgos" disabled>
+                                <input id="iddoc" type="hidden" class="form-control" value="2">
                             </div>
                             <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right"><i class="fa fa-search"></i>   Escoger</button>
                         </div> 

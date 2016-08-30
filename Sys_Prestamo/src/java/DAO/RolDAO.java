@@ -32,7 +32,7 @@ public class RolDAO implements Operaciones<RolDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(0, e.getRol());
+            ps.setString(0, e.getNombre());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -55,7 +55,7 @@ public class RolDAO implements Operaciones<RolDTO> {
             while (rs.next()) {
                 RolDTO dto = new RolDTO();
                 dto.setIdrol(rs.getInt("idrol"));
-                dto.setRol(rs.getString("nombre"));
+                dto.setNombre(rs.getString("nombre"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
@@ -89,7 +89,7 @@ public class RolDAO implements Operaciones<RolDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(0, e.getRol());
+            ps.setString(0, e.getNombre());
             ps.setInt(1, e.getIdrol());
             int a = ps.executeUpdate();
             if (a > 0) {
@@ -112,13 +112,26 @@ public class RolDAO implements Operaciones<RolDTO> {
             while (rs.next()) {
                 RolDTO dto = new RolDTO();
                 dto.setIdrol(rs.getInt("idrol"));
-                dto.setRol(rs.getString("nombre"));
+                dto.setNombre(rs.getString("nombre"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
             System.out.println("Error al listar roles "+ex);
         }
         return lista;
+    }
+    
+    public ResultSet list(){
+        ResultSet rm=null;
+        sql="SELECT * FROM ROL";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rm = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Error al listar Roles por ResultSet "+e);
+        }
+        return rm;
     }
 
 }

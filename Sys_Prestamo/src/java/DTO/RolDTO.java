@@ -11,18 +11,13 @@ package DTO;
  */
 public class RolDTO {
     private int idrol;
-    private String rol;
+    private String nombre;
 
     public RolDTO() {
     }
 
-    public RolDTO(String rol) {
-        this.rol = rol;
-    }
-
-    public RolDTO(int idrol, String rol) {
-        this.idrol = idrol;
-        this.rol = rol;
+    public RolDTO(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getIdrol() {
@@ -33,12 +28,12 @@ public class RolDTO {
         this.idrol = idrol;
     }
 
-    public String getRol() {
-        return rol;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     

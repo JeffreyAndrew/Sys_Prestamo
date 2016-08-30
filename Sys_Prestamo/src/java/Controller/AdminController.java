@@ -53,7 +53,7 @@ public class AdminController extends HttpServlet {
                     break;
                 case "2":
                     // create rol
-                    r.setRol(request.getParameter("rol_name"));
+                    r.setNombre(request.getParameter("rol_name"));
                     boolean result = rol.create(r);
                     if (result) {
                         out.print("true");
@@ -68,7 +68,7 @@ public class AdminController extends HttpServlet {
                         role = (RolDTO) rol.readall().get(i);
                         out.println("<tr>");
                         out.println("<td>" + role.getIdrol() + "</td>");
-                        out.println("<td>" + role.getRol() + "</td>");
+                        out.println("<td>" + role.getNombre() + "</td>");
                         out.println("<td><a href=\"#\"  onclick=\"eliminar(" + role.getIdrol() + ")\" class=\" btn btn-xs btn-danger\">Eliminar</a> || <a href=\"#\"  onclick=\"editar(" + role.getIdrol() + ")\" class=\" btn btn-xs btn-warning\">Editar</a></td>");
                         out.println("</tr>");
                 }   break;
@@ -85,7 +85,7 @@ public class AdminController extends HttpServlet {
                 case "edit":
                 {
                     // editar
-                    r.setRol(request.getParameter("rol_name"));
+                    r.setNombre(request.getParameter("rol_name"));
                     r.setIdrol(Integer.parseInt(id));
                     boolean resul = rol.update(r);
                     if (resul) {
@@ -100,7 +100,7 @@ public class AdminController extends HttpServlet {
                     RolDTO ro = (RolDTO) aO.read(Integer.parseInt(id));
                     String datos = "<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>"
                             + "<input type=\"hidden\" name=\"id\" id=\"id_rol\" value=\"" + ro.getIdrol() + "\">\n"
-                            + "<input type=\"text\" class=\"form-control\" value=\"" + ro.getRol() + "\" name=\"rol_name\" placeholder=\"Nombre del rol\"/>";
+                            + "<input type=\"text\" class=\"form-control\" value=\"" + ro.getNombre() + "\" name=\"rol_name\" placeholder=\"Nombre del rol\"/>";
                     out.print(datos);
                     break;
             }

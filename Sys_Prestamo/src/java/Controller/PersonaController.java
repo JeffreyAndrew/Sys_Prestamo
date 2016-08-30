@@ -8,6 +8,7 @@ package Controller;
 import DAO.PersonaDAO;
 import DAO.UsuarioDAO;
 import DTO.PersonaDTO;
+import DTO.UsuarioDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -86,6 +87,13 @@ public class PersonaController extends HttpServlet {
                 u = new PersonaDTO(idRol, nombre, apellidos, dni, celular, correo);
                 boolean c = pro.create(u);
                 if (c) {
+
+//                Agregar Usuario
+                    PersonaDAO perDAO = new PersonaDAO();
+                    int ID = perDAO.buscarIDPersona(dni);
+                    UsuarioDTO usu = new UsuarioDTO(ID, nombre, Integer.toString(dni));
+                    boolean n = uO.create(usu);
+                    
                     pag = "/index.jsp";
                     dispatcher = getServletContext().getRequestDispatcher(pag);
                     dispatcher.forward(request, response);

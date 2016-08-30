@@ -23,6 +23,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
 
     private PreparedStatement ps;
     private Connection cn;
+    private ResultSet rs;
     private String sql;
     private Statement st;
 
@@ -77,6 +78,21 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public int buscarIDPersona(int dni){   
+        int a = 0;
+        sql = " SELECT persona.idPersona from persona "+" WHERE persona.dni = ?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, dni);
+            rs = ps.executeQuery();
+            a=rs.getInt("idPersona");
+        } catch (Exception e) {
+            System.out.println("Error al buscar persona " + e);
+        }
+        return a;
+    }
+    
     @Override
     public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

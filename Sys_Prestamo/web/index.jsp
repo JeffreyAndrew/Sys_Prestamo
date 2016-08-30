@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>SPE || UPeU</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
+
         <%@include file="WEB-INF/jspf/import.jspf" %>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -167,6 +167,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i> Añadir Persona</a></li>
+                                <li><a href="ci?op=2" target="box"><i class="fa fa-user"></i> Perfil</a></li>
                             </ul>
                         </li>
                     </ul>

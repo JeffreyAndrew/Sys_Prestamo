@@ -72,8 +72,10 @@ public class PersonaController extends HttpServlet {
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
-            case 2:
-                pag = "/vistas/persona/profile.jsp";
+            case 2://perfil
+                //int id=Integer.parseInt(request.getParameter("idpersona"));
+                session.setAttribute("lista", pro.read(1));
+                pag = "/vistas/persona/profile.jsp";                
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
@@ -122,7 +124,7 @@ public class PersonaController extends HttpServlet {
                 } else {
                     out.println("Error al eliminar");
                 }
-                break;
+                break;            
 
         }
     }

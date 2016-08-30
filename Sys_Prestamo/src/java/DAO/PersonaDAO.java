@@ -26,6 +26,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     private ResultSet rs;
     private String sql;
     private Statement st;
+    private ResultSet rs;
 
     @Override
     public boolean create(PersonaDTO e) {
@@ -52,9 +53,48 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
 
     @Override
     public List<PersonaDTO> read(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<PersonaDTO> lista = new ArrayList();
+        PersonaDTO dto = new PersonaDTO();
+        sql = "SELECT * FROM PERSONA WHERE IDPERSONA=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, key);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                dto.setIdPersona(rs.getInt("idPersona"));
+                dto.setNombre(rs.getString("NOMBRE"));
+                dto.setApellidos(rs.getString("APELLIDOS"));
+                dto.setDni(rs.getInt("DNI"));
+                dto.setTelefono(rs.getInt("CELULAR"));
+                dto.setCorreo(rs.getString("CORREO"));
+                dto.setIdRol(rs.getInt("IDROL"));
+                lista.add(dto);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error al listar datos de una persona "+ex);
+        }
+        return lista;
     }
 
+    public String getRol(int id){
+        String m="";
+        sql = "SELECT NOMBRE FROM ROL WHERE IDROL=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                m=rs.getString("NOMBRE");
+            }
+        } catch (Exception ex) {
+            System.out.println("Error al obtener Rol "+ex);
+            return null;
+        }        
+        return m;
+    }
+    
     @Override
     public boolean delete(int key) {
         boolean m = false;

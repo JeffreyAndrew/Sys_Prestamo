@@ -48,8 +48,6 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
                 m.setNombre(rs.getString("nombre"));
                 m.setApellidos(rs.getString("apellidos"));
                 m.setDni(Integer.parseInt(rs.getString("dni")));
-                m.setFacultad(rs.getString("facultad"));
-                m.setEscuela(rs.getString("escuela"));
                 m.setCorreo(rs.getString("correo"));
                 m.setTelefono(Integer.parseInt(rs.getString("celular")));
             }

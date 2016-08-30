@@ -23,24 +23,20 @@ public class PersonaDTO {
     private int dni;
     private int telefono;
     private String correo;
-    private String facultad;
-    private String escuela;
 
     public PersonaDTO() {
     }
 
-    public PersonaDTO(int idRol, String nombre, String apellidos, int dni, int telefono, String correo, String facultad, String escuela) {
+    public PersonaDTO(int idRol, String nombre, String apellidos, int dni, int telefono, String correo) {
         this.idRol = idRol;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.telefono = telefono;
         this.correo = correo;
-        this.facultad = facultad;
-        this.escuela = escuela;
     }
 
-    public PersonaDTO(int idPersona, int idRol, String nombre, String apellidos, int dni, int telefono, String correo, String facultad, String escuela) {
+    public PersonaDTO(int idPersona, int idRol, String nombre, String apellidos, int dni, int telefono, String correo) {
         this.idPersona = idPersona;
         this.idRol = idRol;
         this.nombre = nombre;
@@ -48,8 +44,6 @@ public class PersonaDTO {
         this.dni = dni;
         this.telefono = telefono;
         this.correo = correo;
-        this.facultad = facultad;
-        this.escuela = escuela;
     }
 
     public int getIdPersona() {
@@ -106,22 +100,6 @@ public class PersonaDTO {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getFacultad() {
-        return facultad;
-    }
-
-    public void setFacultad(String facultad) {
-        this.facultad = facultad;
-    }
-
-    public String getEscuela() {
-        return escuela;
-    }
-
-    public void setEscuela(String escuela) {
-        this.escuela = escuela;
     }
 
     

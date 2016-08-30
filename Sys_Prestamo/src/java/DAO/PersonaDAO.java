@@ -29,7 +29,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     @Override
     public boolean create(PersonaDTO e) {
         boolean m = false;
-        sql = "INSERT INTO PERSONA(NOMBRE,APELLIDOS,DNI,ID_ROL,FACULTAD,ESCUELA,CELULAR,CORREO) VALUES(?,?,?,?,?,?,?,?)";
+        sql = "INSERT INTO PERSONA(NOMBRE,APELLIDOS,DNI,ID_ROL,CELULAR,CORREO) VALUES(?,?,?,?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -37,10 +37,8 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             ps.setString(2, e.getApellidos());
             ps.setInt(3, e.getDni());
             ps.setInt(4, e.getIdRol());
-            ps.setString(5, e.getFacultad());
-            ps.setString(6, e.getEscuela());
-            ps.setInt(7, e.getTelefono());
-            ps.setString(8, e.getCorreo());
+            ps.setInt(5, e.getTelefono());
+            ps.setString(6, e.getCorreo());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;

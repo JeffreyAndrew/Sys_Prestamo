@@ -93,7 +93,7 @@ public class PersonaController extends HttpServlet {
                 break;
 
             case 4:
-                pag = "/vistas/usuario/listaru.jsp";
+                pag = "/vistas/usuario/perfil.jsp";
                 session.setAttribute("lista", uO.readall());
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);

@@ -51,7 +51,7 @@
                         <li class="active">Inventario</li>
                     </ol>
                 </section>
-
+       
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">

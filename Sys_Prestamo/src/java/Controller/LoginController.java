@@ -75,7 +75,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        PrintWriter out = response.getWriter();
+        /*PrintWriter out = response.getWriter();
         String a, b, pagina;
         HttpSession session = request.getSession(true);
         a = request.getParameter("usuario");
@@ -134,7 +134,7 @@ public class LoginController extends HttpServlet {
             pagina = "/login.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
             dispatcher.forward(request, response);
-        }
+        }*/
         
         
         

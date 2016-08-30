@@ -100,6 +100,10 @@ public class PrestamoController extends HttpServlet {
                             ArrayList<Map<String, ?>> lista = pD.listared();
                             mp.put("lista", lista);
                             break;
+                        case 3:
+                            ArrayList<Map<String, ?>> docentes = pD.listdc();
+                            mp.put("list", docentes);
+                            break;
                     }
                     break;
                 case "update":

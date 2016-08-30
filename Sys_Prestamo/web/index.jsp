@@ -4,7 +4,6 @@
     Author     : LEANDRO
 --%>
 
-<%@page import="DTO.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,30 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>SPE || UPeU</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <script>
-            $(document).ready(function () {
-                alert("holaaaaa");
-
-            <%  PersonaDTO p = new PersonaDTO();
-                if (p.getIdRol() == 2) {
-
-            %>
-                $("#Equipos").hide();
-                $("#listarU").hide();
-               $("#Groles").hide();
-            <%  } else {
-
-            %>
-                      $("#Groles").show();
-                $("#Equipos").show();
-                $("#listarU").show();
-                    $("#GestionPersonas").show();
-                
-            <% }%>
-
-
-            });
-        </script>
+    
         <%@include file="WEB-INF/jspf/import.jspf" %>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -148,7 +124,7 @@
                                 <li class="active"><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
                             </ul>
                         </li>
-                        <li class="treeview" id="Equipos" style="display:none;">
+                        <li class="treeview" id="Equipos">
                             <a href="#">
                                 <i class="fa fa-edit"></i> <span>Equipos</span>
                                 <span class="pull-right-container">
@@ -160,7 +136,7 @@
                                 <li><a href="ec?ge=1" target="box"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>
-                        <li class="treeview" id="Groles" style="display:none;">
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i> <span>Gestión de Roles</span>
                                 <span class="pull-right-container">
@@ -171,7 +147,7 @@
                                 <li><a href="admin?op=1" target="box"><i class="fa fa-gear"></i> Gestión de Roles</a></li>
                             </ul>
                         </li>
-                        <li class="treeview" id="listarU" style="display:">
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i> <span>Usuario</span>
                                 <span class="pull-right-container">
@@ -182,7 +158,7 @@
                                 <li><a href="ci?op=4" target="box"><i class="fa fa-gear"></i>Lista usuarios</a></li>
                             </ul>
                         </li>
-                        <li class="treeview" id="GestionPersonas" style="display:none;">
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-users"></i> <span>Gestión de Personas</span>
                                 <span class="pull-right-container">

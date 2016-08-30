@@ -50,7 +50,7 @@ public class PrestamoDAO {
         return p;
     }
 
-    public boolean removeeq(int p,int e) {
+    public boolean removeeq(int p, int e) {
         boolean m = false;
         sql = "DELETE FROM DET_PRESTAMO WHERE IDPRESTAMO=? AND IDDET_EQUIPO=?";
         try {
@@ -67,7 +67,7 @@ public class PrestamoDAO {
         }
         return m;
     }
-    
+
     public ArrayList<Map<String, ?>> listared() {
         sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,D.CODIGO,D.DESCRIPCION,E.MARCA,E.SERIE,E.TIPO "
                 + " FROM DET_EQUIPO D,EQUIPO E WHERE ESTADO=1 AND D.IDEQUIPO=E.IDEQUIPO;";
@@ -111,8 +111,8 @@ public class PrestamoDAO {
         }
         return m;
     }
-    
-    public boolean changeestatus(String a,int e) {
+
+    public boolean changeestatus(String a, int e) {
         boolean m = false;
         sql = "UPDATE DET_EQUIPO SET ESTADO=? WHERE IDDET_EQUIPO=?";
         try {
@@ -130,8 +130,8 @@ public class PrestamoDAO {
         return m;
     }
 
-    public boolean changecom(String com,int id){
-        boolean m=false;
+    public boolean changecom(String com, int id) {
+        boolean m = false;
         sql = "UPDATE PRESTAMO SET COMENTARIOP=? WHERE IDPRESTAMO=?";
         try {
             cn = conexion.getConexion();
@@ -147,11 +147,11 @@ public class PrestamoDAO {
         }
         return m;
     }
-    
+
     public ArrayList<Map<String, ?>> listareq(int idprestamo) {
         sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,E.CODIGO,E.DESCRIPCION,EQ.MARCA,EQ.SERIE,EQ.TIPO "
                 + "FROM DET_PRESTAMO D,DET_EQUIPO E,EQUIPO EQ "
-                + "WHERE IDPRESTAMO="+idprestamo+" "
+                + "WHERE IDPRESTAMO=" + idprestamo + " "
                 + "AND E.IDDET_EQUIPO=D.IDDET_EQUIPO "
                 + "AND EQ.IDEQUIPO=E.IDEQUIPO;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
@@ -176,10 +176,34 @@ public class PrestamoDAO {
         }
         return lista;
     }
-    
-    
-    
-    
+
+    public ArrayList<Map<String, ?>> listdc() {
+        sql = "SELECT DISTINCT(T.IDPRESTAMO),P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
+                + "FROM PERSONA P,ROL R,PRESTAMO T "
+                + "WHERE P.IDROL=R.IDROL  "
+                + "AND R.NOMBRE='DOCENTE' "
+                + "AND T.PERSONARES=P.IDPERSONA "
+                + "AND T.ESTADO=1;";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
+                m.put("idprestamo", rs.getInt("IDPRESTAMO"));
+                m.put("idpersona", rs.getInt("IDPERSONA"));
+                m.put("persona", rs.getString("NOMBRE")+" "+rs.getString("APELLIDOS"));
+                m.put("dni", rs.getString("DNI"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar Docentes con prestamo activo " + e);
+            return null;
+        }
+        return lista;
+    }
+
     public List<PrestamoDTO> buscarPrestamo(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();
@@ -188,24 +212,24 @@ public class PrestamoDAO {
         List<PrestamoDTO> list = new ArrayList<PrestamoDTO>();
         try {
             ResultSet rs = oConexion.query(sql.toString());
-            while(rs.next()){
-            PrestamoDTO prestamo = new PrestamoDTO();
-            
-            prestamo.setIdPrestamo(rs.getInt("IDPRESTAMO"));
-            prestamo.setIdUsuario(rs.getInt("IDUSUARIO"));
-            prestamo.setPersonaRes(rs.getInt("PERSONARES"));
-            prestamo.setFechaPrestamo(rs.getString("FECHAPRESTAMO"));
-            prestamo.setFechaDevolucion(rs.getString("FECHADEVOLUCION"));
-            prestamo.setLugar(rs.getString("LUGAR"));
-            prestamo.setComentariop(rs.getString("COMENTARIOP"));
-            prestamo.setComentariod(rs.getString("COMENTARIOD"));
-            prestamo.setEstado(rs.getString("ESTADO"));
-           
-            list.add(prestamo);
+            while (rs.next()) {
+                PrestamoDTO prestamo = new PrestamoDTO();
+
+                prestamo.setIdPrestamo(rs.getInt("IDPRESTAMO"));
+                prestamo.setIdUsuario(rs.getInt("IDUSUARIO"));
+                prestamo.setPersonaRes(rs.getInt("PERSONARES"));
+                prestamo.setFechaPrestamo(rs.getString("FECHAPRESTAMO"));
+                prestamo.setFechaDevolucion(rs.getString("FECHADEVOLUCION"));
+                prestamo.setLugar(rs.getString("LUGAR"));
+                prestamo.setComentariop(rs.getString("COMENTARIOP"));
+                prestamo.setComentariod(rs.getString("COMENTARIOD"));
+                prestamo.setEstado(rs.getString("ESTADO"));
+
+                list.add(prestamo);
             }
         } catch (SQLException e) {
-        } finally{
-           
+        } finally {
+
         }
         return list;
     }

@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.PersonaDAO;
+import DAO.UsuarioDAO;
 import DTO.PersonaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 public class PersonaController extends HttpServlet {
 
+    private UsuarioDAO uO = new UsuarioDAO();
     private PersonaDAO pro = new PersonaDAO();
 
     String pagina;
@@ -88,6 +90,25 @@ public class PersonaController extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
 
+                break;
+
+            case 4:
+                pag = "/vistas/usuario/listaru.jsp";
+                session.setAttribute("lista", uO.readall());
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
+                break;
+
+            case 5:
+
+                pag = "/ci?op=4";
+                int id1 = Integer.parseInt(request.getParameter("id"));
+                if (uO.delete(id1) == true) {
+                    dispatcher = getServletContext().getRequestDispatcher(pag);
+                    dispatcher.forward(request, response);
+                } else {
+                    out.println("Error al eliminar");
+                }
                 break;
 
         }

@@ -18,12 +18,11 @@
                 <a href="#"><b>SPE</b>UPeU</a>
             </div>
             <div class="login-box-body" style="box-shadow: 0 0 20px 0 black;">
-                <p class="login-box-msg">Iniciar Sesión</p>
-
+                <h4 class="login-box-msg">Iniciar Sesión</h4>
                 <div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="Usuario">
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
                         <input type="password" class="form-control" placeholder="Contraseña">
@@ -35,7 +34,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </body>

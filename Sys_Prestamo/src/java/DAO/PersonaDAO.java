@@ -26,7 +26,6 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     private ResultSet rs;
     private String sql;
     private Statement st;
-    private ResultSet rs;
 
     @Override
     public boolean create(PersonaDTO e) {
@@ -86,7 +85,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                m=rs.getString("NOMBRE");
+                m=rs.getString("NOMBRE").toUpperCase();
             }
         } catch (Exception ex) {
             System.out.println("Error al obtener Rol "+ex);

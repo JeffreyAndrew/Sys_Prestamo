@@ -18,16 +18,20 @@
                 alert("holaaaaa");
 
             <%  PersonaDTO p = new PersonaDTO();
-                if (p.getIdrol() == 2) {
+                if (p.getIdRol() == 2) {
 
             %>
                 $("#Equipos").hide();
                 $("#listarU").hide();
+               $("#Groles").hide();
             <%  } else {
 
             %>
+                      $("#Groles").show();
                 $("#Equipos").show();
                 $("#listarU").show();
+                    $("#GestionPersonas").show();
+                
             <% }%>
 
 
@@ -132,7 +136,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">MENÚ</li>                        
-                        <li class="active treeview">
+                        <li class="active treeview" id="Gprestamo">
                             <a href="#">
                                 <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
@@ -144,7 +148,7 @@
                                 <li class="active"><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
+                        <li class="treeview" id="Equipos" style="display:none;">
                             <a href="#">
                                 <i class="fa fa-edit"></i> <span>Equipos</span>
                                 <span class="pull-right-container">
@@ -156,7 +160,7 @@
                                 <li><a href="ec?ge=1" target="box"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
+                        <li class="treeview" id="Groles" style="display:none;">
                             <a href="#">
                                 <i class="fa fa-user"></i> <span>Gestión de Roles</span>
                                 <span class="pull-right-container">
@@ -165,6 +169,28 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="admin?op=1" target="box"><i class="fa fa-gear"></i> Gestión de Roles</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview" id="listarU" style="display:">
+                            <a href="#">
+                                <i class="fa fa-user"></i> <span>Usuario</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ci?op=4" target="box"><i class="fa fa-gear"></i>Lista usuarios</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview" id="GestionPersonas" style="display:none;">
+                            <a href="#">
+                                <i class="fa fa-users"></i> <span>Gestión de Personas</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i> Añadir Persona</a></li>
                             </ul>
                         </li>
                     </ul>

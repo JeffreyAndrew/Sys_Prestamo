@@ -7,7 +7,6 @@ package Controller;
 
 import DAO.UsuarioDAO;
 import DTO.PersonaDTO;
-import DTO.RolDTO;
 import DTO.UsuarioDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,15 +19,16 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author alum.fial1
+ * @author USER
  */
-public class login extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     UsuarioDAO aO = new UsuarioDAO();
 
     UsuarioDTO tr = new UsuarioDTO();
- PersonaDTO ud = new PersonaDTO();
+    PersonaDTO ud = new PersonaDTO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,13 +42,9 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
-            
-            
-           
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,8 +73,8 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
-
+        processRequest(request, response);
+        
         PrintWriter out = response.getWriter();
         String a, b, pagina;
         HttpSession session = request.getSession(true);
@@ -86,33 +82,47 @@ public class login extends HttpServlet {
         b = request.getParameter("password");
         String sql;
     
-        sql = " SELECT rol.idRol, persona.nombre, rol.nombre"+ " from rol, persona"+" WHERE rol.idRol= persona.idRol";
+        
+        
+        sql = " SELECT rol.idRol"+ " from rol, persona"+" WHERE rol.idRol= persona.idRol";
 //        
-        PersonaDTO ud = new PersonaDTO();
+//        PersonaDTO ud = new PersonaDTO();
         if (!a.equals("") && !b.equals("")) {
          ud = aO.validar(a, b);
             if (ud!=null) {
-
-            switch (sql) {
-                case "1": {
-
+                if(sql=="1" || sql=="2" ){
                     pagina = "/index.jsp";
 
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
-                    break;
+                    
                 }
-                case "2": {
-                    pagina = "/index.jsp";
+                else{
+                    pagina = "/login.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+                }
 
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                    dispatcher.forward(request, response);
-                    break;
-                }
-                default:
-                    System.out.println("usted no tiene acceso por ser docente");
-                    break;
-            }
+//            switch (sql) {
+//                case "1": {
+//
+//                    pagina = "/index.jsp";
+//
+//                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+//                    dispatcher.forward(request, response);
+//                    break;
+//                }
+//                case "2": {
+//                    pagina = "/index.jsp";
+//
+//                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+//                    dispatcher.forward(request, response);
+//                    break;
+//                }
+//                default:
+//                    System.out.println("usted no tiene acceso por ser docente");
+//                    break;
+//            }
 
             } else {
                 pagina = "/login.jsp";
@@ -125,6 +135,9 @@ public class login extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
             dispatcher.forward(request, response);
         }
+        
+        
+        
     }
 
     /**

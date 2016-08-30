@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author JHORDY
+ * @author USER
  */
 public class AdminController extends HttpServlet {
 
@@ -44,53 +44,65 @@ public class AdminController extends HttpServlet {
         RequestDispatcher dispatcher;
         String pagina = "";
         try {
-            if (op.equals("1")) {    // link
-                pagina = "/vistas/admin/index.jsp";
-                dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-            } else if (op.equals("2")) {  // create rol
-                r.setRol(request.getParameter("rol_name"));
-                boolean result = rol.create(r);
-                if (result) {
-                    out.print("true");
-                } else {
-                    out.print("false");
+            switch (op) {
+                case "1":
+                    // link
+                    pagina = "/vistas/admin/admin.jsp";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                    break;
+                case "2":
+                    // create rol
+                    r.setRol(request.getParameter("rol_name"));
+                    boolean result = rol.create(r);
+                    if (result) {
+                        out.print("true");
+                    } else {
+                        out.print("false");
+                    }   break;
+                case "3":
+                    // listar rol
+                    //session.setAttribute("List_rol", rol.readall());
+                    for (int i = 0; i < rol.readall().size(); i++) {
+                        RolDTO role = new RolDTO();
+                        role = (RolDTO) rol.readall().get(i);
+                        out.println("<tr>");
+                        out.println("<td>" + role.getIdrol() + "</td>");
+                        out.println("<td>" + role.getRol() + "</td>");
+                        out.println("<td><a href=\"#\"  onclick=\"eliminar(" + role.getIdrol() + ")\" class=\" btn btn-xs btn-danger\">Eliminar</a> || <a href=\"#\"  onclick=\"editar(" + role.getIdrol() + ")\" class=\" btn btn-xs btn-warning\">Editar</a></td>");
+                        out.println("</tr>");
+                }   break;
+                case "delete":
+                {
+                    // eliminar
+                    boolean resul = rol.delete(Integer.parseInt(id));
+                    if (resul) {
+                        out.print("true");
+                    } else {
+                        out.print("false");
+                }       break;
+                    }
+                case "edit":
+                {
+                    // editar
+                    r.setRol(request.getParameter("rol_name"));
+                    r.setIdrol(Integer.parseInt(id));
+                    boolean resul = rol.update(r);
+                    if (resul) {
+                        out.print("true");
+                    } else {
+                        out.print("false");
+                }       break;
                 }
-            } else if (op.equals("3")) { // listar rol
-                //session.setAttribute("List_rol", rol.readall());
-                for (int i = 0; i < rol.readall().size(); i++) {
-                    RolDTO role = new RolDTO();
-                    role = (RolDTO) rol.readall().get(i);
-                    out.println("<tr>");
-                    out.println("<td>" + role.getIdrol() + "</td>");
-                    out.println("<td>" + role.getRol() + "</td>");
-                    out.println("<td><a href=\"#\"  onclick=\"eliminar(" + role.getIdrol() + ")\" class=\" btn btn-xs btn-danger\">Eliminar</a> || <a href=\"#\"  onclick=\"editar(" + role.getIdrol() + ")\" class=\" btn btn-xs btn-warning\">Editar</a></td>");
-                    out.println("</tr>");
-                }
-
-            } else if (op.equals("delete")) { // eliminar
-                boolean resul = rol.delete(Integer.parseInt(id));
-                if (resul) {
-                    out.print("true");
-                } else {
-                    out.print("false");
-                }
-            } else if (op.equals("edit")) { // editar
-                r.setRol(request.getParameter("rol_name"));
-                r.setIdrol(Integer.parseInt(id));
-                boolean resul = rol.update(r);
-                if (resul) {
-                    out.print("true");
-                } else {
-                    out.print("false");
-                }
-            } else if (op.equals("list_id")) {// get datos por id
-                Operaciones aO = new RolDAO();
-                RolDTO ro = (RolDTO) aO.read(Integer.parseInt(id));
-                String datos = "<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>"
-                        + "<input type=\"hidden\" name=\"id\" id=\"id_rol\" value=\"" + ro.getIdrol() + "\">\n"
-                        + "<input type=\"text\" class=\"form-control\" value=\"" + ro.getRol() + "\" name=\"rol_name\" placeholder=\"Nombre del rol\"/>";
-                out.print(datos);
+                case "list_id":
+                    // get datos por id
+                    Operaciones aO = new RolDAO();
+                    RolDTO ro = (RolDTO) aO.read(Integer.parseInt(id));
+                    String datos = "<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>"
+                            + "<input type=\"hidden\" name=\"id\" id=\"id_rol\" value=\"" + ro.getIdrol() + "\">\n"
+                            + "<input type=\"text\" class=\"form-control\" value=\"" + ro.getRol() + "\" name=\"rol_name\" placeholder=\"Nombre del rol\"/>";
+                    out.print(datos);
+                    break;
             }
 
         } catch (Exception e) {

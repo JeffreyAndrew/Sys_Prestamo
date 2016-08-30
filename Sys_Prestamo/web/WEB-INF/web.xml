@@ -8,8 +8,6 @@
         <servlet-name>EquipoController</servlet-name>
         <servlet-class>Controller.EquipoController</servlet-class>
     </servlet>
-     
-    
     <servlet>
         <servlet-name>SVL_Equipo</servlet-name>
         <servlet-class>Controller.SVL_Equipo</servlet-class>
@@ -17,6 +15,14 @@
     <servlet>
         <servlet-name>SVL_Prestamo</servlet-name>
         <servlet-class>Controller.SVL_Prestamo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>Controller.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PrestamoController</servlet-name>
@@ -26,8 +32,6 @@
         <servlet-name>EquipoController</servlet-name>
         <url-pattern>/ec</url-pattern>
     </servlet-mapping>
-    
-     
     <servlet-mapping>
         <servlet-name>SVL_Equipo</servlet-name>
         <url-pattern>/SVLE</url-pattern>
@@ -36,8 +40,6 @@
         <servlet-name>SVL_Prestamo</servlet-name>
         <url-pattern>/SVLPR</url-pattern>
     </servlet-mapping>
-    
-    
     <servlet>
         <servlet-name>PersonaController</servlet-name>
         <servlet-class>Controller.PersonaController</servlet-class>
@@ -46,18 +48,17 @@
         <servlet-name>PersonaController</servlet-name>
         <url-pattern>/ci</url-pattern>
     </servlet-mapping>
-    
-    
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/lg</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>
-
-
-
-   
-
-

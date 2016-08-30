@@ -30,6 +30,23 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     private final String SQL_READ = "SELECT * FROM usuario WHERE idUsuario=?";
     private final String DELETE = "DELETE FROM usuario WHERE idUsuario=?";
 
+   //     public boolean validarUser(String user, String pass) {
+//        boolean m = false;
+//        sql = "select * from usuario where usuario=? and clave=?";
+//        try {
+//            cn = conexion.getConexion();
+//            ps = cn.prepareStatement(sql);
+//            ps.setString(1, user);
+//            ps.setString(2, pass);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//                m = true;
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return m;
+//    }
     public PersonaDTO validar(String user, String pass) {
         PersonaDTO m = new PersonaDTO();
         sql = "SELECT P.nombre,P.idPersona,P.apellidos,P.dni,P.idRol,P.facultad, P.escuela,P.celular,P.correo "
@@ -48,8 +65,8 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
                 m.setNombre(rs.getString("nombre"));
                 m.setApellidos(rs.getString("apellidos"));
                 m.setDni(Integer.parseInt(rs.getString("dni")));
-                m.setFacultad(rs.getString("facultad"));
-                m.setEscuela(rs.getString("escuela"));
+             
+                
                 m.setCorreo(rs.getString("correo"));
                 m.setTelefono(Integer.parseInt(rs.getString("celular")));
             }

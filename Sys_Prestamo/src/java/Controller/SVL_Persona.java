@@ -87,8 +87,8 @@ public class SVL_Persona extends HttpServlet {
                     persona= (PersonaDTO)ListaResultado.get(i);
                     out.print("<tr>");
                     out.print("<td>"+persona.getNombre()+"</td>");
-                     out.print("<td>"+persona.getApellido()+"</td>");
-                      out.print("<td>"+persona.getDNI()+"</td>");
+                     out.print("<td>"+persona.getApellidos()+"</td>");
+                      out.print("<td>"+persona.getDni()+"</td>");
                       out.print("<td>"+persona.getTelefono()+"</td>");
                       out.print("<td>"+persona.getCorreo()+"</td>");
                     out.print("</tr>");

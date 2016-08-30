@@ -38,7 +38,7 @@ public class RolDAO implements Operaciones<RolDTO> {
                 m = true;
             }
         } catch (Exception ex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            System.out.println("Error al crear rol "+ex);
         }
         return m;
     }
@@ -55,11 +55,11 @@ public class RolDAO implements Operaciones<RolDTO> {
             while (rs.next()) {
                 RolDTO dto = new RolDTO();
                 dto.setIdrol(rs.getInt("idrol"));
-                dto.setRol(rs.getString("rol"));
+                dto.setRol(rs.getString("nombre"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            System.out.println("Error al listar Rol "+ex);
         }
         return lista;
     }
@@ -77,7 +77,7 @@ public class RolDAO implements Operaciones<RolDTO> {
                 m = true;
             }
         } catch (Exception ex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            System.out.println("Error al eliminar Rol "+ex);
         }
         return m;
     }
@@ -96,7 +96,7 @@ public class RolDAO implements Operaciones<RolDTO> {
                 m = true;
             }
         } catch (Exception ex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            System.out.println("Error al editar Rol "+ex);
         }
         return m;
     }
@@ -104,7 +104,7 @@ public class RolDAO implements Operaciones<RolDTO> {
     @Override
     public List<RolDTO> readall() {
         List<RolDTO> lista = new ArrayList();
-        sql = "select * from rol";
+        sql = "SELECT * FROM ROL";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -112,11 +112,11 @@ public class RolDAO implements Operaciones<RolDTO> {
             while (rs.next()) {
                 RolDTO dto = new RolDTO();
                 dto.setIdrol(rs.getInt("idrol"));
-                dto.setRol(rs.getString("rol"));
+                dto.setRol(rs.getString("nombre"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            System.out.println("Error al listar roles "+ex);
         }
         return lista;
     }

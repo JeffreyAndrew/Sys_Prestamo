@@ -71,7 +71,7 @@
         <div class="box" style="width: 80%;">
             <h3>Registro de Persona</h3><br/>
             <form class="form-horizontal" method="get" action="ci">
-                <div box-body>
+                <div class="box-body">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">

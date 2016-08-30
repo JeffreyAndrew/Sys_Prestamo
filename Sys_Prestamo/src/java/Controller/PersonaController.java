@@ -67,7 +67,12 @@ public class PersonaController extends HttpServlet {
         int op = Integer.parseInt(request.getParameter("op"));
         switch (op) {
             case 1:
-                pag = "/vistas/add_person/add_person.jsp";
+                pag = "/vistas/persona/add_person.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
+                break;
+            case 2:
+                pag = "/vistas/persona/profile.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;

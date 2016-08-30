@@ -170,6 +170,24 @@ function createTableEq() {
     return m;
 }
 
+function createTableDoc() {
+    var m = '<table id="tabDc" class="table table-bordered table-striped">';
+    m += '<thead>';
+    m += '<tr>';
+    m += '<th>Marca</th>';
+    m += '<th>Serie</th>';
+    m += '<th>Tipo</th>';
+    m += '<th>Código</th>';
+    m += '<th>Descripción</th>';
+    m += '<th></th>';
+    m += '</tr>';
+    m += '</thead>';
+    m += '<tbody id="datadoc">';
+    m += '</tbody>';
+    m += '</table>';
+    return m;
+}
+
 function regcom() {
     var url = "loan?mt=update&op=2";
     var data = "com=" + $("#icom").val();
@@ -201,4 +219,7 @@ function removeeq(id) {
     });
 }
 
+function listarDoc(){
+    
+}
 

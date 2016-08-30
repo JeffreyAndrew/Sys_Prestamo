@@ -18,7 +18,7 @@
                 alert("holaaaaa");
 
             <%  PersonaDTO p = new PersonaDTO();
-                if (p.getIdrol() == 2) {
+                if (p.getIdRol() == 2) {
 
             %>
                 $("#Equipos").hide();

@@ -6,8 +6,8 @@
 package DAO;
 
 import DTO.RolDTO;
-import config.conexion;
 import Interfaces.Operaciones;
+import config.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

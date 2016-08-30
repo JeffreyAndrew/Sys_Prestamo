@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : admin
     Created on : 26/08/2016, 12:30:44 PM
     Author     : AMADOR
 --%>
@@ -52,7 +52,7 @@
                                         </tr>
                                         <%}%>
                                         <tbody id="table_rol">
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
- <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -115,7 +115,7 @@
                                     <label for="name" class="cols-sm-2 control-label">Nombre del Rol</label>
                                     <div class="cols-sm-10">
                                         <div id="datos_id" class="input-group">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -136,105 +136,105 @@
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script>
             var id_rol;
-          $( document ).ready(function() {
-              listarrol();// funcion para listar los roles con ajax
-              
-    $('#setrol').on('click', function () {
-      var datos = $('#formrol').serializeArray();// sacamos los datos del formulario y lo ponemos en un Objet
-     
-      
-      $.ajax({
-          url: "admin?op=2",
-          data: datos,
-          success: function (data) {
-                        if(data == "true"){
-                          $('#formulario').hide();
-                          $('#true').show(200);// mostrar el div con la inagen success
-                            setTimeout(function(){ // pausar el codigo
+            $(document).ready(function () {
+                listarrol();// funcion para listar los roles con ajax
+
+                $('#setrol').on('click', function () {
+                    var datos = $('#formrol').serializeArray();// sacamos los datos del formulario y lo ponemos en un Objet
+
+
+                    $.ajax({
+                        url: "admin?op=2",
+                        data: datos,
+                        success: function (data) {
+                            if (data == "true") {
+                                $('#formulario').hide();
+                                $('#true').show(200);// mostrar el div con la inagen success
+                                setTimeout(function () { // pausar el codigo
                                     $('#myModal').modal('toggle');// cerrar el modal despues del tiempo
                                     listarrol();
-                                    }, 2000);// tiempo de la pausa del codigo
+                                }, 2000);// tiempo de la pausa del codigo
 
-                        }else{
-                          $('#formulario').hide();
-                          $('#false').show(200);
-                         setTimeout(function(){
+                            } else {
+                                $('#formulario').hide();
+                                $('#false').show(200);
+                                setTimeout(function () {
                                     $('#myModal').modal('toggle');
-                                    }, 2000);
+                                }, 2000);
+                            }
+                        },
+                        error: function () {
+                            $('#formulario').hide();
+                            $('#false').show(200);
+                            setTimeout(function () {
+                                $('#myModal').modal('toggle');
+                            }, 2000);
                         }
-                    },
-         error: function () {
-                       $('#formulario').hide();
-                          $('#false').show(200);
-                         setTimeout(function(){
-                                    $('#myModal').modal('toggle');
-                                    }, 2000); 
-                    }           
-      });
-    });
+                    });
+                });
 //----------------------- guardar cambios de la edicion ----------------------
-    $('#setrol2').on('click', function () {
-      var datos = $('#formrol2').serializeArray();
-      $.ajax({
-          url: "admin?op=edit&id="+id_rol,
-          data: datos,
-          success: function (data) {
-                $('#myModal2').modal('toggle');
-                listarrol();
-                    },
-         error: function (d) {
-                    }           
-      });
-    });
-   
- //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
-    $('#crearrol').click(function(){
-        $('#myModal').modal();                     // initialized with defaults
-         $('#myModal').modal({ keyboard: false });   // initialized with no keyboard
-         $('#myModal').modal('show'); 
-          });
+                $('#setrol2').on('click', function () {
+                    var datos = $('#formrol2').serializeArray();
+                    $.ajax({
+                        url: "admin?op=edit&id=" + id_rol,
+                        data: datos,
+                        success: function (data) {
+                            $('#myModal2').modal('toggle');
+                            listarrol();
+                        },
+                        error: function (d) {
+                        }
+                    });
+                });
 
-           });
-           
-           function listarrol(){
-               $.ajax({
-                   url: "admin?op=3",
-                   data: "",
-                   success: function (data) {
-                       $('#table_rol').html(data);
+                //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
+                $('#crearrol').click(function () {
+                    $('#myModal').modal();                     // initialized with defaults
+                    $('#myModal').modal({keyboard: false});   // initialized with no keyboard
+                    $('#myModal').modal('show');
+                });
+
+            });
+
+            function listarrol() {
+                $.ajax({
+                    url: "admin?op=3",
+                    data: "",
+                    success: function (data) {
+                        $('#table_rol').html(data);
                     },
                     error: function (d) {
-                        
+
                         console.log(d);
                     }
-                    
-               });
-           }
-          function eliminar(id){
-            var statusConfirm = confirm("¿Realmente desea eliminar esto?"); 
-            if (statusConfirm == true) 
-            { 
-                $.post('admin?op=delete&id='+id,function (d){
-                    console.log(d);
-                    if(d){
-                        listarrol();
-                        
-                    }
+
                 });
-            } 
-            
-          }
-          function editar(id){
-              $('#myModal2').modal('show'); 
-              $.post('admin?op=list_id&id='+id,function(d){
-                  $('#datos_id').html(d);
-                     id_rol = id;
-              });
-          }
+            }
+            function eliminar(id) {
+                var statusConfirm = confirm("¿Realmente desea eliminar esto?");
+                if (statusConfirm == true)
+                {
+                    $.post('admin?op=delete&id=' + id, function (d) {
+                        console.log(d);
+                        if (d) {
+                            listarrol();
+
+                        }
+                    });
+                }
+
+            }
+            function editar(id) {
+                $('#myModal2').modal('show');
+                $.post('admin?op=list_id&id=' + id, function (d) {
+                    $('#datos_id').html(d);
+                    id_rol = id;
+                });
+            }
         </script>
     </body>
 </html>

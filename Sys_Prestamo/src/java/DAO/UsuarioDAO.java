@@ -47,12 +47,13 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
 //        }
 //        return m;
 //    }
-    public PersonaDTO validar(String user, String pass) {
+    public List<PersonaDTO> validar(String user, String pass) {
         PersonaDTO m = new PersonaDTO();
-        sql = "SELECT P.nombre,P.idPersona,P.apellidos,P.dni,P.idRol,P.facultad, P.escuela,P.celular,P.correo "
-                + "FROM usuario U,persona P "
-                + "WHERE U.usuario=? AND U.clave=? "
-                + "AND U.idPersona=P.idPersona";
+        List<PersonaDTO> lista = new ArrayList<>();
+        sql = "SELECT P.nombre,P.idPersona,P.apellidos,P.dni,P.idRol,P.celular,P.correo "
+                + " FROM usuario U,persona P "
+                + " WHERE U.usuario=? AND U.clave=? "
+                + " AND U.idPersona=P.idPersona";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -64,18 +65,17 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
                 m.setIdRol(Integer.parseInt(rs.getString("idRol")));
                 m.setNombre(rs.getString("nombre"));
                 m.setApellidos(rs.getString("apellidos"));
-                m.setDni(Integer.parseInt(rs.getString("dni")));
-             
-                
+                m.setDni(Integer.parseInt(rs.getString("dni")));           
                 m.setCorreo(rs.getString("correo"));
                 m.setTelefono(Integer.parseInt(rs.getString("celular")));
+                lista.add(m);
             }
 
-        } catch (SQLException | NumberFormatException e) {
-            m = null;
-            System.out.println("Error al Validar Usuario");
+        } catch (Exception e) {            
+            System.out.println("Error al Validar Usuario "+e);
+            return null;
         }
-        return m;
+        return lista;
     }
 
     @Override

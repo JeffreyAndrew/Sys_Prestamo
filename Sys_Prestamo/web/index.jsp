@@ -3,7 +3,10 @@
     Created on : 25/08/2016, 10:09:05 PM
     Author     : LEANDRO
 --%>
-
+<%@page import="java.sql.ResultSet"%>
+<%@page import="DTO.PersonaDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,10 +15,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>SPE || UPeU</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
         <%@include file="WEB-INF/jspf/import.jspf" %>
+        <jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
+        <jsp:useBean id="persona" class="DAO.PersonaDAO"/>
+        <jsp:useBean id="roles" class="DAO.RolDAO"/>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
+            <%
+        for (int i = 0; i < lista.size(); i++) {
+            PersonaDTO u = new PersonaDTO();
+            u = (PersonaDTO) lista.get(i);
+            String rol = persona.getRol(u.getIdRol());
+%>
         <div class="wrapper">
 
             <header class="main-header">
@@ -38,7 +49,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Usuario</span>
+                                    <span class="hidden-xs"><%= u.getNombre() + " " + u.getApellidos()%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -46,8 +57,8 @@
                                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Usuario
-                                            <small>Rol</small>
+                                            <%= u.getNombre() + " " + u.getApellidos()%>
+                                            <small><%= rol %></small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -94,7 +105,7 @@
                             <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Usuario</p>
+                            <p><%= u.getNombre()%></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -167,7 +178,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i> Añadir Persona</a></li>
-                                <li><a href="ci?op=2&id=1" target="box"><i class="fa fa-user"></i> Perfil</a></li>
+                                <li><a href="ci?op=2&id=<%= u.getIdPersona() %>" target="box"><i class="fa fa-user"></i> Perfil</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -345,7 +356,8 @@
                 </div>
             </aside>
             <div class="control-sidebar-bg"></div>
-        </div>        
+        </div>  
+                                            <%}%>
     </body>
 </html>
 

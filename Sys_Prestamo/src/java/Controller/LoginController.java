@@ -10,6 +10,7 @@ import DTO.PersonaDTO;
 import DTO.UsuarioDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author USER
+ * @author LEANDRO
  */
 public class LoginController extends HttpServlet {
 
@@ -73,71 +74,28 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
-        /*PrintWriter out = response.getWriter();
-        String a, b, pagina;
+        String pagina = "";
+        RequestDispatcher dispatcher;
         HttpSession session = request.getSession(true);
-        a = request.getParameter("usuario");
-        b = request.getParameter("password");
-        String sql;
-    
-        
-        
-        sql = " SELECT rol.idRol"+ " from rol, persona"+" WHERE rol.idRol= persona.idRol";
-//        
-//        PersonaDTO ud = new PersonaDTO();
-        if (!a.equals("") && !b.equals("")) {
-         ud = aO.validar(a, b);
-            if (ud!=null) {
-                if(sql=="1" || sql=="2" ){
-                    pagina = "/index.jsp";
-
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                    dispatcher.forward(request, response);
-                    
-                }
-                else{
-                    pagina = "/login.jsp";
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+        String user = request.getParameter("user");
+        String pass = request.getParameter("pass");
+        if (user.equals("") && pass.equals("")) {
+            pagina = "/login.jsp";
+            dispatcher = getServletContext().getRequestDispatcher(pagina);
+            dispatcher.forward(request, response);
+        } else {
+            List<PersonaDTO> p=aO.validar(user, pass);
+            if (p.size()>0) {
+                session.setAttribute("lista", p);
+                pagina = "/index.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
-                }
-
-//            switch (sql) {
-//                case "1": {
-//
-//                    pagina = "/index.jsp";
-//
-//                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-//                    dispatcher.forward(request, response);
-//                    break;
-//                }
-//                case "2": {
-//                    pagina = "/index.jsp";
-//
-//                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-//                    dispatcher.forward(request, response);
-//                    break;
-//                }
-//                default:
-//                    System.out.println("usted no tiene acceso por ser docente");
-//                    break;
-//            }
-
             } else {
                 pagina = "/login.jsp";
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
-
             }
-        } else {
-            pagina = "/login.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-            dispatcher.forward(request, response);
-        }*/
-        
-        
-        
+        }
     }
 
     /**

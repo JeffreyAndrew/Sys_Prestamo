@@ -168,7 +168,6 @@ public class PersonaController extends HttpServlet {
                 PersonaDTO P = new PersonaDTO(id, idRol, nombre, apellidos, dni, celular, correo);
                 resp = pro.update(P);
                 if (resp) {
-                    System.out.println("maryuri");
                 }
                 break;
         }

@@ -43,7 +43,7 @@
                                     <b><i class="fa fa-phone"></i>   Teléfono</b> <a class="pull-right"><%= u.getTelefono()%></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Correo</b> <a class="pull-right"><%= u.getCorreo()%></a>
+                                    <b><i class="fa fa-envelope-o"></i>   Correo</b> <a class="pull-right"><%= u.getCorreo()%></a>
                                 </li>
                             </ul>
                             <div class="modal fade" id="editModal" tabindex="-1" role="dialog">

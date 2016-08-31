@@ -107,7 +107,6 @@
             function validarS() {
                 if ($("#name").val() !== "" && $("#last").val() !== "" && $("#dni").val() !== "" && $("#phone").val() !== "" && $("#mail").val() !== "") {
                     if ((/^([0-9])*$/.test($("#dni").val())) === true && (/^([0-9])*$/.test($("#phone").val())) === true) {
-                alert("se va");        
                 updateperson();
                     } else {
                         swal("Campos errados", "No puede ingresar letras en un campo de números", "error");
@@ -124,9 +123,9 @@
                 data += "&last=" + $("#last").val();
                 data += "&dni=" + $("#dni").val();
                 data += "&phone=" + $("#phone").val();
-                data += "&mail=" + $("#mail").val();
-                alert(data);
+                data += "&mail=" + $("#mail").val();                
                 $.post(url, data);
+                location.href="ci?op=2&id="+$("#idpersona").val();
             }
         </script>
     </body>

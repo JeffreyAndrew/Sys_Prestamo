@@ -167,7 +167,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i> Añadir Persona</a></li>
-                                <li><a href="ci?op=2" target="box"><i class="fa fa-user"></i> Perfil</a></li>
+                                <li><a href="ci?op=2&id=1" target="box"><i class="fa fa-user"></i> Perfil</a></li>
                             </ul>
                         </li>
                     </ul>

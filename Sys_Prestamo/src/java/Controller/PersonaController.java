@@ -9,10 +9,14 @@ import DAO.PersonaDAO;
 import DAO.UsuarioDAO;
 import DTO.PersonaDTO;
 import DTO.UsuarioDTO;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -73,8 +77,8 @@ public class PersonaController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case 2://perfil
-                //int id=Integer.parseInt(request.getParameter("idpersona"));
-                session.setAttribute("lista", pro.read(1));
+                int id=Integer.parseInt(request.getParameter("id"));
+                session.setAttribute("lista", pro.read(id));
                 pag = "/vistas/persona/profile.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
@@ -154,7 +158,6 @@ public class PersonaController extends HttpServlet {
         HttpSession session = request.getSession(true);
         switch (op) {
             case 1:
-                System.out.println("llega");
                 id = Integer.parseInt(request.getParameter("id"));
                 idRol = Integer.parseInt(request.getParameter("idrol"));
                 nombre = request.getParameter("name");
@@ -164,12 +167,7 @@ public class PersonaController extends HttpServlet {
                 correo = request.getParameter("mail");
                 PersonaDTO P = new PersonaDTO(id, idRol, nombre, apellidos, dni, celular, correo);
                 resp = pro.update(P);
-                System.out.println(resp);
                 if (resp) {
-                    session.setAttribute("lista", pro.read(id));
-                    pagina = "/vistas/persona/profile.jsp";
-                    dispatcher = getServletContext().getRequestDispatcher(pagina);
-                    dispatcher.forward(request, response);
                 }
                 break;
         }

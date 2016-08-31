@@ -63,8 +63,8 @@
                                                     <label>Rol</label>
                                                     <p id="rolnow"><%=rol%></p><input id="idrol" type="hidden" value="<%= u.getIdRol()%>">
                                                     <button type="button" onclick="changerol()" class="btn btn-warning changerol" style="display: block;"><i class="fa fa-refresh"></i></button>
-                                                    <select onchange="changev()" id="newrol" class="form-control comboRol hidden">
-                                                        <option disabled>Escoger Rol</option>
+                                                    <select onclick="changev(this.value)" id="newrol" class="form-control comboRol hidden">
+                                                        <option disabled selected>Escoger Rol</option>
                                                         <% ResultSet rs = roles.list();
                                                             while (rs.next()) {%>
                                                         <option value="<%= rs.getInt("idROL")%>"><%= rs.getString("NOMBRE")%></option>
@@ -123,7 +123,7 @@
                 data += "&last=" + $("#last").val();
                 data += "&dni=" + $("#dni").val();
                 data += "&phone=" + $("#phone").val();
-                data += "&mail=" + $("#mail").val();                
+                data += "&mail=" + $("#mail").val();
                 $.post(url, data);
                 location.href="ci?op=2&id="+$("#idpersona").val();
             }

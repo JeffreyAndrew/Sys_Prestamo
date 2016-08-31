@@ -77,7 +77,7 @@ public class PersonaController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case 2://perfil
-                int id=Integer.parseInt(request.getParameter("id"));
+                int id = Integer.parseInt(request.getParameter("id"));
                 session.setAttribute("lista", pro.read(id));
                 pag = "/vistas/persona/profile.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
@@ -91,24 +91,24 @@ public class PersonaController extends HttpServlet {
                 int celular = Integer.parseInt(request.getParameter("celular"));
                 String correo = request.getParameter("correo");
                 u = new PersonaDTO(idRol, nombre, apellidos, dni, celular, correo);
-                boolean c = pro.create(u);
-                if (c) {
-
-//                Agregar Usuario
-                    PersonaDAO perDAO = new PersonaDAO();
-                    int ID = perDAO.buscarIDPersona(dni);
-                    UsuarioDTO usu = new UsuarioDTO(ID, nombre, Integer.toString(dni));
-                    boolean n = uO.create(usu);
-
-                    pag = "/index.jsp";
+                int c = pro.add(u);
+                if (idRol == 3) {
+                    pag = "ci?op=2&id=" + c;
                     dispatcher = getServletContext().getRequestDispatcher(pag);
                     dispatcher.forward(request, response);
                 } else {
-                    pag = "/.jsp";
-                    dispatcher = getServletContext().getRequestDispatcher(pag);
-                    dispatcher.forward(request, response);
+                    UsuarioDTO d = new UsuarioDTO(c, nombre, String.valueOf(dni));
+                    boolean m = uO.create(d);
+                    if (m) {
+                        pag = "ci?op=2&id=" + c;
+                        dispatcher = getServletContext().getRequestDispatcher(pag);
+                        dispatcher.forward(request, response);
+                    } else {
+                        pag = "/tools/files/error.jsp";
+                        dispatcher = getServletContext().getRequestDispatcher(pag);
+                        dispatcher.forward(request, response);
+                    }
                 }
-
                 break;
 
             case 4:
@@ -117,7 +117,6 @@ public class PersonaController extends HttpServlet {
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
-
             case 5:
 
                 pag = "/ci?op=4";

@@ -8,8 +8,10 @@ package Controller;
 import DAO.UsuarioDAO;
 import DTO.PersonaDTO;
 import DTO.UsuarioDTO;
+import config.conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,9 +44,32 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+        String op = request.getParameter("act");
+        RequestDispatcher dispatcher;
+        try /*(PrintWriter out = response.getWriter())*/ {
+            /*RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+             dispatcher.forward(request, response);*/
+            switch (op) {
+                case "in":
+                    dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                case "out":
+                    Connection cn = conexion.cerrar();
+                    if (cn == null) {
+                        dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        dispatcher = getServletContext().getRequestDispatcher("/tools/files/error.jsp");
+                        dispatcher.forward(request, response);
+                    }
+
+                    break;
+            }
+        } catch (Exception e) {
+            dispatcher = getServletContext().getRequestDispatcher("/tools/files/error.jsp");
             dispatcher.forward(request, response);
+            System.out.println("Error Servlet login " + e);
         }
     }
 
@@ -84,8 +109,8 @@ public class LoginController extends HttpServlet {
             dispatcher = getServletContext().getRequestDispatcher(pagina);
             dispatcher.forward(request, response);
         } else {
-            List<PersonaDTO> p=aO.validar(user, pass);
-            if (p.size()>0) {
+            List<PersonaDTO> p = aO.validar(user, pass);
+            if (p.size() > 0) {
                 session.setAttribute("lista", p);
                 pagina = "/index.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);

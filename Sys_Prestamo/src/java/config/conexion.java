@@ -17,35 +17,43 @@ import java.sql.Statement;
  */
 public class conexion {
 
-    private static final String URL="jdbc:mysql://localhost:3306/dbprestamo";
+    private static final String URL = "jdbc:mysql://localhost:3306/dbprestamo";
     private static final String USER = "root";
     private static final String PASS = "root";
-    private static final String DRIVER="com.mysql.jdbc.Driver";
-    private static Connection cn = null;
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static Connection cn;
 
     public static Connection getConexion() {
         try {
-            if (cn==null) {
+            if (cn == null) {
                 Class.forName(DRIVER).newInstance();
-                cn=DriverManager.getConnection(URL, USER, PASS);
+                cn = DriverManager.getConnection(URL, USER, PASS);
             }
         } catch (Exception e) {
-            System.out.println("Error al Conectar "+e);
+            System.out.println("Error al Conectar " + e);
         }
         return cn;
     }
-     public ResultSet query(String sql){
-          
-    Statement st;
-    ResultSet rs = null;
+
+    public ResultSet query(String sql) {
+
+        Statement st;
+        ResultSet rs = null;
         try {
-            Connection conexion=this.getConexion();   
+            Connection conexion = this.getConexion();
             st = conexion.createStatement();
             rs = st.executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
-    return rs;
+
+        return rs;
+    }
+
+    public static Connection cerrar() {
+        if (cn != null) {
+            cn = null;
+        }
+        return cn;
     }
 }

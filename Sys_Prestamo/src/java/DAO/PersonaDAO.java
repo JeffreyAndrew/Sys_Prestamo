@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package DAO;
+
 import DTO.PersonaDTO;
 import Interfaces.Operaciones;
 import config.conexion;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,24 +27,29 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     private Connection cn;
     private ResultSet rs;
     private String sql;
+    private CallableStatement cs;
     private Statement st;
 
     @Override
     public boolean create(PersonaDTO e) {
-        boolean m = false;
-        sql = "INSERT INTO PERSONA(NOMBRE,APELLIDOS,DNI,IDROL,CELULAR,CORREO) VALUES(?,?,?,?,?,?)";
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int add(PersonaDTO e) {
+        int m = 0;
+        sql = "{CALL REG_PERSONA(?, ?, ?, ?, ?, ?)}";
         try {
             cn = conexion.getConexion();
-            ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getNombre().toUpperCase());
-            ps.setString(2, e.getApellidos().toUpperCase());
-            ps.setInt(3, e.getDni());
-            ps.setInt(4, e.getIdRol());
-            ps.setInt(5, e.getTelefono());
-            ps.setString(6, e.getCorreo().toUpperCase());
-            int a = ps.executeUpdate();
-            if (a > 0) {
-                m = true;
+            cs = cn.prepareCall(sql);
+            cs.setString(1, e.getNombre().toUpperCase());
+            cs.setString(2, e.getApellidos().toUpperCase());
+            cs.setInt(3, e.getDni());
+            cs.setInt(4, e.getIdRol());
+            cs.setInt(5, e.getTelefono());
+            cs.setString(6, e.getCorreo().toUpperCase());
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                m = rs.getInt("idPERSONA");
             }
         } catch (Exception p) {
             System.out.println("Error al Crear Persona " + p);
@@ -71,13 +78,13 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
                 lista.add(dto);
             }
         } catch (Exception ex) {
-            System.out.println("Error al listar datos de una persona "+ex);
+            System.out.println("Error al listar datos de una persona " + ex);
         }
         return lista;
     }
 
-    public String getRol(int id){
-        String m="";
+    public String getRol(int id) {
+        String m = "";
         sql = "SELECT NOMBRE FROM ROL WHERE IDROL=?";
         try {
             cn = conexion.getConexion();
@@ -85,15 +92,15 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                m=rs.getString("NOMBRE").toUpperCase();
+                m = rs.getString("NOMBRE").toUpperCase();
             }
         } catch (Exception ex) {
-            System.out.println("Error al obtener Rol "+ex);
+            System.out.println("Error al obtener Rol " + ex);
             return null;
-        }        
+        }
         return m;
     }
-    
+
     @Override
     public boolean delete(int key) {
         boolean m = false;
@@ -136,21 +143,21 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         return m;
     }
 
-    public int buscarIDPersona(int dni){   
+    public int buscarIDPersona(int dni) {
         int a = 0;
-        sql = " SELECT persona.idPersona from persona "+" WHERE persona.dni = ?";
+        sql = " SELECT persona.idPersona from persona " + " WHERE persona.dni = ?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setInt(1, dni);
             rs = ps.executeQuery();
-            a=rs.getInt("idPersona");
+            a = rs.getInt("idPersona");
         } catch (Exception e) {
             System.out.println("Error al buscar persona " + e);
         }
         return a;
     }
-    
+
     @Override
     public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -164,21 +171,21 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         List<PersonaDTO> list = new ArrayList<PersonaDTO>();
         try {
             ResultSet rs = oConexion.query(sql.toString());
-            while(rs.next()){
-            PersonaDTO producto = new PersonaDTO();
-            producto.setIdPersona(rs.getInt("IDPERSONA"));
-            producto.setIdRol(rs.getInt("IDROL"));
-            producto.setNombre(rs.getString("NOMBRE"));
-            producto.setApellidos(rs.getString("APELLIDOS"));
-            producto.setDni(rs.getInt("DNI"));
-            producto.setTelefono(rs.getInt("CELULAR"));
-            producto.setCorreo(rs.getString("CORREO"));
-           
-            list.add(producto);
+            while (rs.next()) {
+                PersonaDTO producto = new PersonaDTO();
+                producto.setIdPersona(rs.getInt("IDPERSONA"));
+                producto.setIdRol(rs.getInt("IDROL"));
+                producto.setNombre(rs.getString("NOMBRE"));
+                producto.setApellidos(rs.getString("APELLIDOS"));
+                producto.setDni(rs.getInt("DNI"));
+                producto.setTelefono(rs.getInt("CELULAR"));
+                producto.setCorreo(rs.getString("CORREO"));
+
+                list.add(producto);
             }
         } catch (SQLException e) {
-        } finally{
-           
+        } finally {
+
         }
         return list;
     }

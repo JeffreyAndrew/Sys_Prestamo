@@ -64,7 +64,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     @Override
     public boolean create(UsuarioDTO e) {
         boolean m = false;
-        sql = "INSERT INTO usuario (idPersona,usuario,clave) VALUES(?,?,?)";
+        sql = "INSERT INTO usuario (idUsuari,idPersona,usuario,clave) VALUES(NULL,?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

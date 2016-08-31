@@ -91,7 +91,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
+                                <li><a target="box" href="main?op=1&id=<%= u.getIdPersona() %>"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
                                 <li><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
                             </ul>
                         </li>

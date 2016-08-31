@@ -1,5 +1,5 @@
 <%-- 
-    Document   : tdevolución
+    Document   : tdevoluciosn
     Created on : 29/08/2016, 09:59:32 AM
     Author     : LEANDRO
 --%>
@@ -11,10 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
         <%@include file="/WEB-INF/jspf/impbts.jspf" %>
+        <jsp:useBean id="idpersona" scope="session" type="java.text.NumberFormat" ></jsp:useBean>
     </head>
     <body>
         <div style="width: 80%;margin: auto;">
-            <center><h1>Prestamo de Equipos</h1></center>
+            <center><h1>Devolución de Equipos<%=idpersona%></h1></center>
             <input id="iprestamo" value="0" type="hidden">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -76,6 +77,6 @@
                 </div>
             </div>
         </div>
-        <script src="vistas/prestamo/functionsreturn.js" type="text/javascript"></script>
+        <script src="vistas/prestamo/functionsreturn.js" type="text/javascript"></script>        
     </body>
 </html>

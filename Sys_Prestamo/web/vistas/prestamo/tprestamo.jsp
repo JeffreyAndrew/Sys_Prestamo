@@ -3,7 +3,9 @@
     Created on : 25/08/2016, 09:27:24 PM
     Author     : LEANDRO
 --%>
-
+<%@page import="DTO.PersonaDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,11 +13,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
         <%@include file="/WEB-INF/jspf/impbts.jspf" %>
+        <jsp:useBean id="ipersona" scope="session" class="java.util.ArrayList"/>
     </head>
     <body>
 
-        <div style="width: 80%; margin: auto;">
-            <center><h1>Prestamo de Equipos</h1></center>
+        <div style="width: 80%; margin: auto;">            
+            <center><h1>Prestamo de Equipos</h1></center>            
             <input id="iprestamo" value="0" type="hidden">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -23,14 +26,20 @@
                 </div>
                 <div class="panel-body">
                     <form>
-                        <input id="idprest" type="hidden" class="form-control" disabled value="1">
+                        <%
+                                for (int i = 0; i < ipersona.size(); i++) {
+                                    PersonaDTO u = new PersonaDTO();
+                                    u = (PersonaDTO) ipersona.get(i);
+                            %>
+                        <input id="idprest" type="hidden" class="form-control" disabled value="<%= u.getIdPersona() %>">
+                        <%}%>
                         <div class="form-group">
                             <label>Docente :</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </div>
-                                <input id="idocente" type="text" class="form-control" value="Leandro Burgos" disabled>
+                                <input id="idocente" type="text" class="form-control" value="" disabled>
                                 <input id="iddoc" type="hidden" class="form-control" value="2">
                             </div>
                             <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right"><i class="fa fa-search"></i>   Escoger</button>
@@ -151,6 +160,11 @@
             </div>
         </div>     
         <script src="vistas/prestamo/functionsloan.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                
+            });
+        </script>
     </body>
 
 </html>

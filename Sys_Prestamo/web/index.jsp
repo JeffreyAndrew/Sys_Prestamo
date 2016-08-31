@@ -9,6 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%try {%>
 <html>
     <head>
         <meta charset="utf-8">
@@ -21,12 +22,12 @@
         <jsp:useBean id="roles" class="DAO.RolDAO"/>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-            <%
-        for (int i = 0; i < lista.size(); i++) {
-            PersonaDTO u = new PersonaDTO();
-            u = (PersonaDTO) lista.get(i);
-            String rol = persona.getRol(u.getIdRol());
-%>
+        <%
+            for (int i = 0; i < lista.size(); i++) {
+                PersonaDTO u = new PersonaDTO();
+                u = (PersonaDTO) lista.get(i);
+                String rol = persona.getRol(u.getIdRol());
+        %>
         <div class="wrapper">
 
             <header class="main-header">
@@ -58,7 +59,7 @@
 
                                         <p>
                                             <%= u.getNombre() + " " + u.getApellidos()%>
-                                            <small><%= rol %></small>
+                                            <small><%= rol%></small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -131,8 +132,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
-                                <li class="active"><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
+                                <li><a target="box" href="loan?mt=rd&op=1"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
+                                <li><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
                             </ul>
                         </li>
                         <li class="treeview" id="Equipos">
@@ -178,7 +179,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i> Añadir Persona</a></li>
-                                <li><a href="ci?op=2&id=<%= u.getIdPersona() %>" target="box"><i class="fa fa-user"></i> Perfil</a></li>
+                                <li><a href="ci?op=2&id=<%= u.getIdPersona()%>" target="box"><i class="fa fa-user"></i> Perfil</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -192,7 +193,7 @@
 
                 <!-- Main content -->
                 <!-- Main row -->
-                <iframe name="box" id="idboxload" onload="loadFrame(this.contentWindow.location);"
+                <iframe name="box" src="ci?op=2&id=<%=u.getIdPersona()%>" id="idboxload" onload="loadFrame(this.contentWindow.location);"
                         style="height: 87vh;width: 100%; border: none; overflow-y: hidden">
                 </iframe>
                 <!-- /.content -->
@@ -357,7 +358,11 @@
             </aside>
             <div class="control-sidebar-bg"></div>
         </div>  
-                                            <%}%>
+        <%}%>
     </body>
 </html>
+<%} catch (Exception e) {%>
+<%@include file="tools/files/error.jsp"  %>
+<%}
 
+%>

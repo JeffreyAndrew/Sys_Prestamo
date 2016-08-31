@@ -30,7 +30,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     @Override
     public boolean create(PersonaDTO e) {
         boolean m = false;
-        sql = "INSERT INTO PERSONA(NOMBRE,APELLIDOS,DNI,ID_ROL,CELULAR,CORREO) VALUES(?,?,?,?,?,?)";
+        sql = "INSERT INTO PERSONA(NOMBRE,APELLIDOS,DNI,IDROL,CELULAR,CORREO) VALUES(?,?,?,?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -114,7 +114,26 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
 
     @Override
     public boolean update(PersonaDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean m = false;
+        sql = "UPDATE PERSONA SET NOMBRE=?,APELLIDOS=?,DNI=?,IDROL=?,CELULAR=?,CORREO=? WHERE IDPERSONA=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, e.getNombre());
+            ps.setString(2, e.getApellidos());
+            ps.setInt(3, e.getDni());
+            ps.setInt(4, e.getIdRol());
+            ps.setInt(5, e.getTelefono());
+            ps.setString(6, e.getCorreo());
+            ps.setInt(7, e.getIdPersona());
+            int a = ps.executeUpdate();
+            if (a > 0) {
+                m = true;
+            }
+        } catch (Exception p) {
+            System.out.println("Error al Editar Persona " + p);
+        }
+        return m;
     }
 
     public int buscarIDPersona(int dni){   

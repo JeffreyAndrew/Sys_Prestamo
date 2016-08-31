@@ -154,6 +154,7 @@ public class PersonaController extends HttpServlet {
         HttpSession session = request.getSession(true);
         switch (op) {
             case 1:
+                System.out.println("llega");
                 id = Integer.parseInt(request.getParameter("id"));
                 idRol = Integer.parseInt(request.getParameter("idrol"));
                 nombre = request.getParameter("name");
@@ -163,12 +164,12 @@ public class PersonaController extends HttpServlet {
                 correo = request.getParameter("mail");
                 PersonaDTO P = new PersonaDTO(id, idRol, nombre, apellidos, dni, celular, correo);
                 resp = pro.update(P);
+                System.out.println(resp);
                 if (resp) {
                     session.setAttribute("lista", pro.read(id));
                     pagina = "/vistas/persona/profile.jsp";
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
-                    break;
                 }
                 break;
         }

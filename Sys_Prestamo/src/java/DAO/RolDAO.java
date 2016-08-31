@@ -32,7 +32,7 @@ public class RolDAO implements Operaciones<RolDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(0, e.getNombre());
+            ps.setString(1, e.getNombre().toUpperCase());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -85,12 +85,12 @@ public class RolDAO implements Operaciones<RolDTO> {
     @Override
     public boolean update(RolDTO e) {
         boolean m = false;
-        sql = "update rol set rol= ? where idrol= ? ";
+        sql = "update rol set NOMBRE= ? where idrol= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(0, e.getNombre());
-            ps.setInt(1, e.getIdrol());
+            ps.setString(1, e.getNombre().toUpperCase());
+            ps.setInt(2, e.getIdrol());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;

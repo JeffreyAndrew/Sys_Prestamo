@@ -35,7 +35,7 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
             ps = cn.prepareStatement(sql);
             ps.setInt(1, e.getIdEquipo());
             ps.setInt(2, e.getCodigo());
-            ps.setString(3, e.getDescripcion());
+            ps.setString(3, e.getDescripcion().toUpperCase());
             ps.setString(4, e.getEstado());
             int a = ps.executeUpdate();
             if (a > 0) {
@@ -98,7 +98,7 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
             ps = cn.prepareStatement(sql);
             ps.setInt(1, e.getIdEquipo());
             ps.setInt(2, e.getCodigo());
-            ps.setString(3, e.getDescripcion());
+            ps.setString(3, e.getDescripcion().toUpperCase());
             ps.setString(4, e.getEstado());
             ps.setInt(5, e.getIdDet_Equipo());
             int a = ps.executeUpdate();

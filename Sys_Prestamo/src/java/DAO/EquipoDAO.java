@@ -34,9 +34,9 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getMarca());
-            ps.setString(2, e.getSerie());
-            ps.setString(3, e.getTipo());
+            ps.setString(1, e.getMarca().toUpperCase());
+            ps.setString(2, e.getSerie().toUpperCase());
+            ps.setString(3, e.getTipo().toUpperCase());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -95,9 +95,9 @@ public class EquipoDAO implements Operaciones<EquipoDTO>{
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getMarca());
-            ps.setString(2, e.getSerie());
-            ps.setString(3, e.getTipo());
+            ps.setString(1, e.getMarca().toUpperCase());
+            ps.setString(2, e.getSerie().toUpperCase());
+            ps.setString(3, e.getTipo().toUpperCase());
             ps.setInt(4, e.getIdEquipo());
             int a = ps.executeUpdate();
             if (a > 0) {

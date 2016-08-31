@@ -58,7 +58,7 @@
                                     </li>
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="ci?op=2&id=<%=u.getIdPersona()%>" target="box" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="login?act=out" class="btn btn-default btn-flat">Salir</a>

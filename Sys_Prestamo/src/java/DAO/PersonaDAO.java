@@ -34,12 +34,12 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getNombre());
-            ps.setString(2, e.getApellidos());
+            ps.setString(1, e.getNombre().toUpperCase());
+            ps.setString(2, e.getApellidos().toUpperCase());
             ps.setInt(3, e.getDni());
             ps.setInt(4, e.getIdRol());
             ps.setInt(5, e.getTelefono());
-            ps.setString(6, e.getCorreo());
+            ps.setString(6, e.getCorreo().toUpperCase());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -119,12 +119,12 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
-            ps.setString(1, e.getNombre());
-            ps.setString(2, e.getApellidos());
+            ps.setString(1, e.getNombre().toUpperCase());
+            ps.setString(2, e.getApellidos().toUpperCase());
             ps.setInt(3, e.getDni());
             ps.setInt(4, e.getIdRol());
             ps.setInt(5, e.getTelefono());
-            ps.setString(6, e.getCorreo());
+            ps.setString(6, e.getCorreo().toUpperCase());
             ps.setInt(7, e.getIdPersona());
             int a = ps.executeUpdate();
             if (a > 0) {

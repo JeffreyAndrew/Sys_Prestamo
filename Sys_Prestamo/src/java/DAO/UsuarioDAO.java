@@ -30,23 +30,6 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     private final String SQL_READ = "SELECT * FROM usuario WHERE idUsuario=?";
     private final String DELETE = "DELETE FROM usuario WHERE idUsuario=?";
 
-   //     public boolean validarUser(String user, String pass) {
-//        boolean m = false;
-//        sql = "select * from usuario where usuario=? and clave=?";
-//        try {
-//            cn = conexion.getConexion();
-//            ps = cn.prepareStatement(sql);
-//            ps.setString(1, user);
-//            ps.setString(2, pass);
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                m = true;
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return m;
-//    }
     public List<PersonaDTO> validar(String user, String pass) {
         PersonaDTO m = new PersonaDTO();
         List<PersonaDTO> lista = new ArrayList<>();

@@ -112,15 +112,21 @@
                                 </select>
 
                             </div>
-                            <div class="bootstrap-timepicker">
+                            <div class="col-md-12">
                                 <div class="form-group">
-
-
+                                <label class="letra col-sm-4 control-label">Sexo</label>
+                                <select class="form-control" name="sex">
+                                    <option selected disabled>Elegir Sexo</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label class="letra col-sm-4 control-label">Correo</label>
                                     <div class="input-group">
-
                                         <input type="text" required="" name="correo" id="correo" class="a form-control  timepicker">  
-
                                     </div>
                                 </div>
                             </div>

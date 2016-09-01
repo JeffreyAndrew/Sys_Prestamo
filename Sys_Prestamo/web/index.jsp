@@ -45,12 +45,12 @@
                         <ul class="nav navbar-nav">          
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="dist/img/<%=rol + "M"%>.jpg" class="user-image" alt="User Image">
+                                    <img src="dist/img/<%=rol + u.getSexo()%>.jpg" class="user-image" alt="User Image">
                                     <span class="hidden-xs"><%= u.getNombre() + " " + u.getApellidos()%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header">
-                                        <img src="dist/img/<%=rol + "M"%>.jpg" class="img-circle" alt="User Image">
+                                        <img src="dist/img/<%=rol + u.getSexo() %>.jpg" class="img-circle" alt="User Image">
 
                                         <p>
                                             <%= u.getNombre() + " " + u.getApellidos()%>
@@ -75,7 +75,7 @@
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/<%=rol + "M"%>.jpg" class="img-circle" alt="User Image">
+                            <img src="dist/img/<%=rol + u.getSexo()%>.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%= u.getNombre()%></p>
@@ -181,7 +181,7 @@
     </body>
 </html>
 <%} catch (Exception e) {%>
-<%@include file="tools/files/error.jsp"  %>
+<%@include file="/tools/files/error.jsp"  %>
 <%}
 
 %>

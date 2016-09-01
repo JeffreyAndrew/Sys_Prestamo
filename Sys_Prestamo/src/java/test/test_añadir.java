@@ -31,7 +31,7 @@ private static PersonaDAO aO = new PersonaDAO();
            public static void crear(){
            
            
-          PersonaDTO ps= new PersonaDTO(4, "hanselpro2", "elpro", 03333, 04774, "correo@dsdfw");
+          PersonaDTO ps= new PersonaDTO(4, "hanselpro2", "elpro", 03333, 04774, "correo@dsdfw","M");
         boolean p = aO.create(ps);
         if (p) {
             System.out.println("crear");

@@ -90,7 +90,8 @@ public class PersonaController extends HttpServlet {
                 int dni = Integer.parseInt(request.getParameter("dni"));
                 int celular = Integer.parseInt(request.getParameter("celular"));
                 String correo = request.getParameter("correo");
-                u = new PersonaDTO(idRol, nombre, apellidos, dni, celular, correo);
+                String sexo=request.getParameter("sex");
+                u = new PersonaDTO(idRol, nombre, apellidos, dni, celular, correo,sexo);
                 int c = pro.add(u);
                 if (idRol == 3) {
                     pag = "/ci?op=2&id=" + c;

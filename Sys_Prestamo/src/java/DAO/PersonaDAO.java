@@ -37,7 +37,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
 
     public int add(PersonaDTO e) {
         int m = 0;
-        sql = "{CALL REG_PERSONA(?, ?, ?, ?, ?, ?)}";
+        sql = "{CALL REG_PERSONA(?, ?, ?, ?, ?, ?, ?)}";
         try {
             cn = conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -47,6 +47,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             cs.setInt(4, e.getIdRol());
             cs.setInt(5, e.getTelefono());
             cs.setString(6, e.getCorreo());
+            cs.setString(7, e.getSexo());
             rs = cs.executeQuery();
             while (rs.next()) {
                 m = rs.getInt("idPERSONA");
@@ -75,6 +76,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
                 dto.setTelefono(rs.getInt("CELULAR"));
                 dto.setCorreo(rs.getString("CORREO"));
                 dto.setIdRol(rs.getInt("IDROL"));
+                dto.setSexo(rs.getString("SEXO"));
                 lista.add(dto);
             }
         } catch (Exception ex) {

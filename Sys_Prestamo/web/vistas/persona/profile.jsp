@@ -38,7 +38,7 @@
                                             pass = pass + "*";
                                         }
                             %>
-                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol + "M"%>.jpg" alt="User profile picture">
+                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol +u.getSexo() %>.jpg" alt="User profile picture">
                             <h3 class="profile-username text-center"><%= u.getNombre() + " " + u.getApellidos()%></h3>
                             <input type="hidden" value="<%= u.getIdPersona()%>" id="idpersona">
                             <p class="text-muted text-center"><%=rol%></p>

@@ -33,7 +33,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     public List<PersonaDTO> validar(String user, String pass) {
         PersonaDTO m = new PersonaDTO();
         List<PersonaDTO> lista = new ArrayList<>();
-        sql = "SELECT P.nombre,P.idPersona,P.apellidos,P.dni,P.idRol,P.celular,P.correo "
+        sql = "SELECT P.nombre,P.idPersona,P.apellidos,P.dni,P.idRol,P.celular,P.correo,P.sexo "
                 + " FROM usuario U,persona P "
                 + " WHERE U.usuario=? AND U.clave=? "
                 + " AND U.idPersona=P.idPersona";
@@ -51,6 +51,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
                 m.setDni(Integer.parseInt(rs.getString("dni")));
                 m.setCorreo(rs.getString("correo"));
                 m.setTelefono(Integer.parseInt(rs.getString("celular")));
+                m.setSexo(rs.getString("sexo"));
                 lista.add(m);
             }
 

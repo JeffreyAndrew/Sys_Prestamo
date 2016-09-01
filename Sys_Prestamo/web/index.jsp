@@ -27,6 +27,7 @@
                 PersonaDTO u = new PersonaDTO();
                 u = (PersonaDTO) lista.get(i);
                 String rol = persona.getRol(u.getIdRol());
+                int irol = u.getIdRol();
         %>
         <div class="wrapper">
 
@@ -44,12 +45,12 @@
                         <ul class="nav navbar-nav">          
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="dist/img/<%=rol+"M"%>.jpg" class="user-image" alt="User Image">
+                                    <img src="dist/img/<%=rol + "M"%>.jpg" class="user-image" alt="User Image">
                                     <span class="hidden-xs"><%= u.getNombre() + " " + u.getApellidos()%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header">
-                                        <img src="dist/img/<%=rol+"M"%>.jpg" class="img-circle" alt="User Image">
+                                        <img src="dist/img/<%=rol + "M"%>.jpg" class="img-circle" alt="User Image">
 
                                         <p>
                                             <%= u.getNombre() + " " + u.getApellidos()%>
@@ -74,7 +75,7 @@
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/<%=rol+"M"%>.jpg" class="img-circle" alt="User Image">
+                            <img src="dist/img/<%=rol + "M"%>.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%= u.getNombre()%></p>
@@ -82,8 +83,14 @@
                         </div>
                     </div>
                     <ul class="sidebar-menu">
-                        <li class="header">MENÚ</li>                        
-                        <li class="active treeview" id="Gprestamo">
+                        <li class="header">MENÚ</li>
+                        <li>
+                            <a href="ci?op=2&id=<%= u.getIdPersona()%>" target="box">
+                                <i class="fa fa-user"></i> <span>Perfil</span>
+                            </a>
+                        </li>
+                        <%if (irol == 1 || irol == 2) {%>
+                        <li class="active treeview">
                             <a href="#">
                                 <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
@@ -91,10 +98,12 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a target="box" href="main?op=1&id=<%= u.getIdPersona() %>"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
+                                <li><a target="box" href="main?op=1&id=<%= u.getIdPersona()%>"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
                                 <li><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
                             </ul>
                         </li>
+                        <% }
+                            if (irol == 1) {%>
                         <li class="treeview" id="Equipos">
                             <a href="#">
                                 <i class="fa fa-edit"></i> <span>Equipos</span>
@@ -107,6 +116,9 @@
                                 <li><a href="ec?ge=1" target="box"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
                             </ul>
                         </li>
+                        <% }
+                            if (irol == 4) {
+                        %>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i> <span>Gestión de Roles</span>
@@ -118,6 +130,9 @@
                                 <li><a href="admin?op=1" target="box"><i class="fa fa-gear"></i> Gestión de Roles</a></li>
                             </ul>
                         </li>
+                        <% }
+                            if (irol == 1) {
+                        %>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i> <span>Usuario</span>
@@ -129,6 +144,9 @@
                                 <li><a href="ci?op=4" target="box"><i class="fa fa-gear"></i>Lista usuarios</a></li>
                             </ul>
                         </li>
+                        <% }
+                            if (irol == 1 || irol == 2) {
+                        %>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-users"></i> <span>Gestión de Personas</span>
@@ -138,9 +156,9 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i> Añadir Persona</a></li>
-                                <li><a href="ci?op=2&id=<%= u.getIdPersona()%>" target="box"><i class="fa fa-user"></i> Perfil</a></li>
                             </ul>
                         </li>
+                        <% }%>
                     </ul>
                 </section>
             </aside>
@@ -157,7 +175,7 @@
                 reserved.
             </footer>
 
-            
+
         </div>  
         <%}%>
     </body>

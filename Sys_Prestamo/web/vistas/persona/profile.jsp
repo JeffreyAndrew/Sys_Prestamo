@@ -112,9 +112,9 @@
                                         <div class="modal-body">
                                             <div>
                                                 <label>Usuario</label>
-                                                <input class="form-control" type="text" value="<%= mp.getString("USUARIO")%>"  placeholder="Ingrese su usuario">                                                
+                                                <input class="form-control" id="nwuser" type="text" value="<%= mp.getString("USUARIO")%>"  placeholder="Ingrese su usuario">                                                
                                                 <label>Contraseña</label>
-                                                <input class="form-control" type="password" value="<%= mp.getString("CLAVE")%>" placeholder="Ingrese su contraseña actual">
+                                                <input class="form-control" id="nwpass" type="password" value="<%= mp.getString("CLAVE")%>" placeholder="Ingrese su contraseña actual">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -190,6 +190,50 @@
                     } else {
                         swal("Cancelled", "Your imaginary file is safe :)", "error");
                     }
+                });
+            }
+            function upuser() {
+                var user = $("#nwuser").val();
+                var pass = $("#nwpass").val();
+                var id = $("#idpersona").val();
+                $('#editUserModal').modal('hide');
+                swal({
+                    title: "Confirmación",
+                    text: "Escribe tu contraseña actual",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "Contraseña"},
+                function (inputValue) {
+                    if (inputValue === false) {
+                        return false;
+                    }
+                    if (inputValue === "") {
+                        swal.showInputError("Debes escribir algo");
+                        return false;
+                    }
+                    if ($("#idpass").val() === inputValue) {
+                        var url = "ci?op=2";
+                        var data = "user=" + user;
+                        data += "&pass=" + pass;
+                        data += "&id=" + id;
+                                $.post(url, data);
+                        swal({
+                            title: "¡Genial!",
+                            text: "Se efectuaron los cambios en el usuario correctamente",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            closeOnConfirm: true},
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.href = "ci?op=2&id=" + $("#idpersona").val();
+                            }
+                        });
+                    } else {
+                        swal.showInputError("Las contraseñas no coinciden");
+                    }
+
                 });
             }
         </script>

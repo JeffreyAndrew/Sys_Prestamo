@@ -125,13 +125,13 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     @Override
     public boolean update(UsuarioDTO e) {
         boolean m = false;
-        sql = "UPDATE FROM USUARIO SET USER=? AND PASSWORD=?";
+        sql = "UPDATE USUARIO SET USUARIO=? ,CLAVE=? WHERE IDPERSONA=?";
         try {
-            UsuarioDTO u = new UsuarioDTO();
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setString(1, e.getUser());
             ps.setString(2, e.getPassword());
+            ps.setInt(3, e.getIdpersona());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;

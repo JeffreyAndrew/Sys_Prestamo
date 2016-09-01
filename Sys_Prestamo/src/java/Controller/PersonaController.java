@@ -128,7 +128,6 @@ public class PersonaController extends HttpServlet {
                     out.println("Error al eliminar");
                 }
                 break;
-
         }
     }
 
@@ -144,8 +143,8 @@ public class PersonaController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int op = Integer.parseInt(request.getParameter("op"));
-        String pagina = "",nombre = "",apellidos = "", correo = "";
-        int dni = 0,celular = 0, id = 0;
+        String pagina = "", nombre = "", apellidos = "", correo = "";
+        int dni = 0, celular = 0, id = 0;
         boolean resp = false;
         int idRol = 0;
         RequestDispatcher dispatcher;
@@ -161,11 +160,21 @@ public class PersonaController extends HttpServlet {
                     celular = Integer.parseInt(request.getParameter("phone"));
                     correo = request.getParameter("mail");
                     PersonaDTO P = new PersonaDTO(id, idRol, nombre, apellidos, dni, celular, correo);
-                    boolean a=pro.update(P);
+                    boolean a = pro.update(P);
+                    break;
+                case 2://update user
+                    System.out.println("llega");
+                    String us = request.getParameter("user");
+                    String ps = request.getParameter("pass");
+                    System.out.println(us);
+                    System.out.println(ps);
+                    int m = Integer.parseInt(request.getParameter("id"));
+                    UsuarioDTO uT = new UsuarioDTO(m, us, ps);
+                    uO.update(uT);
                     break;
             }
         } catch (Exception e) {
-            System.out.println("Error en el Servlet Persona-ci "+e);
+            System.out.println("Error en el Servlet Persona-ci " + e);
         }
     }
 

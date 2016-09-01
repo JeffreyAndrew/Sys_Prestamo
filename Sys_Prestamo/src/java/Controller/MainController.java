@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.PersonaDAO;
+import DAO.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,9 @@ import javax.servlet.http.HttpSession;
  */
 public class MainController extends HttpServlet {
 
-    PersonaDAO pD=new PersonaDAO();
+    PersonaDAO pD = new PersonaDAO();
+    UsuarioDAO aO = new UsuarioDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,8 +37,8 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String pagina="";
-        int idpersona=0;
+        String pagina = "";
+        int idpersona = 0;
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(true);
         int op = Integer.parseInt(request.getParameter("op"));
@@ -43,9 +46,16 @@ public class MainController extends HttpServlet {
         try {
             switch (op) {
                 case 1:
-                    idpersona=Integer.parseInt(request.getParameter("id"));
+                    idpersona = Integer.parseInt(request.getParameter("id"));
                     pagina = "/vistas/prestamo/tprestamo.jsp";
                     session.setAttribute("ipersona", pD.read(idpersona));
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                    break;
+                case 2:
+                    idpersona = Integer.parseInt(request.getParameter("id"));
+                    session.setAttribute("lista", pD.read(idpersona));
+                    pagina = "/index.jsp";
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                     break;

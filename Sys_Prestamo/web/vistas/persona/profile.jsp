@@ -32,13 +32,13 @@
                                     u = (PersonaDTO) lista.get(i);
                                     String rol = persona.getRol(u.getIdRol());
                                     ResultSet mp = usuario.list(u.getIdPersona());
-                                    while(mp.next()){
-                                    String m = mp.getString("CLAVE");
-                                    for (int p = 0; p < m.length(); p++) {
-                                        pass = pass + "*";
-                                    }
+                                    while (mp.next()) {
+                                        String m = mp.getString("CLAVE");
+                                        for (int p = 0; p < m.length(); p++) {
+                                            pass = pass + "*";
+                                        }
                             %>
-                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol+"M"%>.jpg" alt="User profile picture">
+                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol + "M"%>.jpg" alt="User profile picture">
                             <h3 class="profile-username text-center"><%= u.getNombre() + " " + u.getApellidos()%></h3>
                             <input type="hidden" value="<%= u.getIdPersona()%>" id="idpersona">
                             <p class="text-muted text-center"><%=rol%></p>
@@ -112,26 +112,22 @@
                                         <div class="modal-body">
                                             <div>
                                                 <label>Usuario</label>
-                                                <input class="form-control" type="text" value="<%= mp.getString("USUARIO") %>"  placeholder="Ingrese su usuario">                                                
+                                                <input class="form-control" type="text" value="<%= mp.getString("USUARIO")%>"  placeholder="Ingrese su usuario">                                                
                                                 <label>Contraseña</label>
-                                                <input class="form-control" type="password" value="<%= mp.getString("CLAVE") %>" placeholder="Ingrese su contraseña actual">
-                                            </div>
-                                            <div class="hidden">
-                                                <label>Contraseña nueva</label>
-                                                <input class="form-control"  placeholder="Escriba se contraseña nueva">
+                                                <input class="form-control" type="password" value="<%= mp.getString("CLAVE")%>" placeholder="Ingrese su contraseña actual">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger sub" data-dismiss="modal"><i class="fa fa-close"></i>   Cerrar</button>
-                                            <button type="button" class="btn btn-success"><i class="fa fa-check"></i>   Guardar</button>
+                                            <button onclick="upuser()" type="button" class="btn btn-success"><i class="fa fa-check"></i>   Guardar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <button data-toggle="modal" data-target="#editModal" class="btn btn-success" style="display: inline-block;float: left;"><b><i class="fa fa-pencil"></i>   Editar Datos</b></button>
                             <button data-toggle="modal" data-target="#editUserModal" class="btn btn-warning" style="display: inline-block;float: right;"><b><i class="fa fa-lock"></i>   Editar Usuario</b></button>
-                            <%}%>            
-                            <% }%>
+                                        <%}%>            
+                                        <% }%>
                         </div>
                     </div>
                 </div>
@@ -167,8 +163,34 @@
                 data += "&dni=" + $("#dni").val();
                 data += "&phone=" + $("#phone").val();
                 data += "&mail=" + $("#mail").val();
-                $.post(url, data);
-                location.href = "ci?op=2&id=" + $("#idpersona").val();
+                swal({
+                    title: "Confirmación",
+                    text: "¿Seguro que desea guardar los cambios?",
+                    type: "info",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Aceptar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false,
+                    closeOnCancel: false},
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.post(url, data);
+                        swal({
+                            title: "Cambios Realizados",
+                            text: "Se efectuaron los cambios correctamente",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            closeOnConfirm: true},
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.href = "ci?op=2&id=" + $("#idpersona").val();
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    }
+                });
             }
         </script>
     </body>

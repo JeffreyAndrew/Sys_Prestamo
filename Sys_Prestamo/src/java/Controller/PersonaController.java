@@ -144,31 +144,28 @@ public class PersonaController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int op = Integer.parseInt(request.getParameter("op"));
-        String pagina = "";
-        String nombre = "";
-        String apellidos = "";
-        String correo = "";
-        int dni = 0;
-        int celular = 0;
-        int id = 0;
+        String pagina = "",nombre = "",apellidos = "", correo = "";
+        int dni = 0,celular = 0, id = 0;
         boolean resp = false;
         int idRol = 0;
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(true);
-        switch (op) {
-            case 1:
-                id = Integer.parseInt(request.getParameter("id"));
-                idRol = Integer.parseInt(request.getParameter("idrol"));
-                nombre = request.getParameter("name");
-                apellidos = request.getParameter("last");
-                dni = Integer.parseInt(request.getParameter("dni"));
-                celular = Integer.parseInt(request.getParameter("phone"));
-                correo = request.getParameter("mail");
-                PersonaDTO P = new PersonaDTO(id, idRol, nombre, apellidos, dni, celular, correo);
-                resp = pro.update(P);
-                if (resp) {
-                }
-                break;
+        try {
+            switch (op) {
+                case 1:
+                    id = Integer.parseInt(request.getParameter("id"));
+                    idRol = Integer.parseInt(request.getParameter("idrol"));
+                    nombre = request.getParameter("name");
+                    apellidos = request.getParameter("last");
+                    dni = Integer.parseInt(request.getParameter("dni"));
+                    celular = Integer.parseInt(request.getParameter("phone"));
+                    correo = request.getParameter("mail");
+                    PersonaDTO P = new PersonaDTO(id, idRol, nombre, apellidos, dni, celular, correo);
+                    boolean a=pro.update(P);
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en el Servlet Persona-ci "+e);
         }
     }
 

@@ -53,7 +53,7 @@
 
                                         <p>
                                             <%= u.getNombre() + " " + u.getApellidos()%>
-                                            <small><%= rol+"M"%></small>
+                                            <small><%= rol%></small>
                                         </p>
                                     </li>
                                     <li class="user-footer">

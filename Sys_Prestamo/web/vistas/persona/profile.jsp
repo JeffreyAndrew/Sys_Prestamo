@@ -16,6 +16,7 @@
         <%@include file="/WEB-INF/jspf/impbts.jspf" %>
         <jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
         <jsp:useBean id="persona" class="DAO.PersonaDAO"/>
+        <jsp:useBean id="usuario" class="DAO.UsuarioDAO"/>
         <jsp:useBean id="roles" class="DAO.RolDAO"/>
     </head>
     <body style="margin: auto;">
@@ -24,13 +25,20 @@
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" src="dist/img/profile.jpg" alt="User profile picture">
                             <%
+                                String pass = "";
                                 for (int i = 0; i < lista.size(); i++) {
                                     PersonaDTO u = new PersonaDTO();
                                     u = (PersonaDTO) lista.get(i);
                                     String rol = persona.getRol(u.getIdRol());
+                                    ResultSet mp = usuario.list(u.getIdPersona());
+                                    while(mp.next()){
+                                    String m = mp.getString("CLAVE");
+                                    for (int p = 0; p < m.length(); p++) {
+                                        pass = pass + "*";
+                                    }
                             %>
+                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol+"M"%>.jpg" alt="User profile picture">
                             <h3 class="profile-username text-center"><%= u.getNombre() + " " + u.getApellidos()%></h3>
                             <input type="hidden" value="<%= u.getIdPersona()%>" id="idpersona">
                             <p class="text-muted text-center"><%=rol%></p>
@@ -46,10 +54,11 @@
                                     <b><i class="fa fa-envelope-o"></i>   Correo</b> <a class="pull-right"><%= u.getCorreo()%></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b><i class="fa fa-user"></i>   Usuario</b> <a class="pull-right">abcde</a>
+                                    <b><i class="fa fa-user"></i>   Usuario</b> <a class="pull-right"><%= mp.getString("USUARIO")%></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b><i class="fa fa-lock"></i>   Contraseña</b> <a class="pull-right">*********</a>
+                                    <b><i class="fa fa-lock"></i>   Contraseña</b> <a class="pull-right"><%=pass%></a>
+                                    <input id="idpass" type="hidden" value="<%=mp.getString("CLAVE")%>">
                                 </li>
                             </ul>
                             <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
@@ -93,24 +102,36 @@
                                     </div>
                                 </div>
                             </div>
-                                                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+                            <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title"><i class="fa fa-pencil"></i>   Editar Usuario</h4>
+                                            <h4 class="modal-title"><i class="fa fa-lock"></i>   Editar Usuario</h4>
                                         </div>
                                         <div class="modal-body">
+                                            <div>
+                                                <label>Usuario</label>
+                                                <input class="form-control" type="text" value="<%= mp.getString("USUARIO") %>"  placeholder="Ingrese su usuario">                                                
+                                                <label>Contraseña</label>
+                                                <input class="form-control" type="password" value="<%= mp.getString("CLAVE") %>" placeholder="Ingrese su contraseña actual">
+                                            </div>
+                                            <div class="hidden">
+                                                <label>Contraseña nueva</label>
+                                                <input class="form-control"  placeholder="Escriba se contraseña nueva">
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger sub" data-dismiss="modal"><i class="fa fa-close"></i>   Cerrar</button>
+                                            <button type="button" class="btn btn-success"><i class="fa fa-check"></i>   Guardar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <button data-toggle="modal" data-target="#editModal" class="btn btn-success" style="display: inline-block;float: left;"><b><i class="fa fa-pencil"></i>   Editar Datos</b></button>
                             <button data-toggle="modal" data-target="#editUserModal" class="btn btn-warning" style="display: inline-block;float: right;"><b><i class="fa fa-lock"></i>   Editar Usuario</b></button>
-                                        <% }%>
+                            <%}%>            
+                            <% }%>
                         </div>
                     </div>
                 </div>

@@ -164,7 +164,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     }
 
     public ResultSet list(int user) {
-        sql = "SELECT * FROM USUARIO WHERE IDUSUARIO=?";
+        sql = "SELECT * FROM USUARIO WHERE IDPERSONA=?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

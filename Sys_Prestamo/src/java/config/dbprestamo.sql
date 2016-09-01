@@ -11,6 +11,7 @@ CREATE TABLE PERSONA(
     dni INTEGER(8) NOT NULL,
     celular INTEGER(11) NOT NULL,
     correo VARCHAR(45) NOT NULL,
+    sexo CHAR( 1 ) NOT NULL,
     PRIMARY KEY(idPersona),
     FOREIGN KEY(idRol) REFERENCES ROL(idRol)
 );

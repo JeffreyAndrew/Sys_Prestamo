@@ -138,7 +138,7 @@ function listarequipos(id) {
     $.post(url, data, function (objJson) {
         var lista = objJson.lista;
         if (lista.length > 0) {
-            $("#isave").attr("class", "btn btn-danger");
+            $("#isave").attr("class", "btn btn-info");
             var m = "";
             $("#iadvice").attr("class", "hidden");
             $("#contab").attr("class", "box");
@@ -157,6 +157,8 @@ function listarequipos(id) {
             $("#eqpres").append(d);
             $("#datapres").empty();
             $("#datapres").append(m);
+        }else{
+            $("#isave").attr("class", "btn btn-info hidden");
         }
     });
 }

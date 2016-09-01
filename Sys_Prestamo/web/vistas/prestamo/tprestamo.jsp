@@ -73,7 +73,7 @@
                         </div>
                         <br/><br/>
                         <center>
-                            <button id="isave" class="btn btn-danger hidden" data-toggle="modal" data-target="#finalModal" type="button">Guardar</button>
+                            <button id="isave" class="btn btn-info hidden" data-toggle="modal" data-target="#finalModal" type="button"><i class="fa fa-plus"></i>   Comentario</button>
                         </center>
                     </div>
                 </div>
@@ -96,7 +96,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-default">Omitir</button>
                         <button type="button" onclick="regcom()" class="btn btn-success">Aceptar</button>
                     </div>
                 </div>

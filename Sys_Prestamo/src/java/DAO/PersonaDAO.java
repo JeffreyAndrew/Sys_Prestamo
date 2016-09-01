@@ -25,7 +25,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
 
     private PreparedStatement ps;
     private Connection cn;
-    private ResultSet rs;
+    private ResultSet rs=null;
     private String sql;
     private CallableStatement cs;
     private Statement st;
@@ -83,6 +83,23 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             System.out.println("Error al listar datos de una persona " + ex);
         }
         return lista;
+    }
+
+    public ResultSet dataperson(int id) {
+        sql = "SELECT P.IDPERSONA,P.IDROL,P.NOMBRE,P.APELLIDOS,P.DNI,P.CELULAR,P.CORREO,P.SEXO,U.IDUSUARIO,U.USUARIO,U.CLAVE,R.NOMBRE ROL "
+                + "FROM PERSONA P,USUARIO U,ROL R "
+                + "WHERE P.IDPERSONA=U.IDPERSONA "
+                + "AND P.IDPERSONA=? "
+                + "AND P.IDROL=R.IDROL";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Error al listar persona con RS "+e);
+        }
+        return rs;
     }
 
     public String getRol(int id) {

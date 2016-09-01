@@ -4,6 +4,7 @@
     Author     : EXEBIO
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,49 +64,51 @@
 
 
         </script>  
-
-        <title>SPE || UPeU</title>
-    </head>
-    <body style="padding: 3%;box-sizing: border-box;">
-    <center>
-        <div class="box" style="width: 80%;">
-            <h3>Registro de Persona</h3><br/>
-            <form class="form-horizontal" method="get" action="ci">
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="letra col-sm-4 control-label"><i class="fa fa-user"></i>   Nombre </label>
-                                <div class="col-sm-6">
-                                    <input type="text" required="" name="nombre" id="nombre" class="a form-control" onkeypress="return soloLetras(event)">           
+        <jsp:useBean id="rol" class="DAO.RolDAO"></jsp:useBean>
+            <title>SPE || UPeU</title>
+        </head>
+        <body style="padding: 3%;box-sizing: border-box;">
+        <center>
+            <div class="box" style="width: 80%;">
+                <h3>Registro de Persona</h3><br/>
+                <form class="form-horizontal" method="get" action="ci">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="letra col-sm-4 control-label"><i class="fa fa-user"></i>   Nombre </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" required="" name="nombre" id="nombre" class="a form-control" onkeypress="return soloLetras(event)">           
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="letra col-sm-4 control-label">Apellidos</label>
+                                    <div class="col-sm-6">    
+                                        <input type="text" required="" name="apellido" id="apellidos" class="a form-control" onkeypress="return soloLetras(event)">             
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="letra col-sm-4 control-label">Celular</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" required="" name="celular" id="celular" class="a form-control"  >           
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="letra col-sm-4 control-label">Dni</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" required="" name="dni" id="dni" class="a form-control"  >             
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="letra col-sm-4 control-label">Apellidos</label>
-                                <div class="col-sm-6">    
-                                    <input type="text" required="" name="apellido" id="apellidos" class="a form-control" onkeypress="return soloLetras(event)">             
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="letra col-sm-4 control-label">Celular</label>
-                                <div class="col-sm-6">
-                                    <input type="text" required="" name="celular" id="celular" class="a form-control"  >           
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="letra col-sm-4 control-label">Dni</label>
-                                <div class="col-sm-6">
-                                    <input type="number" required="" name="dni" id="dni" class="a form-control"  >             
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="letra col-sm-4 control-label">Rol</label>
-                                <select class="form-control select2" name="idrol" data-placeholder="Select a State" style="width: 100%;">
-                                    <option value="1">Prestamista</option>
-                                    <option value="2">Docente</option>
-
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="letra col-sm-4 control-label">Rol</label>
+                                    <select id="sroles" class="form-control select2" name="idrol" data-placeholder="Select a State" style="width: 100%;">
+                                        <option selected disabled >Escoger Rol</option>
+                                    <% ResultSet rs = rol.list();
+                                        while (rs.next()) {%>
+                                    <option value="<%= rs.getInt("idROL")%>" ><%= rs.getString("NOMBRE")%></option>
+                                    <%}%>
                                 </select>
 
                             </div>

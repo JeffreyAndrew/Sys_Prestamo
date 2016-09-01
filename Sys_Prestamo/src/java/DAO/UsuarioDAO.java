@@ -48,14 +48,14 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
                 m.setIdRol(Integer.parseInt(rs.getString("idRol")));
                 m.setNombre(rs.getString("nombre"));
                 m.setApellidos(rs.getString("apellidos"));
-                m.setDni(Integer.parseInt(rs.getString("dni")));           
+                m.setDni(Integer.parseInt(rs.getString("dni")));
                 m.setCorreo(rs.getString("correo"));
                 m.setTelefono(Integer.parseInt(rs.getString("celular")));
                 lista.add(m);
             }
 
-        } catch (Exception e) {            
-            System.out.println("Error al Validar Usuario "+e);
+        } catch (Exception e) {
+            System.out.println("Error al Validar Usuario " + e);
             return null;
         }
         return lista;
@@ -64,7 +64,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     @Override
     public boolean create(UsuarioDTO e) {
         boolean m = false;
-        sql = "INSERT INTO usuario (idUsuari,idPersona,usuario,clave) VALUES(NULL,?,?,?)";
+        sql = "INSERT INTO usuario (idUsuariO,idPersona,usuario,clave) VALUES(NULL,?,?,?)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
                 m = true;
             }
         } catch (Exception p) {
-            System.out.println("Error al Crear Persona " + p);
+            System.out.println("Error al Crear Usuario " + p);
         }
         return m;
     }
@@ -161,6 +161,20 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
         return list;
+    }
+
+    public ResultSet list(int user) {
+        sql = "SELECT * FROM USUARIO WHERE IDUSUARIO=?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, user);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Error al listar datos de Usuario por RS " + e);
+            return null;
+        }
+        return rs;
     }
 
 }

@@ -93,14 +93,14 @@ public class PersonaController extends HttpServlet {
                 u = new PersonaDTO(idRol, nombre, apellidos, dni, celular, correo);
                 int c = pro.add(u);
                 if (idRol == 3) {
-                    pag = "ci?op=2&id=" + c;
+                    pag = "/ci?op=2&id=" + c;
                     dispatcher = getServletContext().getRequestDispatcher(pag);
                     dispatcher.forward(request, response);
                 } else {
                     UsuarioDTO d = new UsuarioDTO(c, nombre, String.valueOf(dni));
                     boolean m = uO.create(d);
                     if (m) {
-                        pag = "ci?op=2&id=" + c;
+                        pag = "/ci?op=2&id=" + c;
                         dispatcher = getServletContext().getRequestDispatcher(pag);
                         dispatcher.forward(request, response);
                     } else {

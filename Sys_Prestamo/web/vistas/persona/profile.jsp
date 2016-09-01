@@ -45,6 +45,12 @@
                                 <li class="list-group-item">
                                     <b><i class="fa fa-envelope-o"></i>   Correo</b> <a class="pull-right"><%= u.getCorreo()%></a>
                                 </li>
+                                <li class="list-group-item">
+                                    <b><i class="fa fa-user"></i>   Usuario</b> <a class="pull-right">abcde</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b><i class="fa fa-lock"></i>   Contraseña</b> <a class="pull-right">*********</a>
+                                </li>
                             </ul>
                             <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
@@ -87,7 +93,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <button data-toggle="modal" data-target="#editModal" class="btn btn-success"><b><i class="fa fa-pencil"></i>   Editar</b></button>
+                                                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title"><i class="fa fa-pencil"></i>   Editar Usuario</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger sub" data-dismiss="modal"><i class="fa fa-close"></i>   Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button data-toggle="modal" data-target="#editModal" class="btn btn-success" style="display: inline-block;float: left;"><b><i class="fa fa-pencil"></i>   Editar Datos</b></button>
+                            <button data-toggle="modal" data-target="#editUserModal" class="btn btn-warning" style="display: inline-block;float: right;"><b><i class="fa fa-lock"></i>   Editar Usuario</b></button>
                                         <% }%>
                         </div>
                     </div>
@@ -107,7 +129,7 @@
             function validarS() {
                 if ($("#name").val() !== "" && $("#last").val() !== "" && $("#dni").val() !== "" && $("#phone").val() !== "" && $("#mail").val() !== "") {
                     if ((/^([0-9])*$/.test($("#dni").val())) === true && (/^([0-9])*$/.test($("#phone").val())) === true) {
-                updateperson();
+                        updateperson();
                     } else {
                         swal("Campos errados", "No puede ingresar letras en un campo de números", "error");
                     }
@@ -125,7 +147,7 @@
                 data += "&phone=" + $("#phone").val();
                 data += "&mail=" + $("#mail").val();
                 $.post(url, data);
-                location.href="ci?op=2&id="+$("#idpersona").val();
+                location.href = "ci?op=2&id=" + $("#idpersona").val();
             }
         </script>
     </body>

@@ -46,7 +46,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             cs.setInt(3, e.getDni());
             cs.setInt(4, e.getIdRol());
             cs.setInt(5, e.getTelefono());
-            cs.setString(6, e.getCorreo().toUpperCase());
+            cs.setString(6, e.getCorreo());
             rs = cs.executeQuery();
             while (rs.next()) {
                 m = rs.getInt("idPERSONA");
@@ -131,7 +131,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             ps.setInt(3, e.getDni());
             ps.setInt(4, e.getIdRol());
             ps.setInt(5, e.getTelefono());
-            ps.setString(6, e.getCorreo().toUpperCase());
+            ps.setString(6, e.getCorreo());
             ps.setInt(7, e.getIdPersona());
             int a = ps.executeUpdate();
             if (a > 0) {

@@ -200,7 +200,8 @@
                 swal({
                     title: "Confirmación",
                     text: "Escribe tu contraseña actual",
-                    type: "input",
+                    type:"input",
+                    inputType: "password",
                     showCancelButton: true,
                     closeOnConfirm: false,
                     animation: "slide-from-top",

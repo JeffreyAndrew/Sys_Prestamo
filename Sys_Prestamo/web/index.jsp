@@ -79,7 +79,7 @@
                         </div>
                         <div class="pull-left info">
                             <p><%= u.getNombre()%></p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
                         </div>
                     </div>
                     <ul class="sidebar-menu">

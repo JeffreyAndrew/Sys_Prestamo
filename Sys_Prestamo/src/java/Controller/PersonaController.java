@@ -78,7 +78,8 @@ public class PersonaController extends HttpServlet {
                 break;
             case 2://perfil
                 int id = Integer.parseInt(request.getParameter("id"));
-                session.setAttribute("lista", pro.read(id));
+                List<PersonaDTO> p = pro.read(id);
+                session.setAttribute("lista", p);
                 pag = "/vistas/persona/profile.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);

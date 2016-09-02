@@ -63,10 +63,9 @@ public class LoginController extends HttpServlet {
                         dispatcher = getServletContext().getRequestDispatcher("/tools/files/error.jsp");
                         dispatcher.forward(request, response);
                     }
-
                     break;
             }
-        } catch (Exception e) {
+        } catch (ServletException | IOException e) {
             dispatcher = getServletContext().getRequestDispatcher("/tools/files/error.jsp");
             dispatcher.forward(request, response);
             System.out.println("Error Servlet login " + e);

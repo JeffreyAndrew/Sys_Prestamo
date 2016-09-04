@@ -172,10 +172,10 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
             ps = cn.prepareStatement(sql);
             ps.setInt(1, user);
             rst = ps.executeQuery();
-            if (rst.next()) {
-                return rst;
-            }else{
+            if (rst.next()==false) {
                 rst=null;
+            }else{
+                rst = ps.executeQuery();
             }
         } catch (Exception e) {
             System.out.println("Error al listar datos de Usuario por RS " + e);

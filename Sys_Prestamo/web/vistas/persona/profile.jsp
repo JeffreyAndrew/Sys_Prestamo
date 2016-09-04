@@ -37,6 +37,7 @@
                                             for (int p = 0; p < m.length(); p++) {
                                                 pass = pass + "*";
                                             }
+                                            
                             %>
                             <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol + u.getSexo()%>.jpg" alt="User profile picture">
                             <h3 class="profile-username text-center"><%= u.getNombre() + " " + u.getApellidos()%></h3>

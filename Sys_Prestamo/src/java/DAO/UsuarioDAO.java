@@ -165,17 +165,23 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
     }
 
     public ResultSet list(int user) {
+        ResultSet rst=null;
         sql = "SELECT * FROM USUARIO WHERE IDPERSONA=?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setInt(1, user);
-            rs = ps.executeQuery();
+            rst = ps.executeQuery();
+            if (rst.next()) {
+                return rst;
+            }else{
+                rst=null;
+            }
         } catch (Exception e) {
             System.out.println("Error al listar datos de Usuario por RS " + e);
-            return null;
+            rst=null;
         }
-        return rs;
+        return rst;
     }
 
 }

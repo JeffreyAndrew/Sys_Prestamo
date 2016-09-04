@@ -85,7 +85,7 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENÚ</li>
                         <li>
-                            <a href="ci?op=2&id=<%= u.getIdPersona()%>" target="box">
+                            <a href="ci?op=2&id=4" target="box">
                                 <i class="fa fa-user"></i> <span>Perfil</span>
                             </a>
                         </li>

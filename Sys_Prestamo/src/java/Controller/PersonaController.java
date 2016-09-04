@@ -96,6 +96,7 @@ public class PersonaController extends HttpServlet {
                 u = new PersonaDTO(idRol, nombre, apellidos, dni, celular, correo,sexo);
                 int c = pro.add(u);
                 if (idRol == 3) {
+                    System.out.println(c);
                     pag = "/ci?op=2&id=" + c;
                     dispatcher = getServletContext().getRequestDispatcher(pag);
                     dispatcher.forward(request, response);

@@ -31,13 +31,14 @@
                                     u = (PersonaDTO) lista.get(i);
                                     String rol = persona.getRol(u.getIdRol());
                                     ResultSet mp = usuario.list(u.getIdPersona());
-                                    while (mp.next()) {
-                                        String m = mp.getString("CLAVE");
-                                        for (int p = 0; p < m.length(); p++) {
-                                            pass = pass + "*";
-                                        }
+                                    if (mp != null) {
+                                        while (mp.next()) {
+                                            String m = mp.getString("CLAVE");
+                                            for (int p = 0; p < m.length(); p++) {
+                                                pass = pass + "*";
+                                            }
                             %>
-                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol +u.getSexo() %>.jpg" alt="User profile picture">
+                            <img class="profile-user-img img-responsive img-circle" src="dist/img/<%=rol + u.getSexo()%>.jpg" alt="User profile picture">
                             <h3 class="profile-username text-center"><%= u.getNombre() + " " + u.getApellidos()%></h3>
                             <input type="hidden" value="<%= u.getIdPersona()%>" id="idpersona">
                             <p class="text-muted text-center"><%=rol%></p>
@@ -125,7 +126,10 @@
                             </div>
                             <button data-toggle="modal" data-target="#editModal" class="btn btn-success" style="display: inline-block;float: left;"><b><i class="fa fa-pencil"></i>   Editar Datos</b></button>
                             <button data-toggle="modal" data-target="#editUserModal" class="btn btn-warning" style="display: inline-block;float: right;"><b><i class="fa fa-lock"></i>   Editar Usuario</b></button>
-                                        <%}%>            
+                                        <%}
+                                        } else {%>
+                                        <%@include file="/vistas/persona/profiled.jsp" %>
+                                        <% }%>            
                                         <% }%>
                         </div>
                     </div>

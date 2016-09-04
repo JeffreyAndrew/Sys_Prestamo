@@ -61,7 +61,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form role="form" method="post" action="ec">
-                            <div class="box-body">
+                            <div class="box-body" style="margin:40px 20px 0px 30px; width: 50%;height: 50%; margin: 0 auto;">
                                 <div class="form-group">
                                     <label for="marca">Marca</label>
                                     <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="marca" name="marca" placeholder="Marca">

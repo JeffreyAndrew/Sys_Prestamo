@@ -4,13 +4,14 @@ function listdoc() {
     $.post(url, data, function (objJson) {
         var lista = objJson.list;
         if (lista.length > 0) {
-            $("#iadviced").attr("class","callout callout-success hidden")
+            $("#iadviced").attr("class","callout callout-success hidden");
+            $("#conTDoc").attr("class","box");
             var m = "";
             for (var i = 0; i < lista.length; i++) {
                 m += "<tr>";
                 m += "<td>"+lista[i].persona+"</td>";
                 m += "<td>"+lista[i].dni+"</td>";
-                m += "<td><button class='btn btn-success'><i class='fa fa-check-square-o'><i/></button></td>";
+                m += "<td><button onclick='escdoc("+lista[i].idpersona+","+lista[i].persona+")' class='btn btn-success'><i class='fa fa-check-square-o'><i/></button></td>";
                 m += "</tr>";
             }
             var a=createTableDoc();
@@ -19,8 +20,14 @@ function listdoc() {
             $("#datadoc").empty();
             $("#datadoc").append(m);
             
+        }else{
+            $("#iadviced").attr("class","callout callout-success");
+            $("#conTDoc").attr("class","box hidden");
         }
     });
+}
+function escdoc(id,per){
+    
 }
 function createTableDoc() {
     var m = '<table id="tabDc" class="table table-bordered table-striped">';

@@ -60,7 +60,7 @@
                                 <h4>¡Genial!</h4>
                                 <p>Todos los docentes han devuelto los equipos prestados</p>
                             </div>
-                            <div id="conTDoc" class="box hidden">
+                            <div id="conTDoc" class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">Lista de Docentes con Prestamo Activo</h3>
                                 </div>

@@ -42,7 +42,7 @@ CREATE TABLE DET_EQUIPO(
 CREATE TABLE PRESTAMO(
     idPrestamo INTEGER NOT NULL AUTO_INCREMENT,
     idUsuario INTEGER NOT NULL,
-    PersonaRes INT NOT NULL,
+    idPersona INTEGER INT NOT NULL,
     fechaPrestamo DATE NOT NULL,
     fechaDevolucion DATE NOT NULL,
     lugar VARCHAR(45) NOT NULL,
@@ -50,7 +50,8 @@ CREATE TABLE PRESTAMO(
     comentariod VARCHAR(120) ,
     estado CHAR(1) NOT NULL, 
     PRIMARY KEY(idPrestamo),
-    FOREIGN KEY(idUsuario) REFERENCES USUARIO(idUsuario)
+    FOREIGN KEY(idUsuario) REFERENCES USUARIO(idUsuario),
+    FOREIGN KEY(idPersona) REFERENCES PERSONA(idPersona)
 );
 CREATE TABLE DET_PRESTAMO(
     idPrestamo INTEGER NOT NULL,

@@ -177,6 +177,53 @@ public class PrestamoDAO {
         return lista;
     }
 
+    public ArrayList<Map<String, ?>> listdh() {
+        sql = "SELECT P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
+                + "FROM PERSONA P LEFT OUTER JOIN PRESTAMO E  "
+                + "ON P.IDPERSONA=E.IDPERSONA "
+                + "WHERE P.IDROL=3 "
+                + "AND (E.IDPERSONA IS NULL) "
+                + "OR (P.IDPERSONA IS NULL OR E.ESTADO=0);";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
+                m.put("idpersona", rs.getInt("IDPERSONA"));
+                m.put("persona", rs.getString("NOMBRE") + " " + rs.getString("APELLIDOS"));
+                m.put("dni", rs.getString("DNI"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar Docentes habilitados " + e);
+            return null;
+        }
+        return lista;
+    }
+    
+    public ArrayList<Map<String, ?>> listd(int id) {
+        sql = "SELECT * FROM PERSONA WHERE IDPERSONA=?";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
+                m.put("persona", rs.getString("NOMBRE") + " " + rs.getString("APELLIDOS"));
+                m.put("dni", rs.getString("DNI"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar Docente " + e);
+            return null;
+        }
+        return lista;
+    }
+
     public ArrayList<Map<String, ?>> listdc() {
         sql = "SELECT DISTINCT(T.IDPRESTAMO),P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
                 + "FROM PERSONA P,ROL R,PRESTAMO T "
@@ -193,7 +240,7 @@ public class PrestamoDAO {
                 Map<String, Object> m = new HashMap<>();
                 m.put("idprestamo", rs.getInt("IDPRESTAMO"));
                 m.put("idpersona", rs.getInt("IDPERSONA"));
-                m.put("persona", rs.getString("NOMBRE")+" "+rs.getString("APELLIDOS"));
+                m.put("persona", rs.getString("NOMBRE") + " " + rs.getString("APELLIDOS"));
                 m.put("dni", rs.getString("DNI"));
                 lista.add(m);
             }

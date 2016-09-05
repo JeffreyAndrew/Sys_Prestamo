@@ -50,6 +50,7 @@ public class PrestamoController extends HttpServlet {
         String lugar = "";
         String comentarioa = "";
         int idprestamo = 0;
+        int idpersona = 0;
         int iddeteq = 0;
         Map<String, Object> c = new HashMap<>();
         RequestDispatcher dispatcher;
@@ -58,7 +59,7 @@ public class PrestamoController extends HttpServlet {
                 case "rd":
                     switch (op) {
                         case 1:
-                            
+
                             break;
                         case 2:
                             pagina = "/vistas/prestamo/tdevolucion.jsp";
@@ -101,6 +102,15 @@ public class PrestamoController extends HttpServlet {
                         case 3:
                             ArrayList<Map<String, ?>> docentes = pD.listdc();
                             mp.put("list", docentes);
+                            break;
+                        case 4:
+                            ArrayList<Map<String, ?>> docentesh = pD.listdh();
+                            mp.put("lista", docentesh);
+                            break;
+                        case 5:
+                            idpersona = Integer.parseInt(request.getParameter("idpersona"));
+                            ArrayList<Map<String, ?>> listadr = pD.listd(idpersona);
+                            mp.put("lista", listadr);
                             break;
                     }
                     break;

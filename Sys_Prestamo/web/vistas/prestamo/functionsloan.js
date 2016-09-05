@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    listardoc();
 });
 $("#regp").click(function () {
     validar();
@@ -6,6 +7,70 @@ $("#regp").click(function () {
 $("#idaddeq").click(function () {
     clearModalE();
 });
+function datDC(id) {
+    $("#iddoc").attr("value", id);
+    var url = "loan?mt=list";
+    var data = "op=5&idpersona=" + id;
+    $.post(url, data, function (objJson) {
+        var lista = objJson.lista;
+        if (lista.length > 0) {
+            for (var i = 0; i < lista.length; i++) {
+                $("#idocente").attr("value",lista[i].persona);
+                $("#docenteModal").modal("hide");
+            }
+        }
+    });
+}
+function listardoc() {
+    var url = "loan?mt=list";
+    var data = "op=4";
+    $.post(url, data, function (objJson) {
+        var lista = objJson.lista;
+        if (lista.length > 0) {
+            var m = "";
+            $("#iadviced").attr("class", "hidden");
+            $("#conTDoc").attr("class", "box");
+            for (var i = 0; i < lista.length; i++) {
+                m += '<tr>';
+                m += '<td>' + lista[i].persona + '</td>';
+                m += '<td>' + lista[i].dni + '</td>';
+                m += '<td><button type="button" onclick="datDC(' + lista[i].idpersona + ')" class="btn btn-success"><i class="fa fa-check"></i></button></td>';
+                m += '</tr>';
+            }
+            var d = createTableDoc();
+            $("#iboxd").empty();
+            $("#iboxd").append(d);
+            $("#datadoc").empty();
+            $("#datadoc").append(m);
+            $("#tabDc").DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+        }
+    });
+}
 function clearModalE() {
     $("#ibox").empty();
     listaequiposdis();
@@ -32,34 +97,34 @@ function listaequiposdis() {
             var d = createTableEq();
             $("#ibox").empty();
             $("#ibox").append(d);
-            $("#tabEquipo").DataTable({
-                    "language": {
-                        "sProcessing": "Procesando...",
-                        "sLengthMenu": "Mostrar _MENU_ registros",
-                        "sZeroRecords": "No se encontraron resultados",
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
-                        "sUrl": "",
-                        "sInfoThousands": ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
             $("#dataeqdis").empty();
             $("#dataeqdis").append(m);
+            $("#tabEquipo").DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
         } else {
             $("#iadvice").attr("class", "callout callout-danger");
             $("#contab").attr("class", "hidden");
@@ -157,7 +222,7 @@ function listarequipos(id) {
             $("#eqpres").append(d);
             $("#datapres").empty();
             $("#datapres").append(m);
-        }else{
+        } else {
             $("#isave").attr("class", "btn btn-info hidden");
         }
     });
@@ -201,11 +266,8 @@ function createTableDoc() {
     var m = '<table id="tabDc" class="table table-bordered table-striped">';
     m += '<thead>';
     m += '<tr>';
-    m += '<th>Marca</th>';
-    m += '<th>Serie</th>';
-    m += '<th>Tipo</th>';
-    m += '<th>Código</th>';
-    m += '<th>Descripción</th>';
+    m += '<th>Docente</th>';
+    m += '<th>DNI</th>';
     m += '<th></th>';
     m += '</tr>';
     m += '</thead>';
@@ -246,7 +308,7 @@ function removeeq(id) {
     });
 }
 
-function listarDoc(){
-    
+function listarDoc() {
+
 }
 

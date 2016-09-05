@@ -181,8 +181,8 @@ public class PrestamoDAO {
         sql = "SELECT DISTINCT(T.IDPRESTAMO),P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
                 + "FROM PERSONA P,ROL R,PRESTAMO T "
                 + "WHERE P.IDROL=R.IDROL  "
-                + "AND R.NOMBRE='DOCENTE' "
-                + "AND T.PERSONARES=P.IDPERSONA "
+                + "AND R.IDROL=3 "
+                + "AND T.IDPERSONA=P.IDPERSONA "
                 + "AND T.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {

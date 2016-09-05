@@ -106,15 +106,31 @@
                                         <input type="radio" name="estado" value="0" class="rojo" checked>No Disponible
                                     </label><br>
                                     <label>
-                                        <input type="radio" name="estado" value="1" class="verde" >Disponible
+                                        <input type="radio" name="estado" value="1" class="verde">Disponible
+                                    </label><br>
+                                    <label>
+                                        <input type="radio" name="estado" value="2" class="azul" >En Reserva
                                     </label>
 
-                                    <%} else if ("1".equals(deqdto.getEstado())) {%>
+                                    <%}if ("1".equals(deqdto.getEstado())) {%>
                                     <label>
                                         <input type="radio" name="estado" value="0" class="rojo">No Disponible
                                     </label><br>
                                     <label>
                                         <input type="radio" name="estado" value="1" class="verde" checked>Disponible
+                                    </label><br>
+                                    <label>
+                                        <input type="radio" name="estado" value="2" class="azul">En Reserva
+                                    </label>
+                                    <%}if ("2".equals(deqdto.getEstado())) {%>
+                                    <label>
+                                        <input type="radio" name="estado" value="0" class="rojo">No Disponible
+                                    </label><br>
+                                    <label>
+                                        <input type="radio" name="estado" value="1" class="verde">Disponible
+                                    </label><br>
+                                    <label>
+                                        <input type="radio" name="estado" value="2" class="azul" checked>En Reserva
                                     </label>
                                     <%}%>
                                 </div>
@@ -200,6 +216,10 @@
                                             });
                                             $('.verde').iCheck({
                                                 radioClass: 'iradio_square-green',
+                                                increaseArea: '20%' // optional
+                                            });
+                                            $('.azul').iCheck({
+                                                radioClass: 'iradio_square-blue',
                                                 increaseArea: '20%' // optional
                                             });
                                         });

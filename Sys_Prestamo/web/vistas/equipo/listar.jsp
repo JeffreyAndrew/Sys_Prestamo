@@ -93,8 +93,12 @@
                                         <%
                                             if ("1".equals(deq.getEstado())) {
                                         %><td><span class="label label-success">Disponible</span></td><%
-                                        } else if ("0".equals(deq.getEstado())) {
+                                            }
+                                            if ("0".equals(deq.getEstado())) {
                                         %><td><span class="label label-danger">No Disponible</span></td><%
+                                            }
+                                            if ("2".equals(deq.getEstado())) {
+                                        %><td><span class="label label-info">En Reserva</span></td><%
                                             }
                                         %>
                                         <td><a href="ec?ge=3&id=<%=deq.getIdDet_Equipo()%>&id2=<%=deq.getIdEquipo()%>"><span class="glyphicon glyphicon-pencil"></span></a></td>

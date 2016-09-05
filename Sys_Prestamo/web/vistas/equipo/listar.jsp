@@ -45,11 +45,6 @@
                 Gestión de Equipos
                 <small>SPE UPeU</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="index.jsp"><i class="fa fa-dashboard"></i> Inicio</a></li>
-                <li><a href="#">Equipos</a></li>
-                <li class="active">Inventario</li>
-            </ol>
         </section>
 
         <!-- Main content -->

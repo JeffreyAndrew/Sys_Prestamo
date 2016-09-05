@@ -47,7 +47,7 @@ CREATE TABLE DET_EQUIPO(
 CREATE TABLE PRESTAMO(
     idPrestamo INTEGER NOT NULL AUTO_INCREMENT,
     idUsuario INTEGER NOT NULL,
-    idPersona INTEGER INT NOT NULL,
+    idPersona INTEGER NOT NULL,
     fechaPrestamo DATE NOT NULL,
     fechaDevolucion DATE NOT NULL,
     lugar VARCHAR(45) NOT NULL,

@@ -65,6 +65,20 @@ CREATE TABLE DET_PRESTAMO(
     FOREIGN KEY(idPrestamo) REFERENCES PRESTAMO(idPrestamo)
 );
 
+CREATE TABLE reserva (
+    id_reserva int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_usuario int(11) NOT NULL,
+    id_docente int(11) NOT NULL,
+    id_detequipo int(11) NOT NULL,
+    fecha_reserva date ,
+    fecha_inicio date ,
+    fecha_fin date ,
+    dia varchar(7) ,    
+    FOREIGN KEY(id_usuario) REFERENCES USUARIO(idUsuario),
+    FOREIGN KEY(id_docente) REFERENCES PERSONA(idPersona),
+    FOREIGN KEY(id_detequipo) REFERENCES DET_EQUIPO(idDet_Equipo)
+);
+
 DELIMITER $$
 CREATE PROCEDURE REG_PRESTAMO 
 (USERi INTEGER,PERSONAi INTEGER,FECHAi VARCHAR(10),LUGARi VARCHAR(255))

@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <%if (irol == 1 || irol == 2) {%>
-                        <li class="active treeview">
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
@@ -100,6 +100,18 @@
                             <ul class="treeview-menu">
                                 <li><a target="box" href="main?op=1&id=<%= u.getIdPersona()%>"><i class="fa fa-gear"></i> Prestamo de Equipo</a></li>
                                 <li><a target="box" href="loan?mt=rd&op=2"><i class="fa fa-gear"></i> Devolución de Equipo</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> <span>Reservas</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a target="box" href="rc?gr=2"><i class="fa fa-circle-o"></i> Hacer una Reserva</a></li>
+                                <li><a target="box" href="rc?gr=1"><i class="fa fa-circle-o"></i> Lista de Reservas</a></li>
                             </ul>
                         </li>
                         <% }
@@ -113,7 +125,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="ec?ge=2" target="box"><i class="fa fa-circle-o"></i> Registrar</a></li>
-                                <li><a href="ec?ge=1" target="box"><i class="fa fa-circle-o"></i> Lista de Equipos</a></li>
+                                <li><a href="ec?ge=1" target="box"><i class="fa fa-circle-o"></i> Inventario de Equipos</a></li>
                             </ul>
                         </li>
                         <% }

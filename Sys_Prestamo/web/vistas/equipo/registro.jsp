@@ -41,7 +41,9 @@
                 Gestión de Equipos
                 <small>SPE UPeU</small>
             </h1>
-         
+ 
+          
+            
         </section>
 
         <!-- Main content -->
@@ -136,8 +138,7 @@
 
 
                 </div>
-                <!--/.col (left) -->
-                <!-- right column HASTA AQUI -->                        
+                                 
             </div>
             <!-- /.row -->
         </section>

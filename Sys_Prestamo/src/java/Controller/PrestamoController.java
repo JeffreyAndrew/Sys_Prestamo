@@ -58,9 +58,6 @@ public class PrestamoController extends HttpServlet {
             switch (meth) {
                 case "rd":
                     switch (op) {
-                        case 1:
-
-                            break;
                         case 2:
                             pagina = "/vistas/prestamo/tdevolucion.jsp";
                             dispatcher = getServletContext().getRequestDispatcher(pagina);

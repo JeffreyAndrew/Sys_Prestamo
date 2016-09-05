@@ -283,7 +283,7 @@ function regcom() {
     data += "&idprestamo=" + $("#iprestamo").val();
     $.post(url, data, function (objJson) {
         if (objJson.resp) {
-            location.href = "loan?mt=rd&op=1";
+            location.href = "ci?op=2&id="+$("#iddoc").val();
         } else {
 
         }
@@ -307,8 +307,3 @@ function removeeq(id) {
         }
     });
 }
-
-function listarDoc() {
-
-}
-

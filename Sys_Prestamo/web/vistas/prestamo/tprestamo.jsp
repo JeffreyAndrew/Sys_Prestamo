@@ -158,12 +158,7 @@
                 </div>
             </div>
         </div>     
-        <script src="vistas/prestamo/functionsloan.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function(){
-                
-            });
-        </script>
+        <script src="tools/js/functionsloan.js" type="text/javascript"></script>
     </body>
 
 </html>

@@ -76,6 +76,6 @@
                 </div>
             </div>
         </div>
-        <script src="vistas/prestamo/functionsreturn.js" type="text/javascript"></script>        
+        <script src="tools/js/functionsreturn.js" type="text/javascript"></script>        
     </body>
 </html>

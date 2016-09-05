@@ -100,5 +100,14 @@ COMMIT;
 SELECT MAX(idPERSONA) AS idPERSONA FROM PERSONA;
 END$$
 
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT revisionreservas ON SCHEDULE EVERY 1 MINUTE STARTS NOW() + INTERVAL 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO UPDATE det_equipo SET estado=2 where  det_equipo.estado=1 AND det_equipo.idDet_Equipo=(SELECT id_detequipo from reserva where reserva.fecha_fin >= (SELECT CURRENT_DATE()) AND reserva.dia=(SELECT DATE_FORMAT((SELECT CURRENT_DATE()),'%W')))$$
+
+CREATE DEFINER=`root`@`localhost` EVENT revisionreservas2 ON SCHEDULE EVERY 1 MINUTE STARTS NOW() + INTERVAL 1 SECOND ON COMPLETION NOT PRESERVE ENABLE DO UPDATE det_equipo SET estado=1 where det_equipo.estado=2 AND det_equipo.idDet_Equipo=(SELECT id_detequipo from reserva where reserva.fecha_fin >= (SELECT CURRENT_DATE()) AND reserva.dia!=(SELECT DATE_FORMAT((SELECT CURRENT_DATE()),'%W')))$$
+
+DELIMITER ;
 
 

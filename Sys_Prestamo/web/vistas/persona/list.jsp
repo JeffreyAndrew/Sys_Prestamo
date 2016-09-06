@@ -1,7 +1,7 @@
 <%-- 
     Document   : list
     Created on : 05/09/2016, 09:23:52 PM
-    Author     : USER
+    Author     : LEANDRO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title></title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
     </body>
 </html>

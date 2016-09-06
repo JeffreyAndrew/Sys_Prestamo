@@ -49,7 +49,7 @@ CREATE TABLE PRESTAMO(
     idUsuario INTEGER NOT NULL,
     idPersona INTEGER NOT NULL,
     fechaPrestamo DATE NOT NULL,
-    fechaDevolucion DATE NOT NULL,
+    fechaDevolucion DATE NULL,
     fechaLimite DATE NOT NULL,
     lugar VARCHAR(45) NOT NULL,
     comentariop VARCHAR(120) ,

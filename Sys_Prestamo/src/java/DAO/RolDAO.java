@@ -29,7 +29,7 @@ public class RolDAO implements Operaciones<RolDTO> {
     @Override
     public boolean create(RolDTO e) {
         boolean m = false;
-        sql = "insert into rol (idrol,rol) values ( NULL , ? )";
+        sql = "insert into rol (idrol,nombre) values ( NULL , ? )";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

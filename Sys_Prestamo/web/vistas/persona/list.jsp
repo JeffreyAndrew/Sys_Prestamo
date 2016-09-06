@@ -19,23 +19,11 @@
         <jsp:useBean id="rol" class="DAO.RolDAO"></jsp:useBean>
         </head>
         <body style="padding: 2% 6%;box-sizing: border-box;">
-        <%
-
-            for (int i = 0; i < lista.size(); i++) {
-
+        <%      for (int i = 0; i < lista.size(); i++) {
                 PersonaDTO u = new PersonaDTO();
                 u = (PersonaDTO) lista.get(i);
-                String rol = persona.getRol(u.getIdRol());
-
                 int irol = u.getIdRol();
-
-
         %>
-
-
-
-
-
     <center><h1>Personas</h1></center>
     <div class="col-md-4">
         <select onchange="listar(this.value)" id="selRol" class="form-control select2">
@@ -54,11 +42,7 @@
                 while (rs.next()) {%>
             <option value="<%= rs.getInt("idROL")%>" ><%= rs.getString("NOMBRE")%></option>
             <%}%>
-
             <%}%>
-            
-
-
         </select>
     </div>
     <br/><br/>

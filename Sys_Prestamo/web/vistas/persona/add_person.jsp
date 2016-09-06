@@ -1,11 +1,6 @@
-
-
 <%@page import="DTO.RolDTO"%>
 <%@page import="DTO.PersonaDTO"%>
-
-
 <jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
-
 <jsp:useBean id="persona" class="DAO.PersonaDAO"/>
 <jsp:useBean id="rol2" class="DAO.RolDAO"/>
 <%@page import="java.sql.ResultSet"%>
@@ -14,13 +9,9 @@
 <html>
     <head> 
         <%@include file="/WEB-INF/jspf/impbts.jspf" %>
-
         <title></title>
     </head>
     <body style="padding:2% 9%;box-sizing: border-box;">
-
-
-
         <%
 
             for (int i = 0; i < lista.size(); i++) {
@@ -33,9 +24,6 @@
 
 
         %>
-
-
-
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-male"></i>   Registro de Personas</h3>
@@ -99,13 +87,7 @@
                                                 while (rs.next()) {%>
                                             <option value="<%= rs.getInt("idROL")%>" ><%= rs.getString("NOMBRE")%></option>
                                             <%}%>
-
-
                                             <%}%>
-
-
-
-
                                         </select>  
                                     </div>
                                 </div>

@@ -14,6 +14,7 @@
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="get" action="ci">
+                        <input type="hidden" name="op" value="3">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">

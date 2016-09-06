@@ -29,6 +29,7 @@ function listdoc() {
 function escdoc(pre) {
     var url = "loan?mt=list";
     var data = "op=1&idprestamo="+pre;
+    $("#itabp").attr("class","panel panel-success");
     $.post(url, data, function (objJson) {
         var lista = objJson.list;
         if (lista.length > 0) {

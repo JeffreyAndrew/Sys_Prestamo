@@ -46,6 +46,20 @@
                     </div>
                 </div>
             </div>
+            <div id="itabp" class="panel panel-success hidden">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-laptop"></i>   Lista de Equipos Prestados</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Equipo(s) a Devolver</h3>
+                        </div>
+                        <div id="eqpres" class="box-body no-padding">                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="modal fade" id="docenteModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">

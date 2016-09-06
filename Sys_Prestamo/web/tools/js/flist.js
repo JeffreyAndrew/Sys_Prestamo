@@ -15,8 +15,9 @@ function listar(rol) {
                 m += '<td>' + lista[i].dni + '</td>';
                 m += '<td>' + lista[i].celular + '</td>';
                 m += '<td>' + lista[i].correo + '</td>';
-                m += '<td><a href="ci?op=2&id='+lista[i].idpersona+'" class="btn btn-success"><i class="fa fa-user"></i>   Ver Perfil</a></td>';
-                m += '<td><button type="button"  class="btn btn-info"><i class="fa fa-user"></i>   Ver Historial</button></td>';
+                m += '<td><a href="ci?op=2&id=' + lista[i].idpersona + '" class="btn btn-success"><i class="fa fa-user"></i>   Perfil</a></td>';
+                m += '<td><button type="button"  class="btn btn-info"><i class="fa fa-rotate-left"></i>   Historial</button></td>';
+                m += '<td><button type="button" onclick="deleteperson(' + lista[i].idpersona + ')"  class="btn btn-danger"><i class="fa fa-close"></i>   Eliminar</button></td>';
                 m += '</tr>';
             }
             var t = createTable();
@@ -68,10 +69,49 @@ function createTable() {
     t += '<th>Correo</th>';
     t += '<th></th>';
     t += '<th></th>';
+    t += '<th></th>';
     t += '</tr>';
     t += '</thead>';
     t += '<tbody id="dataper">';
     t += '</tbody>';
     t += '</table>';
     return t;
+}
+
+function deleteperson(id) {
+    swal({
+        title: "Confirmación",
+        text: "¿Seguro que desea eliminar a esta persna del sistema?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false},
+    function (isConfirm) {
+        if (isConfirm) {
+            var url = "loan?mt=remove&op=2";
+            var data = "idpersona=" + id;
+            $.post(url, data, function (objJson) {
+                if (objJson.rp) {
+                    swal({
+                        title: "Eliminado",
+                        text: "Se eliminó correctamente a la persona del sistema",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: true},
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            location.href = "ci?op=6";
+                        }
+                    });
+                } else {
+                    swal("Ups...", "Ocurrió un error al eliminar la persona del sistema", "error");
+                }
+            });
+        } else {
+            swal("Cancelado", "No se eliminó a la persona", "error");
+        }
+    });
 }

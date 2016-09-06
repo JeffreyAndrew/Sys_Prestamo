@@ -140,6 +140,10 @@ public class PrestamoController extends HttpServlet {
                             idprestamo = Integer.parseInt(request.getParameter("idprestamo"));
                             mp.put("rp", pD.removeeq(idprestamo, iddeteq));
                             break;
+                        case 2:
+                            idpersona = Integer.parseInt(request.getParameter("idpersona"));
+                            mp.put("rp", aD.delete(idpersona));
+                            break;
                     }
                     break;
             }

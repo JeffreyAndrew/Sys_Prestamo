@@ -356,7 +356,5 @@ public List<Object> deudafechas(Date menor, Date mayor, int caso) {
             System.out.println("Error al buscar equipos " + e);
         }
         return deudas;
-
     }
-
 }

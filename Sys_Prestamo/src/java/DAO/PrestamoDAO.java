@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import DTO.EquipoDTO;
 import DTO.PrestamoDTO;
 import config.conexion;
 import java.sql.CallableStatement;
@@ -13,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -279,6 +281,78 @@ public class PrestamoDAO {
 
         }
         return list;
+    }
+public List<Object> deudafechas(Date menor, Date mayor, int caso) {
+        List<Object> deudas = new ArrayList<>();
+        sql = "SELECT * from det_prestamo, equipo,prestamo where prestamo.idPrestamo= det_prestamo.idPrestamo AND prestamo.fechaPrestamo >= ? AND prestamo <= ?; ";
+
+        switch (caso) {
+            //1 = Equipos
+            case 1: {
+                try {
+                    cn = conexion.getConexion();
+                    ps = cn.prepareStatement(sql);
+                    ps.setString(1, String.valueOf(menor));
+                    ps.setString(2, String.valueOf(mayor));
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        EquipoDTO eqDTO = new EquipoDTO();
+                        eqDTO.setIdEquipo(rs.getInt("idEquipo"));
+                        eqDTO.setMarca(rs.getString("marca"));
+                        eqDTO.setSerie(rs.getString("serie"));
+                        eqDTO.setTipo(rs.getString("tipo"));
+                        deudas.add(eqDTO);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error al buscar equipos " + e);
+                }
+            }
+            case 2: {
+                //2= Prestamos
+                try {
+                    cn = conexion.getConexion();
+                    ps = cn.prepareStatement(sql);
+                    ps.setString(1, String.valueOf(menor));
+                    ps.setString(2, String.valueOf(mayor));
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        PrestamoDTO presDTO = new PrestamoDTO();
+                        presDTO.setIdPrestamo(rs.getInt("idPrestamo"));
+                        presDTO.setIdUsuario(rs.getInt("idUsuario"));
+                        presDTO.setPersonaRes(rs.getInt("PersonaRes"));
+                        presDTO.setFechaPrestamo(rs.getString("fechaPrestamo"));
+                        presDTO.setFechaDevolucion(rs.getString("fechaDevolucion"));
+                        presDTO.setLugar(rs.getString("lugar"));
+                        presDTO.setComentariop(rs.getString("comentariop"));
+                        presDTO.setComentariod(rs.getString("comentariod"));
+                        presDTO.setEstado(rs.getString("estado"));
+                        deudas.add(presDTO);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error al buscar equipos " + e);
+                }
+
+            }
+        }
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(menor));
+            ps.setString(2, String.valueOf(mayor));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                EquipoDTO eqDTO = new EquipoDTO();
+                eqDTO.setIdEquipo(rs.getInt("idEquipo"));
+                eqDTO.setMarca(rs.getString("marca"));
+                eqDTO.setSerie(rs.getString("serie"));
+                eqDTO.setTipo(rs.getString("tipo"));
+                deudas.add(eqDTO);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar equipos " + e);
+        }
+        return deudas;
+
     }
 
 }

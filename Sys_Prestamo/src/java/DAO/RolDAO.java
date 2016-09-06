@@ -24,6 +24,7 @@ public class RolDAO implements Operaciones<RolDTO> {
     private ResultSet rs;
     private String sql;
     private Connection cn;
+   
 
     @Override
     public boolean create(RolDTO e) {
@@ -43,6 +44,8 @@ public class RolDAO implements Operaciones<RolDTO> {
         return m;
     }
 
+   
+    
     @Override
     public List<RolDTO> read(int key) {
         List<RolDTO> lista = new ArrayList();
@@ -123,7 +126,24 @@ public class RolDAO implements Operaciones<RolDTO> {
     
     public ResultSet list(){
         ResultSet rm=null;
-        sql="SELECT * FROM ROL";
+       
+        
+        sql="SELECT * FROM ROL where idRol=2 or idRol=3";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rm = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Error al listar Roles por ResultSet "+e);
+        }
+        return rm;
+    }
+    
+    public ResultSet list1(){
+        ResultSet rm=null;
+       
+        
+        sql="SELECT * FROM ROL where idRol=3";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

@@ -4,8 +4,12 @@
     Author     : LEANDRO
 --%>
 
+<%@page  import="DTO.PersonaDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="persona" class="DAO.PersonaDAO"/>
+<jsp:useBean id="rol2" class="DAO.RolDAO"/>
+<jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,14 +19,46 @@
         <jsp:useBean id="rol" class="DAO.RolDAO"></jsp:useBean>
         </head>
         <body style="padding: 2% 6%;box-sizing: border-box;">
-        <center><h1>Personas</h1></center>
-        <div class="col-md-4">
-            <select onchange="listar(this.value)" id="selRol" class="form-control select2">
-                <option disabled selected>Elegir Rol</option>
-            <% ResultSet rs = rol.list();
+        <%
+
+            for (int i = 0; i < lista.size(); i++) {
+
+                PersonaDTO u = new PersonaDTO();
+                u = (PersonaDTO) lista.get(i);
+                String rol = persona.getRol(u.getIdRol());
+
+                int irol = u.getIdRol();
+
+
+        %>
+
+
+
+
+
+    <center><h1>Personas</h1></center>
+    <div class="col-md-4">
+        <select onchange="listar(this.value)" id="selRol" class="form-control select2">
+            <option disabled selected>Elegir Rol</option>
+            <% if (irol == 1) {%>   
+
+            <% ResultSet rs = rol2.list();
                 while (rs.next()) {%>
             <option value="<%= rs.getInt("idROL")%>" ><%= rs.getString("NOMBRE")%></option>
             <%}%>
+
+            <%}%>
+            <% if (irol == 2) {%>   
+
+            <% ResultSet rs = rol2.list1();
+                while (rs.next()) {%>
+            <option value="<%= rs.getInt("idROL")%>" ><%= rs.getString("NOMBRE")%></option>
+            <%}%>
+
+            <%}%>
+            
+
+
         </select>
     </div>
     <br/><br/>
@@ -46,5 +82,6 @@
         <p>No hay personas registradas con este rol</p>
     </div>
     <script src="tools/js/flist.js" type="text/javascript"></script>
+    <% }%>
 </body>
 </html>

@@ -1,10 +1,18 @@
+<%-- 
+    Document   : listaru
+    Created on : 06/09/2016, 10:31:40 AM
+    Author     : alum.fial1
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.List"%>
 <%@page import="DTO.UsuarioDTO"%>
 <jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
     <head>
+        <jsp:useBean id="usuario" class="DAO.UsuarioDAO"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listar Usuarios</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,14 +76,16 @@
                                         <tbody>
 
                                             <%
+                                             
                                                 for (int i = 0; i < lista.size(); i++) {
                                                     UsuarioDTO us = new UsuarioDTO();
                                                     us = (UsuarioDTO) lista.get(i);
+                                                 
                                             %>
                                             <tr>
                                                 <td><%=us.getIdusuario()%></td>
                                                 <td><%=us.getUser()%></td>
-                                                <td><%=us.getPassword()%></td>
+                                                <td><a class="pull-right"></a><input style="border: none; background: none;  width: 100%" disabled="" type="password" value="<%=us.getPassword()%>"></td>
                                                 <td><a data-toggle="modal" data-target="#delete<%=us.getIdusuario()%>"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         <div class="modal modal-warning fade" id="delete<%=us.getIdusuario()%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog">
@@ -90,12 +100,13 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                        <a href="ci?op=7&id=<%=us.getIdusuario()%>" role="button" class="btn btn-outline">Eliminar</a>
+                                                        <a href="ci?op=5&id=<%=us.getIdusuario()%>" role="button" class="btn btn-outline">Eliminar</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         </tr>
+                                                 
                                         <% }%>
                                         </tbody>
                                         <tfoot>

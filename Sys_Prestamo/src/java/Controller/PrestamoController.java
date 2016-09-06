@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.PersonaDAO;
 import DAO.PrestamoDAO;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class PrestamoController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Map<String, Object> mp = new HashMap<>();
     PrestamoDAO pD = new PrestamoDAO();
+    PersonaDAO aD=new PersonaDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +48,7 @@ public class PrestamoController extends HttpServlet {
         String pagina = "";
         int idusuario = 0;
         int idper = 0;
+        int idrol=0;
         String fecha = "";
         String lugar = "";
         String comentarioa = "";
@@ -108,6 +111,11 @@ public class PrestamoController extends HttpServlet {
                             idpersona = Integer.parseInt(request.getParameter("idpersona"));
                             ArrayList<Map<String, ?>> listadr = pD.listd(idpersona);
                             mp.put("lista", listadr);
+                            break;
+                        case 6:
+                            idrol = Integer.parseInt(request.getParameter("idrol"));
+                            ArrayList<Map<String, ?>> listaper = aD.listarper(idrol);
+                            mp.put("lista", listaper);
                             break;
                     }
                     break;

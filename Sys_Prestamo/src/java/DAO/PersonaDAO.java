@@ -15,7 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -177,6 +179,32 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         return a;
     }
 
+    public ArrayList<Map<String, ?>> listarper(int rol) {
+        sql = "SELECT * FROM PERSONA WHERE IDROL=?";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, rol);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
+                m.put("idpersona", rs.getInt("IDPERSONA"));
+                m.put("nombre", rs.getString("NOMBRE"));
+                m.put("apellidos", rs.getString("APELLIDOS"));
+                m.put("dni", rs.getInt("DNI"));
+                m.put("celular", rs.getInt("CELULAR"));
+                m.put("correo", rs.getString("CORREO"));
+                m.put("sexo", rs.getString("SEXO"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar Personas segun su rol " + e);
+            return null;
+        }
+        return lista;
+    }
+    
     @Override
     public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

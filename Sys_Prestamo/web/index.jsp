@@ -129,7 +129,7 @@
                             </ul>
                         </li>
                         <% }
-                            if (irol == 4) {
+                            if (irol == 1) {
                         %>
                         <li class="treeview">
                             <a href="#">

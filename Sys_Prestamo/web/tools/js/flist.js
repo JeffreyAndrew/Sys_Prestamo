@@ -15,7 +15,7 @@ function listar(rol) {
                 m += '<td>' + lista[i].dni + '</td>';
                 m += '<td>' + lista[i].celular + '</td>';
                 m += '<td>' + lista[i].correo + '</td>';
-                m += '<td><button type="button"  class="btn btn-success"><i class="fa fa-user"></i>   Ver Perfil</button></td>';
+                m += '<td><a href="ci?op=2&id='+lista[i].idpersona+'" class="btn btn-success"><i class="fa fa-user"></i>   Ver Perfil</a></td>';
                 m += '<td><button type="button"  class="btn btn-info"><i class="fa fa-user"></i>   Ver Historial</button></td>';
                 m += '</tr>';
             }
@@ -51,6 +51,7 @@ function listar(rol) {
                 }});
 
         } else {
+            $(".dTa").attr("class", "row dTa hidden");
             $(".advice").attr("class", "hidden");
             $(".advice2").attr("class", "callout callout-warning advice2");
         }

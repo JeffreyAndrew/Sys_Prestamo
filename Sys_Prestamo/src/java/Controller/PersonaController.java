@@ -114,7 +114,6 @@ public class PersonaController extends HttpServlet {
                     }
                 }
                 break;
-
             case 4:
                 pag = "/vistas/usuario/listaru.jsp";
                 session.setAttribute("lista", uO.readall());
@@ -122,7 +121,6 @@ public class PersonaController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case 5:
-
                 pag = "/ci?op=4";
                 int id1 = Integer.parseInt(request.getParameter("id"));
                 if (uO.delete(id1) == true) {
@@ -131,6 +129,11 @@ public class PersonaController extends HttpServlet {
                 } else {
                     out.println("Error al eliminar");
                 }
+                break;
+            case 6:
+                pag = "/vistas/persona/list.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
                 break;
         }
     }

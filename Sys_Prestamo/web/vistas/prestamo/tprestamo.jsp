@@ -26,8 +26,7 @@
                 </div>
                 <div class="panel-body">
                     <form>
-                        <%
-                                for (int i = 0; i < ipersona.size(); i++) {
+                        <%for (int i = 0; i < ipersona.size(); i++) {
                                     PersonaDTO u = new PersonaDTO();
                                     u = (PersonaDTO) ipersona.get(i);
                             %>

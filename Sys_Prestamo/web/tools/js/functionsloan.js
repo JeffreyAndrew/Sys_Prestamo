@@ -150,46 +150,52 @@ function addequipo(id) {
         }
     });
 }
-function confirmloan(prest, doc, lug, fec) {
+function confirmloan(prest, doc, lug, hora) {
     $("#regp").attr("class", "hidden");
     $("#idescd").attr("class", "hidden");
     $("#itabp").attr("class", "panel panel-primary");
     $("#idlug").attr("disabled", "");
-    $("#datepicker").attr("disabled", "");
-    addloan(prest, doc, lug, fec);
+    $("#ihour").attr("disabled", "");
+    addloan(prest, doc, lug, hora);
 }
 
 function validar() {
     var doc = $("#iddoc").val();
     var lug = $("#idlug").val();
-    var fec = $("#datepicker").val();
+    var hora = $("#ihour").val();
     var prest = $("#idprest").val();
-    if (doc !== "" && lug !== "" && fec !== "") {
-        confirmloan(prest, doc, lug, fec);
+    if (doc !== "" && lug !== "" && hora !== "") {
+        confirmloan(prest, doc, lug, hora);
     } else {
-        if (doc === "" || lug === "" || fec === "") {
+        if (doc === "" || lug === "" || hora === "") {
             if (doc === "") {
                 swal("¡Hey!", "Debe escoger el docente a quien se le prestará el/los equipo(s)", "warning");
             }
             if (lug === "") {
                 swal("¡Hey!", "Debe ingresar el lugar en donde se usará el/los equipo(s)", "warning");
             }
-            if (fec === "") {
-                swal("¡Hey!", "Debe escoger la fecha límite en la que se debe devolver el/los equipo(s)", "warning");
+            if (hora === "") {
+                swal("¡Hey!", "Debe escoger la hora límite en la que se debe devolver el/los equipo(s)", "warning");
             }
         }
     }
 }
-function addloan(user, persona, lugar, fecha) {
-    var orf = fecha.split("/");
-    var dia = orf[1];
-    var mes = orf[0];
-    var an = orf[2];
-    var fecenv = an + "-" + mes + "-" + dia;
+function addloan(user, persona, lugar, hora) {
+    var h=hora.split(":");
+    var hu = parseInt(h[0]);
+    var min = h[1];
+    var dt=min.split(" ");
+    var mn=dt[0];
+    var c=dt[1];
+    if (c==="PM") {
+        hu=hu+12;
+    }
+    hu.toString();
+    var ht=hu+":"+mn+":00";
     var url = "loan?mt=add&op=1";
     var data = "iduser=" + user;
     data += "&idpersona=" + persona;
-    data += "&fecha=" + fecenv;
+    data += "&hora=" + ht;
     data += "&lugar=" + lugar;
     $.post(url, data, function (objJson) {
         var idprestamo = objJson.idprestamo;

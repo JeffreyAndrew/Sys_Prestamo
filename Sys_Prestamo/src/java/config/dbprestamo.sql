@@ -49,8 +49,10 @@ CREATE TABLE PRESTAMO(
     idUsuario INTEGER NOT NULL,
     idPersona INTEGER NOT NULL,
     fechaPrestamo DATE NOT NULL,
-    fechaDevolucion DATE NULL,
-    fechaLimite DATE NOT NULL,
+    horaPrestamo TIME NOT NULL,  
+    horaDevolucion TIME NULL,
+    horaLimite TIME NOT NULL,
+    fechaDevolucion DATE NOT NULL,
     lugar VARCHAR(45) NOT NULL,
     comentariop VARCHAR(120) ,
     comentariod VARCHAR(120) ,
@@ -82,11 +84,11 @@ CREATE TABLE reserva (
 
 DELIMITER $$
 CREATE PROCEDURE REG_PRESTAMO 
-(USERi INTEGER,PERSONAi INTEGER,FECHAi VARCHAR(10),LUGARi VARCHAR(255))
+(USERi INTEGER,PERSONAi INTEGER,HORAi VARCHAR(10),LUGARi VARCHAR(255))
 BEGIN
 START TRANSACTION;
-INSERT INTO PRESTAMO (idPrestamo,idUsuario,idPersona,fechaPrestamo,fechaLimite,lugar,estado) 
-VALUES (null,USERi,PERSONAi,(SELECT SYSDATE()),FECHAi,LUGARi,"1");
+INSERT INTO PRESTAMO (idPrestamo,idUsuario,idPersona,fechaPrestamo,horaPrestamo,horaLimite,fechaDevolucion,lugar,estado) 
+VALUES(null,USERi,PERSONAi,(SELECT SYSDATE()),(SELECT SYSDATE()),(SELECT SYSDATE()),HORAi,LUGARi,'1');
 COMMIT;
 SELECT MAX(idPRESTAMO) AS idPRESTAMO FROM PRESTAMO;
 END$$

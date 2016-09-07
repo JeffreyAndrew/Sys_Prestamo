@@ -27,10 +27,10 @@
                 <div class="panel-body">
                     <form>
                         <%for (int i = 0; i < ipersona.size(); i++) {
-                                    PersonaDTO u = new PersonaDTO();
-                                    u = (PersonaDTO) ipersona.get(i);
-                            %>
-                        <input id="idprest" type="hidden" class="form-control" disabled value="<%= u.getIdPersona() %>">
+                                PersonaDTO u = new PersonaDTO();
+                                u = (PersonaDTO) ipersona.get(i);
+                        %>
+                        <input id="idprest" type="hidden" class="form-control" disabled value="<%= u.getIdPersona()%>">
                         <%}%>
                         <div class="form-group">
                             <label>Docente :</label>
@@ -42,19 +42,21 @@
                                 <input id="iddoc" type="hidden" class="form-control" value="">
                             </div>
                             <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right"><i class="fa fa-search"></i>   Escoger</button>
-                        </div> 
+                        </div>                        
                         <label>Lugar :</label>
                         <input id="idlug" class="form-control" type="text" placeholder="Describa el Lugar en donde se usará el Equipo">
-                        <div class="form-group">
-                            <label>Fecha Límite para Devolver :</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
+                        <div class="bootstrap-timepicker">
+                            <div class="form-group">
+                                <label>Hora límite para devolver:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" id="ihour" class="form-control timepicker">                                    
                                 </div>
-                                <input type="text" class="form-control pull-right" id="datepicker" placeholder="Fecha de Devolución">
                             </div>
                         </div>
-                        <button id="regp" type="button" class="btn btn-info" style="float: right;"><i class="fa fa-search"></i>   Escoger Equipo(s)</button>
+                        <button id="regp" type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-search"></i>   Escoger Equipo(s)</button>
                     </form>                    
                 </div>
             </div>

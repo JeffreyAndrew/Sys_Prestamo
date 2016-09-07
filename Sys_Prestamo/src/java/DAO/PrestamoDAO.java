@@ -40,7 +40,7 @@ public class PrestamoDAO {
             cs = cn.prepareCall(sql);
             cs.setInt(1, Integer.parseInt(m.get("idusuario").toString()));
             cs.setInt(2, Integer.parseInt(m.get("persona").toString()));
-            cs.setString(3, m.get("fecha").toString());
+            cs.setString(3, m.get("hora").toString());
             cs.setString(4, m.get("lugar").toString());
             rs = cs.executeQuery();
             while (rs.next()) {

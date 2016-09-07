@@ -49,7 +49,7 @@ public class PrestamoController extends HttpServlet {
         int idusuario = 0;
         int idper = 0;
         int idrol=0;
-        String fecha = "";
+        String hora = "";
         String lugar = "";
         String comentarioa = "";
         int idprestamo = 0;
@@ -73,11 +73,11 @@ public class PrestamoController extends HttpServlet {
                         case 1:
                             idusuario = Integer.parseInt(request.getParameter("iduser"));
                             idper = Integer.parseInt(request.getParameter("idpersona"));
-                            fecha = request.getParameter("fecha");
+                            hora = request.getParameter("hora");
                             lugar = request.getParameter("lugar");
                             c.put("idusuario", idusuario);
                             c.put("persona", idper);
-                            c.put("fecha", fecha);
+                            c.put("hora", hora);
                             c.put("lugar", lugar);
                             mp.put("idprestamo", pD.add(c));
                             break;
@@ -153,10 +153,8 @@ public class PrestamoController extends HttpServlet {
         }
 
         Gson gson = new Gson();
-
         out.println(gson.toJson(mp));
         out.flush();
-
         out.close();
     }
 

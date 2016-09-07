@@ -32,6 +32,10 @@
         <servlet-name>ReservaController</servlet-name>
         <servlet-class>Controller.ReservaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EstadisticaCrontroller</servlet-name>
+        <servlet-class>Controller.EstadisticaCrontroller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrestamoController</servlet-name>
         <url-pattern>/loan</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ReservaController</servlet-name>
         <url-pattern>/rc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EstadisticaCrontroller</servlet-name>
+        <url-pattern>/Esta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

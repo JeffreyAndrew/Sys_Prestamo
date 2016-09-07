@@ -172,7 +172,23 @@
                             </ul>
                         </li>
                         <% }%>
-                    </ul>
+                   
+                    
+                        <li class="treeview">
+                            <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Estadistica</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a><ul class="treeview-menu menu-open" style="display: none;">
+            <li class=""><a href="chartjs.html"><i class="fa fa-circle-o"></i> Porcentaje </a></li>
+            <li><a href="ect?op=1" ><i class="fa fa-circle-o"></i>En intervalo de fechas</a></li>
+            <li><a href="flot.html"><i class="fa fa-circle-o"></i> sin devolver</a></li>
+          </ul>
+                            
+                        </li>
+                   </ul>
                 </section>
             </aside>
             <div class="content-wrapper">

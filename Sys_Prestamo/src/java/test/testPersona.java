@@ -26,6 +26,6 @@ public class testPersona {
         for (int i = 0; i < p.size(); i++) {
             System.out.println(p.get(i).getNombre());
             System.out.println(p.get(i).getApellidos());
-        }
+        }    
     }
 }

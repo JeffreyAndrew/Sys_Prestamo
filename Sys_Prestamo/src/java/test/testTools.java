@@ -7,6 +7,7 @@ package test;
 
 import DAO.Det_EquipoDAO;
 import DAO.EquipoDAO;
+import DAO.PrestamoDAO;
 import DTO.EquipoDTO;
 import config.conexion;
 import java.sql.Connection;
@@ -21,6 +22,7 @@ public class testTools {
 
     public static void main(String[] args) {
         conex();
+        contaequipo(0);
     }
 
     static void conex() {
@@ -44,5 +46,11 @@ public class testTools {
         EquipoDTO eqdto=new EquipoDTO("Laptop", "Envy 15", "Laptop");
         EquipoDAO eqdao=new EquipoDAO();
         System.out.println(eqdao.especifiedread(eqdto).size());
+    }
+    
+    static void contaequipo(int estado){
+        PrestamoDAO presdao=new PrestamoDAO();
+        System.out.println("Hay "+ prestamosDAO.contador(estado)+" equipos con el estado "+estado);
+        
     }
 }

@@ -22,7 +22,6 @@ public class testTools {
 
     public static void main(String[] args) {
         conex();
-        contaequipo(0);
     }
 
     static void conex() {
@@ -48,9 +47,4 @@ public class testTools {
         System.out.println(eqdao.especifiedread(eqdto).size());
     }
     
-    static void contaequipo(int estado){
-        PrestamoDAO presdao=new PrestamoDAO();
-        System.out.println("Hay "+ prestamosDAO.contador(estado)+" equipos con el estado "+estado);
-        
-    }
 }

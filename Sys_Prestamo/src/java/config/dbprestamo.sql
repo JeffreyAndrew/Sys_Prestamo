@@ -52,7 +52,7 @@ CREATE TABLE PRESTAMO(
     horaPrestamo TIME NOT NULL,  
     horaDevolucion TIME NULL,
     horaLimite TIME NOT NULL,
-    fechaDevolucion DATE NOT NULL,
+    fechaDevolucion DATE NULL,
     lugar VARCHAR(45) NOT NULL,
     comentariop VARCHAR(120) ,
     comentariod VARCHAR(120) ,
@@ -87,8 +87,8 @@ CREATE PROCEDURE REG_PRESTAMO
 (USERi INTEGER,PERSONAi INTEGER,HORAi VARCHAR(10),LUGARi VARCHAR(255))
 BEGIN
 START TRANSACTION;
-INSERT INTO PRESTAMO (idPrestamo,idUsuario,idPersona,fechaPrestamo,horaPrestamo,horaLimite,fechaDevolucion,lugar,estado) 
-VALUES(null,USERi,PERSONAi,(SELECT SYSDATE()),(SELECT SYSDATE()),(SELECT SYSDATE()),HORAi,LUGARi,'1');
+INSERT INTO PRESTAMO (idPrestamo,idUsuario,idPersona,fechaPrestamo,horaPrestamo,horaLimite,lugar,estado) 
+VALUES(null,USERi,PERSONAi,(SELECT SYSDATE()),(SELECT SYSDATE()),HORAi,LUGARi,'1');
 COMMIT;
 SELECT MAX(idPRESTAMO) AS idPRESTAMO FROM PRESTAMO;
 END$$

@@ -82,7 +82,7 @@ public class EstadisticaCrontroller extends HttpServlet {
         case 1://por fechas
                 listaEquipos = preDAO.deudafechas(fecha1.getTime(), fecha.getTime());
                 session.setAttribute("lista", listaEquipos);
-                pag = "/vistas/estadistica/datos.jsp";
+                pag = "../vistas/estadistica/datos.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
@@ -90,7 +90,15 @@ public class EstadisticaCrontroller extends HttpServlet {
         case 2://porcentajes
         listaEquipos = preDAO.deudafechas(fecha1.getTime(), fecha.getTime());
                 session.setAttribute("lista", listaEquipos);
-                pag = "/vistas/estadistica/.jsp";
+                pag = "../vistas/estadistica/porcentaje.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pag);
+                dispatcher.forward(request, response);
+                break;
+        
+        case 3://porcentajes
+        listaEquipos = preDAO.deudafechas(fecha1.getTime(), fecha.getTime());
+                session.setAttribute("lista", listaEquipos);
+                pag = "../vistas/estadistica/sindevolver.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;

@@ -182,9 +182,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a><ul class="treeview-menu menu-open" style="display: none;">
-            <li class=""><a href="chartjs.html"><i class="fa fa-circle-o"></i> Porcentaje </a></li>
+            <li class=""><a href="Esta?op=2"><i class="fa fa-circle-o"></i> Porcentaje </a></li>
             <li><a href="Esta?op=1" ><i class="fa fa-circle-o"></i>En intervalo de fechas</a></li>
-            <li><a href="flot.html"><i class="fa fa-circle-o"></i> sin devolver</a></li>
+            <li><a href="Esta?op=3"><i class="fa fa-circle-o"></i> sin devolver</a></li>
           </ul>
                             
                         </li>

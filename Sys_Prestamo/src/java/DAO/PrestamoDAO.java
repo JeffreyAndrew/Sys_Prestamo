@@ -95,6 +95,33 @@ public class PrestamoDAO {
         }
         return lista;
     }
+    
+    public ArrayList<Map<String, ?>> listardp(int idprestamo) {
+        sql = "SELECT * FROM PRESTAMO PR,PERSONA P "
+                + "WHERE P.IDPERSONA=PR.IDPERSONA "
+                + "AND PR.IDPRESTAMO=?";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, idprestamo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
+                m.put("fprestamo", rs.getString("fechaPRESTAMO"));
+                m.put("hprestamo", rs.getString("horaPRESTAMO"));
+                m.put("hlimite", rs.getString("horaLIMITE"));
+                m.put("comentariop", rs.getString("COMENTARIOP"));
+                m.put("persona", rs.getString("NOMBRE") + " " + rs.getString("APELLIDOS"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar detalles del Prestamo " + e);
+            return null;
+        }
+        return lista;
+    }
+
 
     public boolean addeqprestamo(int p, int e) {
         boolean m = false;

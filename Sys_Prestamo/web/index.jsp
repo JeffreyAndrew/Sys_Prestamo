@@ -188,17 +188,17 @@
           </ul> 
                        </li>
                         
-                        <li class="treeview" id="">
+                        <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-edit"></i> <span>Historial</span>
+                                <i class="fa fa-edit"></i> <span>Historial de Préstamos</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="SVLH?histo=2" target="box"><i class="fa fa-circle-o"></i> Historial por Docente</a></li>
-                                <li><a href="SVLH?histo=1" target="box"><i class="fa fa-circle-o"></i> Historial por Producto</a></li>
-                                <li><a href="SVLH?histo=3" target="box"><i class="fa fa-circle-o"></i> Historial General</a></li>
+                                <li><a href="SVLH?histo=2" target="box"><i class="fa fa-user" aria-hidden="true"></i> Préstamo al docente</a></li>
+                                <li><a href="SVLH?histo=1" target="box"><i class="fa fa-laptop" aria-hidden="true"></i> Préstamo del equipo</a></li>
+                                <li><a href="SVLH?histo=3" target="box"><i class="fa fa-globe" aria-hidden="true"></i> Todos los Préstamos</a></li>
                             </ul>
                         </li>
                         

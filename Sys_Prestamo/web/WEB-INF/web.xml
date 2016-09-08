@@ -36,6 +36,10 @@
         <servlet-name>EstadisticaCrontroller</servlet-name>
         <servlet-class>Controller.EstadisticaCrontroller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SVL_Historial</servlet-name>
+        <servlet-class>Controller.SVL_Historial</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrestamoController</servlet-name>
         <url-pattern>/loan</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>EstadisticaCrontroller</servlet-name>
         <url-pattern>/Esta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SVL_Historial</servlet-name>
+        <url-pattern>/SVLH</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

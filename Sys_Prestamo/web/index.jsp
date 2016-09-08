@@ -190,7 +190,7 @@
                         
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-edit"></i> <span>Historial de Préstamos</span>
+                                <i class="fa fa-history" aria-hidden="true"></i> <span>Historial de Préstamos</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>

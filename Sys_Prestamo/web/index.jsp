@@ -185,12 +185,28 @@
             <li class=""><a href="Esta?op=2"><i class="fa fa-circle-o"></i> Porcentaje </a></li>
             <li><a href="Esta?op=1" ><i class="fa fa-circle-o"></i>En intervalo de fechas</a></li>
             <li><a href="Esta?op=3"><i class="fa fa-circle-o"></i> sin devolver</a></li>
-          </ul>
-                            
+          </ul> 
+                       </li>
+                        
+                        <li class="treeview" id="">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>Historial</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="SVLH?histo=2" target="box"><i class="fa fa-circle-o"></i> Historial por Docente</a></li>
+                                <li><a href="SVLH?histo=1" target="box"><i class="fa fa-circle-o"></i> Historial por Producto</a></li>
+                                <li><a href="SVLH?histo=3" target="box"><i class="fa fa-circle-o"></i> Historial General</a></li>
+                            </ul>
                         </li>
+                        
+                        
                    </ul>
                 </section>
             </aside>
+                        
             <div class="content-wrapper">
                 <iframe name="box" src="ci?op=2&id=<%=u.getIdPersona()%>" id="idboxload" onload="loadFrame(this.contentWindow.location);"
                         style="height: 87vh;width: 100%; border: none; overflow-y: hidden">

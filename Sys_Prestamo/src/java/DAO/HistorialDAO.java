@@ -63,15 +63,14 @@ public class HistorialDAO {
 
     }
 
-    public ArrayList<String[][]> listarHistoDocent(int id_Persona) {
+    public String[][] listarHistoDocent(int id_Persona) {
         String sql = "SELECT * "
                 + "FROM DET_PRESTAMO D,DET_EQUIPO E,PRESTAMO P,EQUIPO EQ "
                 + "WHERE D.IDPRESTAMO = P.IDPRESTAMO "
                 + "AND P.IDPERSONA=? "
                 + "AND D.IDDET_EQUIPO=E.IDDET_EQUIPO "
                 + "AND EQ.IDEQUIPO=E.IDEQUIPO;";
-        ArrayList<String[][]> lista = null;
-        String resultadoHistoProduct[][] = null;
+        String resultadoHistoProduct[][] = new String [1000][1000];
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -81,24 +80,17 @@ public class HistorialDAO {
             resultadoHistoProduct = new String[100][100];
             while (rst.next()) {
                 resultadoHistoProduct[contador][0] = (rst.getString("IDPRESTAMO"));
-                resultadoHistoProduct[contador][1] = (rst.getString("NOMBRE"));
-                resultadoHistoProduct[contador][2] = (rst.getString("APELLIDOS"));
-                resultadoHistoProduct[contador][3] = (rst.getString("MARCA"));
-                resultadoHistoProduct[contador][4] = (rst.getString("SERIE"));
-                resultadoHistoProduct[contador][5] = (rst.getString("TIPO"));
-                resultadoHistoProduct[contador][6] = (rst.getString("ESTADO"));
-                resultadoHistoProduct[contador][7] = (rst.getString("CODIGO"));
-                resultadoHistoProduct[contador][8] = (rst.getString("DESCRIPCION"));
+                resultadoHistoProduct[contador][1] = (rst.getString("MARCA"));
+                resultadoHistoProduct[contador][2] = (rst.getString("SERIE"));
+                resultadoHistoProduct[contador][3] = (rst.getString("TIPO"));
+                resultadoHistoProduct[contador][4] = (rst.getString("CODIGO"));
+                resultadoHistoProduct[contador][5] = (rst.getString("DESCRIPCION"));
                 contador++;
-                lista.add(resultadoHistoProduct);
             }
         } catch (SQLException e) {
             System.out.println("Error al listar historial " + e);
-        } finally {
-
-        }
-        return lista;
-
+        } 
+        return resultadoHistoProduct;
     }
 
     public static String[][] listarHistoGeneral() {

@@ -7,6 +7,7 @@ package test;
 
 import DAO.HistorialDAO;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,17 +16,38 @@ import java.util.ArrayList;
 public class testHistorial {
 
     static HistorialDAO hD = new HistorialDAO();
-    
+
     public static void main(String[] args) {
-        listarA(2);
+        listarA();
     }
 
-    public static void listarA(int id) {
-        ArrayList<String[][]> lista=hD.listarHistoDocent(id);
-        /*for (int i = 0; i < lista.size(); i++) {
-            System.out.println(i);
-        }*/
-        System.out.println("hola");
+    public static void listarA() {
+        String[][] datos = hD.listarHistoDocent(2);
+        try {
+            for (int i = 0; i < datos.length; i++) {
+                int a = 0;
+                while (datos[i][a] != null) {
+                    System.out.println(datos[i][a]);
+                    a++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error " + e);
+        }
+    }
+
+    public static String[][] LlenarArray() {//prueba
+        String[][] ad = new String[9][10];
+        try {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    ad[i][j] = "Hola " + i + " : " + j;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("error " + e);
+        }
+        return ad;
     }
 
 }

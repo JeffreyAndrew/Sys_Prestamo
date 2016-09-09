@@ -73,7 +73,7 @@ public class SVL_Historial extends HttpServlet {
                 break;
             case 2:                
                 int idpersona = Integer.parseInt(request.getParameter("idpersona"));
-                ArrayList<String[][]> al=hD.listarHistoDocent(idpersona);
+                String[][] al=hD.listarHistoDocent(idpersona);
                 session.setAttribute("historial", al);
                 pag = "/vistas/historial/HistoDocent.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);

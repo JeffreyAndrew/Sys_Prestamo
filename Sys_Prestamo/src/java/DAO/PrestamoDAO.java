@@ -125,7 +125,7 @@ public class PrestamoDAO {
 
     public boolean addeqprestamo(int p, int e) {
         boolean m = false;
-        sql = "INSERT INTO DET_PRESTAMO (idPRESTAMO ,idDET_EQUIPO) VALUES(?,?)";
+        sql = "INSERT INTO DET_PRESTAMO (idPRESTAMO ,idDET_EQUIPO,ESTADO) VALUES(?,?,1)";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -182,7 +182,8 @@ public class PrestamoDAO {
                 + "FROM DET_PRESTAMO D,DET_EQUIPO E,EQUIPO EQ "
                 + "WHERE IDPRESTAMO=" + idprestamo + " "
                 + "AND E.IDDET_EQUIPO=D.IDDET_EQUIPO "
-                + "AND EQ.IDEQUIPO=E.IDEQUIPO;";
+                + "AND EQ.IDEQUIPO=E.IDEQUIPO"
+                + "AND D.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = conexion.getConexion();

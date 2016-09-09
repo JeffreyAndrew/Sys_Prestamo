@@ -167,8 +167,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="ci?op=1" target="box"><i class="fa fa-user"></i>  Añadir Persona</a></li>
-                                <li><a href="ci?op=6" target="box"><i class="fa fa-users"></i>  Listar Personas</a></li>
+                                <li><a href="ci?op=1&id=<%=u.getIdPersona()%>" target="box"><i class="fa fa-user"></i>  Añadir Persona</a></li>
+                                <li><a href="ci?op=6&id=<%=u.getIdPersona()%>" target="box"><i class="fa fa-users"></i>  Listar Personas</a></li>
                             </ul>
                         </li>
                         <% }%>

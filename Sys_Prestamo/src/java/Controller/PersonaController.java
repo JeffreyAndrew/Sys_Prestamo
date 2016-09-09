@@ -69,10 +69,12 @@ public class PersonaController extends HttpServlet {
         String pag;
         HttpSession session = request.getSession(true);
         PersonaDTO u;
-        List<PersonaDTO> lis = new ArrayList<>();
         int op = Integer.parseInt(request.getParameter("op"));
         switch (op) {
             case 1:
+                int idpr = Integer.parseInt(request.getParameter("id"));
+                List<PersonaDTO> pta = pro.read(idpr);
+                session.setAttribute("lista", pta);
                 pag = "/vistas/persona/add_person.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
@@ -131,6 +133,9 @@ public class PersonaController extends HttpServlet {
                 }
                 break;
             case 6:
+                int idp = Integer.parseInt(request.getParameter("id"));
+                List<PersonaDTO> pt = pro.read(idp);
+                session.setAttribute("lista", pt);
                 pag = "/vistas/persona/list.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);

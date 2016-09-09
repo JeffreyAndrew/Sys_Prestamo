@@ -44,7 +44,7 @@ function escdoc(pre) {
                 m += '<td><center>' + lista[i].tipo + '</center></td>';
                 m += '<td><center>' + lista[i].codigo + '</center></td>';
                 m += '<td><center><a style="cursor: pointer;" ><i class="fa fa-refresh"></i></a></center></td>';
-                m += '<td><center><input id="check' + i + '"  class="icheckbox_minimal-red" type="checkbox" onclick="devolution()" checked></center></td>';
+                m += '<td><center><input id="'+lista[i].iddet+'"  class="icheckbox_minimal-red" type="checkbox" onclick="devolution(this.id)" value="1" checked></center></td>';
                 m += '</tr>';
             }
             $(".conTable").attr("class", "conTable");
@@ -56,8 +56,13 @@ function escdoc(pre) {
         }
     });
 }
-function devolution(){
-  alert("leo");  
+function devolution(id){
+    if ($("#"+id+"").val()==="1") {
+       $("#"+id+"").attr("value","0");
+    }else{
+        $("#"+id+"").attr("value","1");
+    }
+    
 }
 function createTableDoc() {
     var m = '<table id="tabDc" class="table table-bordered table-striped">';

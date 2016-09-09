@@ -180,9 +180,9 @@ public class PrestamoDAO {
     public ArrayList<Map<String, ?>> listareq(int idprestamo) {
         sql = "SELECT D.IDDET_EQUIPO,E.IDEQUIPO,E.CODIGO,E.DESCRIPCION,EQ.MARCA,EQ.SERIE,EQ.TIPO "
                 + "FROM DET_PRESTAMO D,DET_EQUIPO E,EQUIPO EQ "
-                + "WHERE IDPRESTAMO=" + idprestamo + " "
+                + "WHERE D.IDPRESTAMO=" + idprestamo + " "
                 + "AND E.IDDET_EQUIPO=D.IDDET_EQUIPO "
-                + "AND EQ.IDEQUIPO=E.IDEQUIPO"
+                + "AND EQ.IDEQUIPO=E.IDEQUIPO "
                 + "AND D.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {

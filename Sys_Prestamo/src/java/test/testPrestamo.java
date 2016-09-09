@@ -7,7 +7,9 @@ package test;
 
 import DAO.PrestamoDAO;
 import DTO.PrestamoDTO;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +21,7 @@ public class testPrestamo {
     static PrestamoDAO p = new PrestamoDAO();
 
     public static void main(String[] args) {
-        add();
+        det_prestamo(1);
     }
 
     public static void add() {
@@ -30,6 +32,13 @@ public class testPrestamo {
         c.put("lugar", "asd");
         int a= p.add(c);
         System.out.println(a);
+    }
+    public static void det_prestamo(int id){
+        ArrayList<Map<String,?>> ab=p.listareq(id);
+        for (int i = 0; i < ab.size(); i++) {
+            System.out.println(ab.get(i).get("tipo").toString());
+            System.out.println(ab.get(i).get("serie").toString());
+        }
     }
 
 }

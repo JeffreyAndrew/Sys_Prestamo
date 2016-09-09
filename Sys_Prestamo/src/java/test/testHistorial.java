@@ -24,10 +24,10 @@ public class testHistorial {
     public static void listarA() {
         String[][] datos = hD.listarHistoDocent(2);
         try {
-            for (int i = 0; i < datos.length; i++) {
+            for (String[] dato : datos) {
                 int a = 0;
-                while (datos[i][a] != null) {
-                    System.out.println(datos[i][a]);
+                while (dato[a] != null) {
+                    System.out.println(dato[a]);
                     a++;
                 }
             }

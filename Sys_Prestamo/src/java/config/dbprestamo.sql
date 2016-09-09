@@ -63,7 +63,8 @@ CREATE TABLE PRESTAMO(
 );
 CREATE TABLE DET_PRESTAMO(
     idPrestamo INTEGER NOT NULL,
-    idDet_Equipo INTEGER(6) NOT NULL,    
+    idDet_Equipo INTEGER(6) NOT NULL,
+    estado CHAR(1) NOT NULL,    
     FOREIGN KEY(idDet_Equipo) REFERENCES DET_EQUIPO(idDet_Equipo),
     FOREIGN KEY(idPrestamo) REFERENCES PRESTAMO(idPrestamo)
 );

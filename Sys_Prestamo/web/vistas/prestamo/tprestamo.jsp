@@ -60,6 +60,7 @@
                     </form>                    
                 </div>
             </div>
+            <script src="tools/js/floan.js"></script>
             <div id="itabp" class="panel panel-primary hidden">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-laptop"></i>   Lista de Equipos Seleccionados</h3>
@@ -158,7 +159,7 @@
                 </div>
             </div>
         </div>     
-        <script src="tools/js/functionsloan.js" type="text/javascript"></script>
+        <script src="tools/js/functionsloan.js" type="text/javascript"></script>        
     </body>
 
 </html>

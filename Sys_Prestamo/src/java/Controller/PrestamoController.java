@@ -117,6 +117,11 @@ public class PrestamoController extends HttpServlet {
                             ArrayList<Map<String, ?>> listaper = aD.listarper(idrol);
                             mp.put("lista", listaper);
                             break;
+                        case 7:
+                            idprestamo = Integer.parseInt(request.getParameter("idp"));
+                            ArrayList<Map<String, ?>> listadl = pD.listardp(idprestamo);
+                            mp.put("lista", listadl);
+                            break;
                     }
                     break;
                 case "update":

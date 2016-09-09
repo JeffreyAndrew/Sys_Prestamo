@@ -50,7 +50,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header">
-                                        <img src="dist/img/<%=rol + u.getSexo() %>.jpg" class="img-circle" alt="User Image">
+                                        <img src="dist/img/<%=rol + u.getSexo()%>.jpg" class="img-circle" alt="User Image">
 
                                         <p>
                                             <%= u.getNombre() + " " + u.getApellidos()%>
@@ -172,22 +172,22 @@
                             </ul>
                         </li>
                         <% }%>
-                   
-                    
+
+
                         <li class="treeview">
                             <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Estadistica</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a><ul class="treeview-menu menu-open" style="display: none;">
-            <li class=""><a href="Esta?op=2"><i class="fa fa-circle-o"></i> Porcentaje </a></li>
-            <li><a href="Esta?op=1" ><i class="fa fa-circle-o"></i>En intervalo de fechas</a></li>
-            <li><a href="Esta?op=3"><i class="fa fa-circle-o"></i> sin devolver</a></li>
-          </ul> 
-                       </li>
-                        
+                                <i class="fa fa-pie-chart"></i>
+                                <span>Estadistica</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a><ul class="treeview-menu menu-open" style="display: none;">
+                                <li class=""><a href="Esta?op=2"><i class="fa fa-circle-o"></i> Porcentaje </a></li>
+                                <li><a href="Esta?op=1" ><i class="fa fa-circle-o"></i>En intervalo de fechas</a></li>
+                                <li><a href="Esta?op=3"><i class="fa fa-circle-o"></i> sin devolver</a></li>
+                            </ul> 
+                        </li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-history" aria-hidden="true"></i> <span>Historial de Préstamos</span>
@@ -201,15 +201,15 @@
                                 <li><a href="SVLH?histo=3" target="box"><i class="fa fa-globe" aria-hidden="true"></i> Todos los Préstamos</a></li>
                             </ul>
                         </li>
-                        
-                        
-                   </ul>
+
+
+                    </ul>
                 </section>
             </aside>
-                        
+
             <div class="content-wrapper">
                 <iframe name="box" src="ci?op=2&id=<%=u.getIdPersona()%>" id="idboxload" onload="loadFrame(this.contentWindow.location);"
-                        style="height: 87vh;width: 100%; border: none; overflow-y: hidden">
+                        style="height: 1000px;width: 100%; border: none; overflow-y: hidden">
                 </iframe>
             </div>
             <footer class="main-footer">

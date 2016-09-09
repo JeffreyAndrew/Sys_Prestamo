@@ -14,39 +14,70 @@
     </head>
     <body>
         <div style="width: 80%;margin: auto;">
-            <center><h1>Devolución de Equipos</h1></center>
+            <center><h1>Devolución de Equipos</h1></center>           
             <input id="iprestamo" value="0" type="hidden">
-            <div class="panel panel-success">
+            <div class="callout callout-danger adviceT hidden">
+                <h4><i class="fa fa-clock-o"></i>   Tiempo Excedido</h4>
+                <p>Se ha sobrepasado el tiempo límite, se reportará esta incidencia</p>
+            </div>
+            <div class="panel panel-success pd">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa fa-rotate-left"></i>   Devolución de Equipos</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box">
                         <div class="box-body">
-                            <div class="form-group">
+                            <div class="form-group dT">
                                 <label>Docente :</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <input id="idocente" type="text" class="form-control" value="" disabled>
+                                    <input id="idocente" type="text" placeholder="Elegir Docente" class="form-control" value="" disabled>
                                     <input id="iddoc" type="hidden" class="form-control" value="0">
                                 </div>
                                 <button onclick="listdoc()" type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right"><i class="fa fa-search"></i>   Escoger</button>
+                            </div>                            
+                            <div class="dataLoan hidden">
+                                <div class="col-md-6">
+                                    <label>Docente</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input id="idc" type="text" class="form-control" value="" disabled>
+                                    </div>
+                                    <label>Hora de prestamo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input id="ihp" type="text" class="form-control" value="" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Fecha de prestamo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input id="ifp" type="text" class="form-control" value="" disabled>
+                                    </div>                                    
+                                    <label>Hora límite</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input id="ihl" type="text" class="form-control" value="" disabled>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="conTable hidden"></div>
-                            <div class="form-group hidden">
-                                <label>Comentario</label>
-                                <textarea id="icom" class="form-control" rows="3" placeholder="Escriba un comentario sobre los equipos devueltos..."></textarea>
-                            </div>
-                            <center>
-                                <button class="btn btn-danger hidden">Guardar Cambios</button>
-                            </center>
+                            <br/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="itabp" class="panel panel-success hidden">
+            <div id="itabp" class="panel panel-success pd hidden">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-laptop"></i>   Lista de Equipos Prestados</h3>
                 </div>
@@ -55,8 +86,10 @@
                         <div class="box-header">
                             <h3 class="box-title">Equipo(s) a Devolver</h3>
                         </div>
-                        <div id="eqpres" class="box-body no-padding">                            
+                        <div id="eqpres" class="box-body no-padding"> 
+                            <div class="conTable hidden"></div>
                         </div>
+                        <center><button type="button" id="saveB" class="btn btn-danger hidden">Devolver</button></center>
                     </div>
                 </div>
             </div>

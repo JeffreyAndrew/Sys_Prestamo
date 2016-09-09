@@ -46,9 +46,9 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String op = request.getParameter("act");
         RequestDispatcher dispatcher;
-        try /*(PrintWriter out = response.getWriter())*/ {
-            /*RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
-             dispatcher.forward(request, response);*/
+        try {
+            dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+            dispatcher.forward(request, response);
             switch (op) {
                 case "in":
                     dispatcher = getServletContext().getRequestDispatcher("/login.jsp");

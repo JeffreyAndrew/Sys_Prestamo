@@ -45,7 +45,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Arnold ponle estilos</h3>
+                            <h3 class="box-title">Historial prestamo por producto....</h3>
                         </div>
                        
 
@@ -57,6 +57,9 @@
                            
                                 <table class="table table-bordered table-striped" style="text-align:center">
                                    <tr><td><strong>ID DEL PRESTAMO</strong></td><td><strong>ID DEL EQUIPO</strong></td><td><strong>MARCA</strong></td><td><strong>FECHA DEL PRESTAMO</strong></td><td><strong>FECHA DE LA DEVOLUCIÓN</strong></td><td><strong>COMENTARIO DE LA DEVOLUCIÓN</strong></td><td><strong>CANTIDAD DE PRESTAMO POR EQUIPO</strong></td></tr>
+                              
+                                  
+                                   
                                <% String lista[][]= HistorialDAO.listarHistoProduct();%>
                                <%for(int i=0; i<lista.length;i++){%>
                             

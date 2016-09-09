@@ -6,8 +6,12 @@
 package Controller;
 
 import DAO.HistorialDAO;
+import DAO.PersonaDAO;
+import DTO.PersonaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @author Igor
  */
 public class SVL_Historial extends HttpServlet {
-
+      // private PersonaDAO pro = new PersonaDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -54,6 +58,8 @@ public class SVL_Historial extends HttpServlet {
         RequestDispatcher dispatcher;
         String pag;
         HistorialDAO HistoEqui = new HistorialDAO();
+        PersonaDTO u;
+        List<PersonaDTO> lis = new ArrayList<>();
        // Det_EquipoDAO HistoEqui = new Det_EquipoDAO();
         HttpSession session = request.getSession(true);
         int histo = Integer.parseInt(request.getParameter("histo"));
@@ -65,10 +71,16 @@ public class SVL_Historial extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case 2:
+               // int idpersona=Integer.parseInt(request.getParameter("idpersona"));
+               //  List<PersonaDTO> p = pro.read(idpersona);
                 pag = "/vistas/historial/HistoDocent.jsp";
+                
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
+              
                 break;
+                
+              
             case 3:
                 pag = "/vistas/historial/HistoGeneral.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);

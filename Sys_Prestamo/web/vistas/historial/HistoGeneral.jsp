@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-       <section class="content-header"style="text-align: center;">
+       <section class="content-header" style="text-align: center;">
             <h2>
                 "Historial De Todos los Prestamos"
                 <small>SPE UPeU</small>
@@ -66,7 +66,7 @@
                     <!-- /.box -->
                 </div>
                 <!-- /.col -->
-            </div>
+            
             <!-- /.row -->
         </section>
         

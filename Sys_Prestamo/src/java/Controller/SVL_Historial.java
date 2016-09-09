@@ -24,7 +24,8 @@ import javax.servlet.http.HttpSession;
  * @author Igor
  */
 public class SVL_Historial extends HttpServlet {
-      // private PersonaDAO pro = new PersonaDAO();
+    // private PersonaDAO pro = new PersonaDAO();
+    HistorialDAO hD=new HistorialDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,7 +38,7 @@ public class SVL_Historial extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,15 +53,15 @@ public class SVL_Historial extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-   processRequest(request, response);
+
+        processRequest(request, response);
         PrintWriter out = response.getWriter();
         RequestDispatcher dispatcher;
         String pag;
         HistorialDAO HistoEqui = new HistorialDAO();
         PersonaDTO u;
         List<PersonaDTO> lis = new ArrayList<>();
-       // Det_EquipoDAO HistoEqui = new Det_EquipoDAO();
+        // Det_EquipoDAO HistoEqui = new Det_EquipoDAO();
         HttpSession session = request.getSession(true);
         int histo = Integer.parseInt(request.getParameter("histo"));
         switch (histo) {
@@ -70,23 +71,22 @@ public class SVL_Historial extends HttpServlet {
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
-            case 2:
-               // int idpersona=Integer.parseInt(request.getParameter("idpersona"));
-               //  List<PersonaDTO> p = pro.read(idpersona);
+            case 2:                
+                int idpersona = Integer.parseInt(request.getParameter("idpersona"));
+                ArrayList<String[][]> al=hD.listarHistoDocent(idpersona);
+                session.setAttribute("historial", al);
                 pag = "/vistas/historial/HistoDocent.jsp";
-                
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
-              
+
                 break;
-                
-              
+
             case 3:
                 pag = "/vistas/historial/HistoGeneral.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
-    }
+        }
     }
 
     /**

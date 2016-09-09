@@ -46,7 +46,7 @@
                                         %>
                                         <tr>
                                             <td><%= usr.getIdrol()%></td>
-                                            <td><%= usr.getRol()%></td>
+                                            <td><%= usr.Rol()%></td>
                                             <td></td>
 
                                         </tr>

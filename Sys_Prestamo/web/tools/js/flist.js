@@ -16,7 +16,7 @@ function listar(rol) {
                 m += '<td>' + lista[i].celular + '</td>';
                 m += '<td>' + lista[i].correo + '</td>';
                 m += '<td><a href="ci?op=2&id=' + lista[i].idpersona + '" class="btn btn-success"><i class="fa fa-user"></i>   Perfil</a></td>';
-                m += '<td><a type="button" href="SVLH?op=2&idpersona='+lista[i].idpersona+'" class="btn btn-info"><i class="fa fa-rotate-left"></i>   Historial</a></td>';
+                m += '<td><a type="button" href="SVLH?histo=2&idpersona='+lista[i].idpersona+'" class="btn btn-info"><i class="fa fa-rotate-left"></i>   Historial</a></td>';
                 m += '<td><button type="button" onclick="deleteperson(' + lista[i].idpersona + ')"  class="btn btn-danger"><i class="fa fa-close"></i>   Eliminar</button></td>';
                 m += '</tr>';
             }

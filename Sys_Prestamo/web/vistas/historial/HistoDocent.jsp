@@ -54,18 +54,19 @@
                                     <th><strong>CODIGO</strong></th>
                                     <th><strong>DESCRIPCIÓN</strong></th>
                                 </tr>
-                                <tbody>
-                                    <tr>
-                                        <% String[][] data = hD.listarHistoDocent(id);
+                                <tbody>                                    
+                                    <% String[][] data = hD.listarHistoDocent(id);
                                             for (int i = 0; i < data.length; i++) {%>
+                                    <tr>
                                         <td> <%= data[i][0]%></td>
                                         <td><%=data[i][1]%></td>
                                         <td><%=data[i][2]%></td>
                                         <td><%=data[i][3]%></td>
                                         <td><%=data[i][4]%></td>
                                         <td><%=data[i][5]%></td>
-                                        <%}%>
                                     </tr>
+                                    <%}%>
+
                                 </tbody>
 
 

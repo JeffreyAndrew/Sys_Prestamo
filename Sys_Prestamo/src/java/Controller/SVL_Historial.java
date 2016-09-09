@@ -71,15 +71,13 @@ public class SVL_Historial extends HttpServlet {
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
                 break;
-            case 2:                
+            case 2:          
                 int idpersona = Integer.parseInt(request.getParameter("idpersona"));
                 session.setAttribute("persona", pro.read(idpersona));
                 pag = "/vistas/historial/HistoDocent.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);
-
                 break;
-
             case 3:
                 pag = "/vistas/historial/HistoGeneral.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);

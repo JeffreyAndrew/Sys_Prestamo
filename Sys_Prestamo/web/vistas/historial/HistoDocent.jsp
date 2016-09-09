@@ -6,32 +6,35 @@
 <%@page import="DAO.HistorialDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="Controller.SVL_Historial"%>
+<%@page import="DTO.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <title>Historial De Docente</title>
-         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
+        <title>Historial De Docente</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-        <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- DataTables -->
         <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-        <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-        <jsp:useBean id="historial" scope="session" class="java.util.ArrayList"/>
+        <jsp:useBean id="persona" scope="session" class="java.util.ArrayList"/>
+        <jsp:useBean id="pD" class="DAO.PersonaDAO"/>
+        <jsp:useBean id="hD" class="DAO.HistorialDAO"/>
     </head>
-   <body class="hold-transition skin-blue sidebar-mini">
-  <!-- Main content -->
+    <body class="hold-transition skin-blue sidebar-mini">
+        <%
+            int id = 0;
+            for (int i = 0; i < persona.size(); i++) {
+                PersonaDTO u = new PersonaDTO();
+                u = (PersonaDTO) persona.get(i);
+                id = u.getIdPersona();
+            }
+        %>
+        <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
@@ -42,41 +45,30 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <table id="inventario" class="table table-bordered table-striped">
-                              
-                                   <tr>
-                                       <td><strong>ID DEL PRESTAMO</strong></td>
-                                       <td><strong>NOMBRE DEL DOCENTE</strong></td>
-                                       <td><strong>MARCA</strong></td>
-                                       <td><strong>SERIE</strong></td>
-                                       <td><strong>TIPO</strong></td>
-                                       <td><strong>ESTADO</strong></td>
-                                       <td><strong>CODIGO</strong></td>
-                                       <td><strong>DESCRIPCIÓN</strong></td>
-                                   </tr>
+
+                                <tr>
+                                    <th><strong>ID DEL PRESTAMO</strong></th>
+                                    <th><strong>MARCA</strong></th>
+                                    <th><strong>SERIE</strong></th>
+                                    <th><strong>TIPO</strong></th>
+                                    <th><strong>CODIGO</strong></th>
+                                    <th><strong>DESCRIPCIÓN</strong></th>
+                                </tr>
                                 <tbody>
-                              
-                                 <%String lista[][];%>
-                                <%for(int i=0; i<lista.length;i++){%>
-                                 <tr>
-                                     <td><%=lista[i][0] %></td>
-                                     <td><%=lista[i][1]+" "+lista[i][2]%></td>
-                                     <td><%=lista[i][3]%></td>
-                                     <td><%=lista[i][4]%></td>
-                                     <td><%=lista[i][5]%></td>
-                                     <td><%=lista[i][6]%></td>
-                                     <td><%=lista[i][7]%></td>
-                                     <td><%=lista[i][8]%></td>
-                                 </tr>
-                                 
-                                  <% }%> 
-                                 
-                                 
-                                       
-                                 
-                             
+                                    <tr>
+                                        <% String[][] data = hD.listarHistoDocent(id);
+                                            for (int i = 0; i < data.length; i++) {%>
+                                        <td> <%= data[i][0]%></td>
+                                        <td><%=data[i][1]%></td>
+                                        <td><%=data[i][2]%></td>
+                                        <td><%=data[i][3]%></td>
+                                        <td><%=data[i][4]%></td>
+                                        <td><%=data[i][5]%></td>
+                                        <%}%>
+                                    </tr>
                                 </tbody>
-                             
-                              
+
+
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -87,7 +79,7 @@
             </div>
             <!-- /.row -->
         </section>
-                                  <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- DataTables -->
@@ -132,12 +124,12 @@
                 });
             });
         </script>
-                                  
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
     </body>
 </html>

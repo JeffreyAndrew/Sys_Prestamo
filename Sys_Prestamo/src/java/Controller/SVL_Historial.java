@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @author Igor
  */
 public class SVL_Historial extends HttpServlet {
-    // private PersonaDAO pro = new PersonaDAO();
+    PersonaDAO pro = new PersonaDAO();
     HistorialDAO hD=new HistorialDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,8 +73,7 @@ public class SVL_Historial extends HttpServlet {
                 break;
             case 2:                
                 int idpersona = Integer.parseInt(request.getParameter("idpersona"));
-                String[][] al=hD.listarHistoDocent(idpersona);
-                session.setAttribute("historial", al);
+                session.setAttribute("persona", pro.read(idpersona));
                 pag = "/vistas/historial/HistoDocent.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pag);
                 dispatcher.forward(request, response);

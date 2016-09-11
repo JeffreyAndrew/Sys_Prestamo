@@ -156,7 +156,7 @@
                 </div>
             </div>
         </div>     
-        <script src="tools/js/functionsloan.js" type="text/javascript"></script>        
+        <script src="tools/js/functionloan.js" type="text/javascript"></script>        
     </body>
 
 </html>

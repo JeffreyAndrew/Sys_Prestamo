@@ -282,7 +282,7 @@ public class PrestamoDAO {
 
     public boolean returnEq(int id) {
         boolean m = false;
-        sql="UPDATE DET_EQUIPO SET ESTADO=0";
+        sql="UPDATE DET_PRESTAMO SET ESTADO=0 WHERE IDDET_EQUIPO=?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

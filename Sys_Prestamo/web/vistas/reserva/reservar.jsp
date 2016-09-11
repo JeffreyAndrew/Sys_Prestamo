@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Realizar Reserva</title>
+        <%@include file="/WEB-INF/jspf/impbts.jspf" %>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -63,16 +64,31 @@
                         <form role="form" method="post" action="rc">
                             <div class="box-body" style="margin:40px 20px 0px 30px; width: 50%;height: 50%; margin: 0 auto;">
                                 <div class="form-group">
-                                    <label for="docente">Docente</label>
-                                    <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="docente" name="docente" placeholder="Docente">
-                                </div>
+
+                                    <input id="idprest" type="hidden" class="form-control" disabled value=""><br>
+
+                                    <div class="form-group">
+                                        <label>Docente :</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input id="idocente" type="text" name="docente" class="form-control" value="" disabled>                                         
+                                        </div>
+                                        <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>   Elegir Docente</button>
+                                    </div> 
+                                </div><br>
+
                                 <div class="form-group">
-                                    <label for="iddocente">IdDocente</label>
-                                    <input type="number" required="" maxlength="30" class="form-control input-lg" id="iddocente" name="iddocente" placeholder="IdDocente">
-                                </div>
-                                <div class="form-group">
-                                    <label for="codigo">Código del Equipo</label>
-                                    <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" name="codigo" placeholder="Código">
+                                    <label for="codigo">Equipo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-hdd-o"></i>
+                                        </div>
+                                        <input type="text" required="" disabled="" maxlength="120" class="form-control input-lg" id="tipo" name="codigo" placeholder="Equipo">
+                                    </div>                                   
+                                    <button id="regp" type="button" class="btn btn-warning" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>   Seleccionar Equipo(s)</button><br>
+
                                 </div>
 
                                 <div class="form-group">
@@ -151,6 +167,7 @@
                             </div>
 
                         </form>
+
                     </div>
                     <!-- /.box -->                       
 
@@ -161,33 +178,129 @@
             </div>
             <!-- /.row -->
         </section>
-        <!-- /.content -->
+        <script src="tools/js/floan.js"></script>
+        <div id="itabp" class="panel panel-primary hidden">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-laptop"></i>   Lista de Equipos Seleccionados</h3>
+            </div>
+            <div class="panel-body">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Equipo(s) a Prestar</h3>
+                    </div>
+                    <button id="idaddeq" class="btn btn-warning" data-toggle="modal" data-target="#equipoModal" style="float: right;"><i class="fa fa-plus"></i>   Añadir</button>
+                    <div id="eqpres" class="box-body no-padding">                            
+                    </div>
+                    <br/><br/>
+                    <center>
+                        <button id="isave" class="btn btn-info hidden" data-toggle="modal" data-target="#finalModal" type="button"><i class="fa fa-plus"></i>   Comentario</button>
+                    </center>
+                </div>
+            </div>
+        </div>
 
-        <!-- ./wrapper -->
-
-        <!-- jQuery 2.2.3 -->
-        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-        <!-- Bootstrap 3.3.6 -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- Select2 -->
-        <script src="plugins/select2/select2.full.min.js"></script>
-        <!-- InputMask -->
-        <script src="plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <!-- date-range-picker -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-        <script src="plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- bootstrap datepicker -->
-        <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-        <!-- FastClick -->
-        <script src="plugins/fastclick/fastclick.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/app.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- Page script -->
-        <script>
+    </div>
+    <div class="modal fade" id="finalModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Detalle del Prestamo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Comentario</label>
+                        <textarea id="icom" class="form-control" rows="3" placeholder="Escriba un comentario sobre el prestamo..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="regcom()" class="btn btn-success">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="docenteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Buscar Docente</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div id="iadviced" class="callout callout-danger">
+                            <h4>Ups..</h4>
+                            <p>No hay docentes habilitados para prestarse equipos</p>
+                        </div>
+                        <div id="conTDoc" class="box hidden">
+                            <div class="box-header">
+                                <h3 class="box-title">Lista de Docentes habilitados</h3>
+                            </div>
+                            <div id="iboxd" class="box-body">                                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="equipoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Escoger Equipo(s)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div id="iadvice" class="callout callout-danger">
+                            <h4>Equipos no disponibles</h4>
+                            <p>Lamentablemente no hay equipos disponibles en este momento</p>
+                        </div>
+                        <div id="contab" class="box hidden">
+                            <div class="box-header">
+                                <h3 class="box-title">Lista de Equipos disponibles</h3>
+                            </div>
+                            <div id="ibox" class="box-body">                                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>     
+    <script src="tools/js/functionsloan.js" type="text/javascript"></script>  
+    <!-- jQuery 2.2.3 -->
+    <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Select2 -->
+    <script src="plugins/select2/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap datepicker -->
+    <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- Page script -->
+    <script>
 
 
                                                     var startDate;
@@ -228,6 +341,6 @@
                                                     });
 
 
-        </script>
-    </body>
+    </script>
+</body>
 </html>

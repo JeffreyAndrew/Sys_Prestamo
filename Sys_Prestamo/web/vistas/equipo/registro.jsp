@@ -70,10 +70,10 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <center><h1 class="modal-title">Atención</h1></center>
+                                            <center><h2 class="modal-title">Atención</h2></center>
                                         </div>
                                         <div class="modal-body">
-                                            <h2 style="text-align: justify">¿Esta seguro de que desea registrar este nuevo equipo? Si es necesario verifique los campos nuevamente.</h2>
+                                            <h3 style="text-align: justify">¿Esta seguro de que desea registrar este nuevo equipo? Si es necesario verifique los campos nuevamente.</h3>
                                         </div>
                                         <div class="modal-footer">
                                             <input type="submit" class="btn btn-default btn-lg" value="Registrar">

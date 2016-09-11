@@ -196,7 +196,6 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="SVLH?histo=2" target="box"><i class="fa fa-user" aria-hidden="true"></i> Préstamo al docente</a></li>
                                 <li><a href="SVLH?histo=1" target="box"><i class="fa fa-laptop" aria-hidden="true"></i> Préstamo del equipo</a></li>
                                 <li><a href="SVLH?histo=3" target="box"><i class="fa fa-globe" aria-hidden="true"></i> Todos los Préstamos</a></li>
                             </ul>

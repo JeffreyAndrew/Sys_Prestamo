@@ -89,7 +89,7 @@
                         <div id="eqpres" class="box-body no-padding"> 
                             <div class="conTable hidden"></div>
                         </div>
-                        <center><button type="button" id="saveB" class="btn btn-danger hidden">Devolver</button></center>
+                        <center><button type="button" onclick="dev()" id="saveB" class="btn btn-danger hidden">Devolver</button></center>
                     </div>
                 </div>
             </div>

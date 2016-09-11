@@ -66,6 +66,10 @@ public class PrestamoController extends HttpServlet {
                             dispatcher = getServletContext().getRequestDispatcher(pagina);
                             dispatcher.forward(request, response);
                             break;
+                        case 3:
+                            iddeteq = Integer.parseInt(request.getParameter("id"));
+                            mp.put("rp", pD.returnEq(iddeteq));
+                            break;
                     }
                     break;
                 case "add":

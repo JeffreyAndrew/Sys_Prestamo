@@ -95,7 +95,7 @@ public class PrestamoDAO {
         }
         return lista;
     }
-    
+
     public ArrayList<Map<String, ?>> listardp(int idprestamo) {
         sql = "SELECT * FROM PRESTAMO PR,PERSONA P "
                 + "WHERE P.IDPERSONA=PR.IDPERSONA "
@@ -121,7 +121,6 @@ public class PrestamoDAO {
         }
         return lista;
     }
-
 
     public boolean addeqprestamo(int p, int e) {
         boolean m = false;
@@ -232,7 +231,7 @@ public class PrestamoDAO {
         }
         return lista;
     }
-    
+
     public ArrayList<Map<String, ?>> listd(int id) {
         sql = "SELECT * FROM PERSONA WHERE IDPERSONA=?";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
@@ -281,6 +280,23 @@ public class PrestamoDAO {
         return lista;
     }
 
+    public boolean returnEq(int id) {
+        boolean m = false;
+        sql="UPDATE DET_EQUIPO SET ESTADO=0";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            int a = ps.executeUpdate();
+            if (a > 0) {
+                m = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al devolver Equipo "+e);
+        }
+        return m;
+    }
+
     public List<PrestamoDTO> buscarPrestamo(String cadena) {
         conexion oConexion = new conexion();
         StringBuilder sql = new StringBuilder();
@@ -310,27 +326,27 @@ public class PrestamoDAO {
         }
         return list;
     }
-        
-public List<EquipoDTO> deudafechas(Date menor, Date mayor) {
+
+    public List<EquipoDTO> deudafechas(Date menor, Date mayor) {
         List<EquipoDTO> deudas = new ArrayList<>();
         sql = "SELECT * from det_prestamo, equipo,prestamo where prestamo.idPrestamo= det_prestamo.idPrestamo AND prestamo.fechaPrestamo >= ? AND prestamo <= ?; ";
-                try {
-                    cn = conexion.getConexion();
-                    ps = cn.prepareStatement(sql);
-                    ps.setString(1, String.valueOf(menor));
-                    ps.setString(2, String.valueOf(mayor));
-                    rs = ps.executeQuery();
-                    while (rs.next()) {
-                        EquipoDTO eqDTO = new EquipoDTO();
-                        eqDTO.setIdEquipo(rs.getInt("idEquipo"));
-                        eqDTO.setMarca(rs.getString("marca"));
-                        eqDTO.setSerie(rs.getString("serie"));
-                        eqDTO.setTipo(rs.getString("tipo"));
-                        deudas.add(eqDTO);
-                    }
-                } catch (Exception e) {
-                    System.out.println("Error al buscar equipos " + e);
-                }
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(menor));
+            ps.setString(2, String.valueOf(mayor));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                EquipoDTO eqDTO = new EquipoDTO();
+                eqDTO.setIdEquipo(rs.getInt("idEquipo"));
+                eqDTO.setMarca(rs.getString("marca"));
+                eqDTO.setSerie(rs.getString("serie"));
+                eqDTO.setTipo(rs.getString("tipo"));
+                deudas.add(eqDTO);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar equipos " + e);
+        }
         return deudas;
     }
 }

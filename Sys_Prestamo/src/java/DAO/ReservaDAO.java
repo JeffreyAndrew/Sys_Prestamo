@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import DTO.PersonaDTO;
 import DTO.ReservaDTO;
 import Interfaces.Operaciones;
 import config.conexion;
@@ -30,7 +31,7 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
         boolean m = false;
         sql = "INSERT INTO reserva(id_reserva,id_usuario,"
                 + "id_docente,id_detequipo,fecha_reserva,fecha_inicio,fecha_fin,dia)"
-                +" VALUES(NULL, ? , ? , ? , (SELECT SYSDATE()) , ? , ? , ? )";
+                + " VALUES(NULL, ? , ? , ? , (SELECT SYSDATE()) , ? , ? , ? )";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -144,5 +145,31 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
         }
         return lista;
     }
-    
+
+    public List<PersonaDTO> docvalidated() {
+        List<PersonaDTO> lista = new ArrayList();
+        PersonaDTO pdto = new PersonaDTO();
+        sql = "SELECT P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
+                + "FROM PERSONA P LEFT OUTER JOIN PRESTAMO E "
+                + "ON P.IDPERSONA=E.IDPERSONA "
+                + "WHERE P.IDROL=3 "
+                + "AND (E.IDPERSONA IS NULL) "
+                + "OR (P.IDPERSONA IS NULL OR E.ESTADO=0);";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                pdto.setIdPersona(rs.getInt("IDPERSONA"));
+                pdto.setNombre(rs.getString("NOMBRE"));
+                pdto.setApellidos(rs.getString("APELLIDOS"));
+                pdto.setDni(rs.getInt("DNI"));
+                lista.add(pdto);
+            }
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return lista;
+    }
+
 }

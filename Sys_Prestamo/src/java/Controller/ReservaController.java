@@ -85,6 +85,8 @@ public class ReservaController extends HttpServlet {
                     break;
                 case 2:
                     pagina = "/vistas/reserva/reservar.jsp";
+                    List<PersonaDTO> listdoc=dao.docvalidated();
+                    session.setAttribute("listdoc", listdoc);
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                     break;

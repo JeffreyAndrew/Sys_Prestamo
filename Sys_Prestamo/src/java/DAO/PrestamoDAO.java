@@ -207,7 +207,7 @@ public class PrestamoDAO {
     }
 
     public ArrayList<Map<String, ?>> listdh() {
-        sql = "SELECT P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
+        sql = "SELECT DISTINCT(P.IDPERSONA),P.NOMBRE,P.APELLIDOS,P.DNI "
                 + "FROM PERSONA P LEFT OUTER JOIN PRESTAMO E  "
                 + "ON P.IDPERSONA=E.IDPERSONA "
                 + "WHERE P.IDROL=3 "
@@ -282,7 +282,23 @@ public class PrestamoDAO {
 
     public boolean returnEq(int id) {
         boolean m = false;
-        sql="UPDATE DET_PRESTAMO SET ESTADO=0 WHERE IDDET_EQUIPO=?";
+        sql = "{CALL RETURN_EQU(?)}";
+        try {
+            cn = conexion.getConexion();
+            cs = cn.prepareCall(sql);
+            cs.setInt(1, id);
+            cs.executeUpdate();
+            m = true;
+        } catch (Exception e) {
+            System.out.println("Error al devolver Equipo " + e);
+            m = false;
+        }
+        return m;
+    }
+
+    public boolean returnloan(int id) {
+        boolean m = false;
+        sql = "UPDATE PRESTAMO SET ESTADO=0 WHERE IDPRESTAMO=?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -292,7 +308,7 @@ public class PrestamoDAO {
                 m = true;
             }
         } catch (Exception e) {
-            System.out.println("Error al devolver Equipo "+e);
+            System.out.println("Error al devolver Prestamo " + e);
         }
         return m;
     }

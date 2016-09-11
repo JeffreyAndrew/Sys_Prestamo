@@ -18,11 +18,9 @@
     <body>
 
         <div style="width: 80%; margin: auto;">            
-            <center><h1>Reserva de Equipos</h1></center> 
-            
-            <input id="iprestamo" value="0" type="hidden">
-            
-            
+            <center><h1>Reserva de Equipos</h1></center>             
+            <input id="iprestamo" value="0" type="hidden">            
+            <div class="panel panel-primary">
                 <div class="panel-body">
                     <form>
                         <%for (int i = 0; i < ipersona.size(); i++) {
@@ -58,6 +56,7 @@
                         <button id="regp" type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-search"></i>   Escoger Equipo(s)</button>
                     </form>                    
                 </div>
+            </div>
             <script src="tools/js/floan.js"></script>
             <div id="itabp" class="panel panel-primary hidden">
                 <div class="panel-heading">

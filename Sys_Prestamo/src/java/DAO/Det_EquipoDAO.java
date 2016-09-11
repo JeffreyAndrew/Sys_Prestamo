@@ -70,6 +70,28 @@ public class Det_EquipoDAO implements Operaciones<Det_EquipoDTO> {
         }
         return lista;
     }
+    public List<Det_EquipoDTO> readByCode(int key) {
+        List<Det_EquipoDTO> lista = new ArrayList();
+        sql = "select * from det_equipo where codigo= ? ";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, key);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Det_EquipoDTO dto = new Det_EquipoDTO();
+                dto.setIdDet_Equipo(rs.getInt("iddet_equipo"));
+                dto.setIdEquipo(rs.getInt("idequipo"));
+                dto.setCodigo(rs.getInt("codigo"));
+                dto.setEstado(rs.getString("estado"));
+                dto.setDescripcion(rs.getString("descripcion"));
+                lista.add(dto);
+            }
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return lista;
+    }
 
     @Override
     public boolean delete(int key) {

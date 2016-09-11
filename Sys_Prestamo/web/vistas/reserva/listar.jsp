@@ -65,7 +65,7 @@
                                     <tr>
                                         <th>Usuario</th>
                                         <th>Docente</th>
-                                        <th>Equipo</th>
+                                        <th>Tipo de Equipo</th>
                                         <th>Código</th>
                                         <th>Fecha de Reserva</th>
                                         <th>Fecha de Inicio</th>
@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                <a href="rc?ge=4&id=<%=rdto.getId_reserva() %>" role="button" class="btn btn-outline">Eliminar</a>
+                                                <a href="rc?gr=4&id=<%=rdto.getId_reserva() %>" role="button" class="btn btn-outline">Eliminar</a>
                                             </div>
                                         </div>
                                         <!-- /.modal-content -->
@@ -150,7 +150,7 @@
                                     <tr>
                                         <th>Usuario</th>
                                         <th>Docente</th>
-                                        <th>Equipo</th>
+                                        <th>Tipo de Equipo</th>
                                         <th>Código</th>
                                         <th>Fecha de Reserva</th>
                                         <th>Fecha de Inicio</th>

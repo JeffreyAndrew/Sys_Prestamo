@@ -8,10 +8,226 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Realizar Reserva</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- daterange picker -->
+        <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="plugins/select2/select2.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Gestión de Reservas
+                <small>SPE UPeU</small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div style="margin: 40px 20px 0px 20px">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <center> <h1 class="box-title" style="font-size: 50px">Realizar una Reserva</h1> </center>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form role="form" method="post" action="rc">
+                            <div class="box-body" style="margin:40px 20px 0px 30px; width: 50%;height: 50%; margin: 0 auto;">
+                                <div class="form-group">
+                                    <label for="docente">Docente</label>
+                                    <input type="text" required="" maxlength="30" onkeypress="return soloLetras(event)" class="form-control input-lg" id="docente" name="docente" placeholder="Docente">
+                                </div>
+                                <div class="form-group">
+                                    <label for="iddocente">IdDocente</label>
+                                    <input type="number" required="" maxlength="30" class="form-control input-lg" id="iddocente" name="iddocente" placeholder="IdDocente">
+                                </div>
+                                <div class="form-group">
+                                    <label for="codigo">Código del Equipo</label>
+                                    <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" name="codigo" placeholder="Código">
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Date range -->
+                                    <div class="form-group">
+                                        <label>Tiempo de Reserva</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" name="fechas" class="form-control pull-right" id="reservation">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dia">Día</label>
+                                    <select id="dia" name="dia" class="form-control select2" style="width: 100%;">
+                                        <option selected="selected" value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY">Lunes</option>
+                                        <option value="TUESDAY">Martes</option>
+                                        <option value="WEDNESDAY">Miércoles</option>
+                                        <option value="THURSDAY">Jueves</option>
+                                        <option value="FRIDAY">Viernes</option>
+                                        <option value="SATURDAY">Sábado</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="hidden" name="gr" value="3">
+                                </div>
+
+                                <div class="box-footer">
+                                    <a role="button" class="btn btn-danger" href="rc?gr=1" data-toggle="modal">Cancelar</a>
+                                    <button type="button" class="btn btn-info pull-right" href="#reservar" data-toggle="modal">Reservar</button>
+                                </div> 
+
+                                <div class="modal fade" id="reservar">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <center><h1 class="modal-title">Atención</h1></center>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h2 style="text-align: justify">¿Esta seguro de que desea realizar esta reserva? Si es necesario verifique los campos nuevamente.</h2>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" onsubmit="enviar()" class="btn btn-default btn-lg" value="Reservar">
+                                                <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="cancelar">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <center><h1 class="modal-title">Atención</h1></center>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h2 style="text-align: justify">Esta seguro de que desea cancelar el registro.</h2>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
+                                                <a class="btn btn-danger btn-lg" href="index.jsp">Si</a>                                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- /.box -->                       
+
+
+                </div>
+                <!--/.col (left) -->
+                <!-- right column HASTA AQUI -->                        
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- Select2 -->
+        <script src="plugins/select2/select2.full.min.js"></script>
+        <!-- InputMask -->
+        <script src="plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <!-- date-range-picker -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+        <script src="plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- bootstrap datepicker -->
+        <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+        <!-- FastClick -->
+        <script src="plugins/fastclick/fastclick.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/app.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="dist/js/demo.js"></script>
+        <!-- Page script -->
+        <script>
+
+
+                                                    var startDate;
+                                                    var endDate;
+                                                    $(document).ready(function () {
+                                                        //Initialize Select2 Elements
+                                                        $(".select2").select2();
+
+                                                        //Datemask dd/mm/yyyy
+                                                        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+                                                        //Datemask2 mm/dd/yyyy
+                                                        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+                                                        //Money Euro
+                                                        $("[data-mask]").inputmask();
+
+                                                        //Date range picker
+                                                        $('#reservation').daterangepicker({
+                                                            separator: ' hasta ',
+                                                            locale: {
+                                                                applyLabel: 'Enviar',
+                                                                fromLabel: 'Desde',
+                                                                toLabel: 'Hasta',
+                                                                customRangeLabel: 'Rango Personalizado',
+                                                                daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                                                                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                                firstDay: 1,
+                                                                format: 'YYYY/MM/DD'
+                                                            }
+                                                        });
+                                                        //Date range picker with time picker
+                                                        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+
+
+                                                        //Date picker
+                                                        $('#datepicker').datepicker({
+                                                            autoclose: true
+                                                        });
+                                                    });
+
+
+        </script>
     </body>
 </html>

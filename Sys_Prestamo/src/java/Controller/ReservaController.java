@@ -88,6 +88,32 @@ public class ReservaController extends HttpServlet {
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                     break;
+                case 3:
+                    pagina = "/rc?gr=1";
+                    String[] parts=request.getParameter("fechas").split(" - ");
+                    String fechaInicio=parts[0];
+                    String fechaFinal=parts[1];
+                    String docente =request.getParameter("docente");
+                    int iddocente =Integer.parseInt(request.getParameter("iddocente"));
+                    int iddet_equipo =ddao.readByCode(Integer.parseInt(request.getParameter("codigo"))).get(0).getIdDet_Equipo();
+                    String dia =request.getParameter("dia");
+                    ReservaDTO rdto=new ReservaDTO();
+                    rdto.setDia(dia);
+                    rdto.setFecha_inicio(fechaInicio);
+                    rdto.setFecha_fin(fechaFinal);
+                    rdto.setId_detequipo(iddet_equipo);
+                    rdto.setId_docente(iddocente);
+                    rdto.setId_usuario(1);
+                    dao.create(rdto);
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                    break;
+                case 4:
+                    pagina="/rc?gr=1";
+                    int id=Integer.parseInt(request.getParameter("id"));
+                    dao.delete(id);
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

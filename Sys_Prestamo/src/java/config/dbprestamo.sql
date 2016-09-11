@@ -73,15 +73,22 @@ CREATE TABLE reserva (
     id_reserva int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_usuario int(11) NOT NULL,
     id_docente int(11) NOT NULL,
-    id_detequipo int(11) NOT NULL,
     fecha_reserva date ,
     fecha_inicio date ,
     fecha_fin date ,
-    dia varchar(7) ,    
+    dia varchar(7) ,
+    hora_ini time not null,
+    hora_fin time not null,
     FOREIGN KEY(id_usuario) REFERENCES USUARIO(idUsuario),
-    FOREIGN KEY(id_docente) REFERENCES PERSONA(idPersona),
-    FOREIGN KEY(id_detequipo) REFERENCES DET_EQUIPO(idDet_Equipo)
+    FOREIGN KEY(id_docente) REFERENCES PERSONA(idPersona)
 );
+
+CREATE TABLE det_reserva (
+  idDet_Equipo int(11) NOT NULL,
+  id_reserva int(11) NOT NULL,    
+   FOREIGN KEY(idDet_Equipo) REFERENCES DET_EQUIPO(idDet_Equipo),
+   FOREIGN KEY(id_reserva) REFERENCES reserva(id_reserva)
+);s
 
 DELIMITER $$
 CREATE PROCEDURE REG_PRESTAMO 

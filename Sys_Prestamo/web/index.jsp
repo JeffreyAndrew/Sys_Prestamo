@@ -208,7 +208,7 @@
 
             <div class="content-wrapper">
                 <iframe name="box" src="ci?op=2&id=<%=u.getIdPersona()%>" id="idboxload" onload="loadFrame(this.contentWindow.location);"
-                        style="height: 1000px;width: 100%; border: none; overflow-y: hidden">
+                        style="height: 800px;width: 100%; border: none; overflow-y: hidden">
                 </iframe>
             </div>
             <footer class="main-footer">

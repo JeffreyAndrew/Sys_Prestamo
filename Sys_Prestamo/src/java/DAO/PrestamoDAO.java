@@ -298,7 +298,7 @@ public class PrestamoDAO {
 
     public boolean returnloan(int id) {
         boolean m = false;
-        sql = "UPDATE PRESTAMO SET ESTADO=0 WHERE IDPRESTAMO=?";
+        sql = "UPDATE PRESTAMO SET ESTADO=0,FECHADEVOLUCION=(SELECT SYSDATE()),HORADEVOLUCION=(SELECT SYSDATE()) WHERE IDPRESTAMO=?";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

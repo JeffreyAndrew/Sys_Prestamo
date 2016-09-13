@@ -85,7 +85,8 @@
                             <p><i class="fa fa-plus"></i>    Ya puede agregar equipos a la lista</p>
                         </div>
                         <button id="idaddeq" class="btn btn-warning" onclick="oc()" data-toggle="modal" data-target="#equipoModal" style="float: right;"><i class="fa fa-plus"></i>   Añadir</button>
-                        <div id="eqpres" class="box-body no-padding">                            
+                        <div id="eqpres" class="box-body no-padding">
+                            <table id="datapres"></table>
                         </div>
                         <br/><br/>
                         <center>

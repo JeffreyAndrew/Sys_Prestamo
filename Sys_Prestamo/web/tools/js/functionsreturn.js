@@ -88,8 +88,16 @@ function dev() {
         var data = "id=" + $("#iprestamo").val();
         $.post(url, data, function (objJson) {
             if (objJson.rp) {
-                swal("Devolución Correcta","Se devolvió correctamente","info");
-            }else{
+                swal({title: "Devolución Correcta",
+                    text: "Se devolvieron correctamente los equipos",
+                    type: "info",
+                    closeOnConfirm: true},
+                function (isConfirm) {
+                    if (isConfirm) {
+                        location.href = "loan?mt=rd&op=2";
+                    }
+                });
+            } else {
                 alert("error al devolver");
             }
         });
@@ -112,7 +120,7 @@ function createTableDoc() {
     return m;
 }
 function dataloan(id) {
-    $("#iprestamo").attr("value",id);
+    $("#iprestamo").attr("value", id);
     var url = "loan?mt=list&op=7";
     var data = "idp=" + id;
     $.post(url, data, function (objJson) {

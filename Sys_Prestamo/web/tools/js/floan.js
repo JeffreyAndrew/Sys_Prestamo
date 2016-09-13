@@ -126,10 +126,33 @@ function canloan() {
         closeOnCancel: true},
     function (isConfirm) {
         if (isConfirm) {
-
+            var filas = document.getElementById('datapres').rows.length;
+            if (filas > 0) {
+                deleteeq($("#idprest").val(), filas);
+            } else {
+                var url = "loan?mt=remove&op=3";
+                var data = "id=" + $("#idprest").val();
+                $.post(url, data, function (objJson) {
+                    if (objJson.rp) {
+                        swal({title: "Prestamo Eliminado",
+                            text: "El prestamo fue cancelado exitosamente",
+                            type: "info",
+                            closeOnConfirm: true},
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.href="main?op=1&id="+$("#idprest").val();
+                            }
+                        });
+                    }
+                });
+            }
         }
     });
 }
+function deleteeq(id, nf) {
+
+}
+
 function validar() {
     var doc = $("#iddoc").val();
     var lug = $("#idlug").val();

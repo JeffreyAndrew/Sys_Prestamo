@@ -143,6 +143,8 @@ function canloan() {
                                 location.href="main?op=1&id="+$("#idprest").val();
                             }
                         });
+                    }else{
+                        alert("Ocurrió un error");
                     }
                 });
             }

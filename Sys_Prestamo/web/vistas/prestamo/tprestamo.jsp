@@ -18,56 +18,73 @@
     <body>
 
         <div style="width: 80%; margin: auto;">            
-            <center><h1>Reserva de Equipos</h1></center>             
+            <center><h1>Prestamo de Equipos</h1></center>    
+            <div class="cmb hidden">
+                <p><i class="fa fa-chevron-circle-right"></i>    Todos los cambios están siendo guardados</p>
+            </div>
             <input id="iprestamo" value="0" type="hidden">            
-            <div class="panel panel-primary">
+            <div class="panel panel-primary col-md-12" style="padding: 3% 0;box-sizing: border-box;">
                 <div class="panel-body">
-                    <form>
-                        <%for (int i = 0; i < ipersona.size(); i++) {
-                                PersonaDTO u = new PersonaDTO();
-                                u = (PersonaDTO) ipersona.get(i);
-                        %>
-                        <input id="idprest" type="hidden" class="form-control" disabled value="<%= u.getIdPersona()%>">
-                        <%}%>
-                        <div class="form-group">
-                            <label>Docente :</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <input id="idocente" type="text" class="form-control" value="" disabled>
-                                <input id="iddoc" type="hidden" class="form-control" value="">
-                            </div>
-                            <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right"><i class="fa fa-search"></i>   Escoger</button>
-                        </div>                        
-                        <label>Lugar :</label>
-                        <input id="idlug" class="form-control" type="text" placeholder="Describa el Lugar en donde se usará el Equipo">
-                        <div class="bootstrap-timepicker">
-                            <div class="form-group">
-                                <label>Hora límite para devolver:</label>
+                    <%for (int i = 0; i < ipersona.size(); i++) {
+                            PersonaDTO u = new PersonaDTO();
+                            u = (PersonaDTO) ipersona.get(i);
+                    %>
+                    <input id="idprest" type="hidden" class="form-control" disabled value="<%= u.getIdPersona()%>">
+                    <%}%>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="col-md-10">
+                                <label>Docente :</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-clock-o"></i>
+                                        <i class="fa fa-user"></i>
                                     </div>
-                                    <input type="text" id="ihour" class="form-control timepicker">                                    
+                                    <input id="idocente" type="text" class="form-control" placeholder="Debe escoger un docente" value="" disabled>
+                                    <input id="iddoc" type="hidden" class="form-control" value="">
+                                </div>                            
+                            </div>
+                            <div class="col-md-2"><br/><button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" style="margin-top: 5px;" class="btn btn-instagram"><i class="fa fa-search"></i></button></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="bootstrap-timepicker">
+                                <div class="form-group">
+                                    <label>Hora límite para devolver:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input type="text" id="ihour" class="form-control timepicker">                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <button id="regp" type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-search"></i>   Escoger Equipo(s)</button>
-                    </form>                    
+                        <div class="col-md-12">
+                            <label>Lugar :</label>
+                            <input id="idlug" class="form-control" type="text" placeholder="Describa el Lugar en donde se usará el Equipo (aula,pabellón,laboratorio,etc)">
+                        </div>
+                    </div>
+                </div>                    
+                <div class="col-md-12 adv">
+                    <div class="callout callout-success">
+                        <p><i class="fa fa-warning"></i>    Para poder escoger el/los equipo(s) debe confirmar los datos del prestamo, revise bien antes de confirmar</p>
+                    </div>
+                    <center><button id="regp" type="button" class="btn btn-instagram" ><i class="fa fa-check"></i>   Confirmar</button>  </center>
+                </div>
+                <div class="col-md-12 ">
+                    <center><button type="button" onclick="canloan()" class="cancelar hidden"><i class="fa fa-close"></i>   Cancelar Prestamo</button>  </center>
                 </div>
             </div>
             <script src="tools/js/floan.js"></script>
             <div id="itabp" class="panel panel-primary hidden">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-laptop"></i>   Lista de Equipos Seleccionados</h3>
-                </div>
                 <div class="panel-body">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Equipo(s) a Prestar</h3>
+                    <div>
+                        <div>
+                            <h3><i class="fa fa-list"></i>    Lista de Equipos</h3>
                         </div>
-                        <button id="idaddeq" class="btn btn-warning" data-toggle="modal" data-target="#equipoModal" style="float: right;"><i class="fa fa-plus"></i>   Añadir</button>
+                        <div class="callout callout-info am">
+                            <p><i class="fa fa-plus"></i>    Ya puede agregar equipos a la lista</p>
+                        </div>
+                        <button id="idaddeq" class="btn btn-warning" onclick="oc()" data-toggle="modal" data-target="#equipoModal" style="float: right;"><i class="fa fa-plus"></i>   Añadir</button>
                         <div id="eqpres" class="box-body no-padding">                            
                         </div>
                         <br/><br/>
@@ -128,6 +145,7 @@
                 </div>
             </div>
         </div>
+        <script src="tools/js/functionloan.js"></script> 
         <div class="modal fade" id="equipoModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -155,8 +173,7 @@
                     </div>
                 </div>
             </div>
-        </div>     
-        <script src="tools/js/functionloan.js" type="text/javascript"></script>        
+        </div>   
     </body>
 
 </html>

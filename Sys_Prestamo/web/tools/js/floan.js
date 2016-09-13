@@ -52,7 +52,10 @@ function listardoc() {
 function confirmloan(prest, doc, lug, hora) {
     $("#regp").attr("class", "hidden");
     $("#idescd").attr("class", "hidden");
-    $("#itabp").attr("class", "panel panel-primary");
+    $(".cancelar").attr("class", "btn btn-danger cancel");
+    $(".cmb").attr("class", "callout callout-success cmb");
+    $(".adv").attr("class", "hidden");
+    $("#itabp").attr("class", "panel panel-primary col-md-12");
     $("#idlug").attr("disabled", "");
     $("#ihour").attr("disabled", "");
     addloan(prest, doc, lug, hora);
@@ -106,4 +109,83 @@ function createTableDoc() {
     m += '</tbody>';
     m += '</table>';
     return m;
+}
+function oc() {
+    $(".am").attr("class", "hidden");
+}
+
+function canloan() {
+    swal({title: "¿Está seguro?",
+        text: "Se cancelará el prestamo y todos sus datos",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: true},
+    function (isConfirm) {
+        if (isConfirm) {
+
+        }
+    });
+}
+function validar() {
+    var doc = $("#iddoc").val();
+    var lug = $("#idlug").val();
+    var hora = $("#ihour").val();
+    var prest = $("#idprest").val();
+    if (doc !== "" && lug !== "" && hora !== "") {
+        var d = new Date();
+        var h = d.getHours();
+        var mn = d.getMinutes();
+        if (h < 10) {
+            h.toString();
+            h = "0" + h;
+        }
+        if (mn < 10) {
+            mn.toString();
+            mn = "0" + mn;
+        }
+        var hr = h + ":" + mn;
+        var tm = hora.split(" ");
+        var hn = tm[0];
+        var tn = tm[1];
+        var td = hn.split(":");
+        var hd = parseInt(td[0]);
+        var md = td[1];
+        if (tn === "PM") {
+            hd = hd + 12;
+        }
+        if (hd < 10) {
+            hd.toString();
+            hd = "0" + hd;
+        }
+        var hc = hd + ":" + md;
+        if (hc < hr) {
+            swal("¡Hey!", "Debe escoger una hora superior a la actual", "error");
+        } else {
+            swal({title: "Datos Registrados",
+                text: "Ahora debe escoger los equipos",
+                type: "success",
+                closeOnConfirm: true},
+            function (isConfirm) {
+                if (isConfirm) {
+                    confirmloan(prest, doc, lug, hora);
+                }
+            });
+        }
+    } else {
+        if (doc === "" || lug === "" || hora === "") {
+            if (doc === "") {
+                swal("¡Hey!", "Debe escoger el docente a quien se le prestará el/los equipo(s)", "warning");
+            }
+            if (lug === "") {
+                swal("¡Hey!", "Debe ingresar el lugar en donde se usará el/los equipo(s)", "warning");
+            }
+            if (hora === "") {
+                swal("¡Hey!", "Debe escoger la hora límite en la que se debe devolver el/los equipo(s)", "warning");
+            }
+        }
+    }
 }

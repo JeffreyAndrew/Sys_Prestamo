@@ -140,6 +140,21 @@ public class PrestamoDAO {
         return m;
     }
 
+    public boolean deleteloan(int id) {
+        boolean m = false;
+        sql = "{CALL DELETE_LOAN(?)}";
+        try {
+            cn = conexion.getConexion();
+            cs = cn.prepareCall(sql);
+            cs.setInt(1, id);
+            rs = cs.executeQuery();
+            m = true;
+        } catch (Exception e) {
+            System.out.println("Error al eliminar prestamo " + e);
+        }
+        return m;
+    }
+
     public boolean changeestatus(String a, int e) {
         boolean m = false;
         sql = "UPDATE DET_EQUIPO SET ESTADO=? WHERE IDDET_EQUIPO=?";

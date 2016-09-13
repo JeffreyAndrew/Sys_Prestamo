@@ -25,6 +25,7 @@
                 int irol = u.getIdRol();
         %>
     <center><h1>Personas</h1></center>
+    <input type="hidden" value="<%= u.getIdPersona() %>" id="idper">
     <div class="col-md-4">
         <select onchange="listar(this.value)" id="selRol" class="form-control select2">
             <option disabled selected>Elegir Rol</option>

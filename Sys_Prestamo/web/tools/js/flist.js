@@ -103,7 +103,7 @@ function deleteperson(id) {
                         closeOnConfirm: true},
                     function (isConfirm) {
                         if (isConfirm) {
-                            location.href = "ci?op=6";
+                            location.href = "ci?op=6&id="+$("#idper").val();
                         }
                     });
                 } else {

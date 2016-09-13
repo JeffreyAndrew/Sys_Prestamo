@@ -27,7 +27,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
 
     private PreparedStatement ps;
     private Connection cn;
-    private ResultSet rs=null;
+    private ResultSet rs = null;
     private String sql;
     private CallableStatement cs;
     private Statement st;
@@ -99,7 +99,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
             ps.setInt(1, id);
             rs = ps.executeQuery();
         } catch (Exception e) {
-            System.out.println("Error al listar persona con RS "+e);
+            System.out.println("Error al listar persona con RS " + e);
         }
         return rs;
     }
@@ -125,15 +125,13 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
     @Override
     public boolean delete(int key) {
         boolean m = false;
-        sql = "DELETE FROM PERSONA WHERE IDPERSONA=?";
+        sql = "{CALL DELETE_USER(?)}";
         try {
             cn = conexion.getConexion();
-            ps = cn.prepareStatement(sql);
-            ps.setInt(1, key);
-            int a = ps.executeUpdate();
-            if (a > 0) {
-                m = true;
-            }
+            cs = cn.prepareCall(sql);
+            cs.setInt(1, key);
+            cs.executeUpdate();
+            m = true;
         } catch (Exception e) {
             System.out.println("Error al eliminar persona " + e);
         }
@@ -204,7 +202,7 @@ public class PersonaDAO implements Operaciones<PersonaDTO> {
         }
         return lista;
     }
-    
+
     @Override
     public List<PersonaDTO> readall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

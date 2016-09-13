@@ -40,8 +40,9 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
+                        <label>Mostrar <select name="inventario_length" aria-controls="inventario" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> registros</label> 
                         <div class="box-header">
-                            <h3 class="box-title">Historial General...</h3>
+                            <h3 class="box-title">Historial General</h3>
                         </div>
                        
 
@@ -68,8 +69,17 @@
                 <!-- /.col -->
             
             <!-- /.row -->
-        </section>
+        </section>            
+                                  
+        <script src="../../plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
         
+           <script>
+            $(function () {
+                $('#equipo').DataTable({
+                    
+                });
+            });
+        </script>
         
         
         

@@ -43,6 +43,7 @@
          <section class="content">
             <div class="row">
                 <div class="col-xs-12">
+                    <label>Mostrar <select name="inventario_length" aria-controls="inventario" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> registros</label> 
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Historial prestamo por producto....</h3>
@@ -82,7 +83,15 @@
         
         
         
+        <script src="../../plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
         
+           <script>
+            $(function () {
+                $('#prestamo').DataTable({
+                    
+                });
+            });
+        </script>
         
         
     </body>

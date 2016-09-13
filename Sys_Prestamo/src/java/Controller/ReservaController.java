@@ -86,7 +86,9 @@ public class ReservaController extends HttpServlet {
                 case 2:
                     pagina = "/vistas/reserva/reservar.jsp";
                     List<PersonaDTO> listdoc=dao.docvalidated();
+                    ArrayList listdeq=ddao.especifiedreadall();
                     session.setAttribute("listdoc", listdoc);
+                    session.setAttribute("listdeq", listdeq);
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                     break;
@@ -95,8 +97,7 @@ public class ReservaController extends HttpServlet {
                     String[] parts=request.getParameter("fechas").split(" - ");
                     String fechaInicio=parts[0];
                     String fechaFinal=parts[1];
-                    String docente =request.getParameter("docente");
-                    int iddocente =Integer.parseInt(request.getParameter("iddocente"));
+                    int idocente =Integer.parseInt(request.getParameter("idocente"));
                     int iddet_equipo =ddao.readByCode(Integer.parseInt(request.getParameter("codigo"))).get(0).getIdDet_Equipo();
                     String dia =request.getParameter("dia");
                     ReservaDTO rdto=new ReservaDTO();
@@ -104,7 +105,7 @@ public class ReservaController extends HttpServlet {
                     rdto.setFecha_inicio(fechaInicio);
                     rdto.setFecha_fin(fechaFinal);
                     rdto.setId_detequipo(iddet_equipo);
-                    rdto.setId_docente(iddocente);
+                    rdto.setId_docente(idocente);
                     rdto.setId_usuario(1);
                     dao.create(rdto);
                     dispatcher = getServletContext().getRequestDispatcher(pagina);

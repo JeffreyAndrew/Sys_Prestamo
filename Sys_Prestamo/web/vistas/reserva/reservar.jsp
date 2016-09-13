@@ -4,9 +4,14 @@
     Author     : CESAR
 --%>
 
+<%@page import="DTO.EquipoDTO"%>
+<%@page import="DTO.Det_EquipoDTO"%>
+<%@page import="DTO.Det_EquipoDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="DTO.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="listdoc" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean id="listdeq" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,6 +34,8 @@
         <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
         <!-- Bootstrap time Picker -->
         <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
         <!-- Select2 -->
         <link rel="stylesheet" href="plugins/select2/select2.min.css">
         <!-- Theme style -->
@@ -78,7 +85,8 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </div>
-                                            <input id="idocente" type="text" name="docente" class="form-control" value="">                                         
+                                            <input id="docente" type="text" name="docente" class="form-control" value="" disabled="disabled">
+                                            <input id="idocente" type="hidden" name="idocente" class="form-control" value="0">
                                         </div>
                                         <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>   Elegir Docente</button>
                                     </div> 
@@ -87,14 +95,24 @@
 
                                 <div class="form-group">
 
-                                    <label for="codigo">Equipo</label>
+                                    <label>Equipos</label>
                                     <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-hdd-o"></i>
-                                        </div>
-                                        <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" name="codigo" placeholder="Equipo">
+                                        <table id="deqselected" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Marca</th>
+                                                    <th>Serie</th>
+                                                    <th>Tipo</th>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected">
+                                            </tbody>
+                                        </table>
                                     </div>                                   
-                                    <button id="idaddeq" type="button" data-toggle="modal" data-target="#equipoModal" class="btn btn-warning" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>Seleccionar Equipo(s)</button><br>
+                                    <button id="idaddeq" type="button" data-toggle="modal" data-target="#equipoModal" class="btn btn-warning" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>Escoger Equipo(s)</button><br>
 
                                 </div>
 
@@ -194,7 +212,7 @@
                                                 <center><h1 class="modal-title">Atención</h1></center>
                                             </div>
                                             <div class="modal-body">
-                                                <h2 style="text-align: justify">Esta seguro de que desea cancelar el registro.</h2>
+                                                <h2 style="text-align: justify">¿Esta seguro de que desea cancelar la reserva?</h2>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
@@ -244,7 +262,7 @@
                                     <h3 class="box-title">Lista de Docentes habilitados</h3>
                                 </div>
                                 <div id="iboxd" class="box-body">
-                                    <table id="inventario" class="table table-bordered table-striped">
+                                    <table id="availableDoc" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Nombres y Apellidos</th>
@@ -258,9 +276,9 @@
                                                     PersonaDTO pdto = (PersonaDTO) listdoc.get(i);
                                             %>
                                             <tr>
-                                                <td><%=pdto.getNombre() +" "+pdto.getApellidos() %></td>
+                                                <td><%=pdto.getNombre() + " " + pdto.getApellidos()%></td>
                                                 <td><%=pdto.getDni()%></td>
-                                                <td><a href="#"><span class="glyphicon glyphicon-check"></span></a></td>
+                                                <td><a data-dismiss="modal" onclick="selectdoc('<%=pdto.getNombre() + " " + pdto.getApellidos()%>', '<%=pdto.getIdPersona()%>')"><span class="glyphicon glyphicon-check"></span></a></td>
                                             </tr>
                                             <%
                                                     i++;
@@ -281,8 +299,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -299,17 +316,69 @@
 
                     <div class="modal-body">
                         <div class="box-body">
+                            <%
+                                i = 0;
+                                List<Det_EquipoDTO> list1 = (List<Det_EquipoDTO>) listdeq.get(0);
+                                List<EquipoDTO> list2 = (List<EquipoDTO>) listdeq.get(1);
+                                if (list1.isEmpty()) {
+                            %>
                             <div id="iadvice" class="callout callout-danger">
                                 <h4>Equipos no disponibles</h4>
                                 <p>Lamentablemente no hay equipos disponibles en este momento</p>
                             </div>
-                            <div id="contab" class="box hidden">
+                            <%} else {
+                            %>
+                            <div id="contab" class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">Lista de Equipos</h3>
                                 </div>
-                                <div id="ibox" class="box-body">                                        
+                                <div id="ibox" class="box-body">
+                                    <table id="inventario" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Marca</th>
+                                                <th>Serie</th>
+                                                <th>Tipo</th>
+                                                <th>Código</th>
+                                                <th>Descripción</th>
+                                                <th>Seleccionar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                while (i < list1.size()) {
+                                                    EquipoDTO eq = new EquipoDTO();
+                                                    Det_EquipoDTO deq = new Det_EquipoDTO();
+                                                    eq = list2.get(i);
+                                                    deq = list1.get(i);
+                                            %>
+                                            <tr>
+                                                <td><%=eq.getMarca()%></td>
+                                                <td><%=eq.getSerie()%></td>
+                                                <td><%=eq.getTipo()%></td>
+                                                <td><%=deq.getCodigo()%></td>
+                                                <td><%=deq.getDescripcion()%></td>
+                                                <td><a data-dismiss="modal" onclick="selecteq('<%=eq.getMarca()%>','<%=eq.getSerie()%>','<%=eq.getTipo()%>','<%=deq.getCodigo()%>','<%=deq.getDescripcion()%>',<%=deq.getIdDet_Equipo() %>)"><span class="glyphicon glyphicon-check"></span></a></td>
+                                            </tr>
+                                            <%
+                                                    i++;
+                                                }
+                                            %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Marca</th>
+                                                <th>Serie</th>
+                                                <th>Tipo</th>
+                                                <th>Código</th>
+                                                <th>Descripción</th>
+                                                <th>Seleccionar</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                             </div>
+                            <%}%>
                         </div>
                     </div>
 
@@ -321,7 +390,6 @@
             </div>
 
         </div>     
-        <script src="tools/js/functionsloan.js" type="text/javascript"></script>  
         <!-- jQuery 2.2.3 -->
         <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
@@ -335,6 +403,9 @@
         <!-- date-range-picker -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- DataTables -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- bootstrap datepicker -->
         <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
         <!-- bootstrap time picker -->
@@ -345,12 +416,10 @@
         <script src="dist/js/app.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="dist/js/demo.js"></script>
+        <script src="tools/js/selectdoc.js" type="text/javascript"></script>
         <!-- Page script -->
         <script>
 
-
-                                                    var startDate;
-                                                    var endDate;
                                                     $(document).ready(function () {
                                                         //Initialize Select2 Elements
                                                         $(".select2").select2();

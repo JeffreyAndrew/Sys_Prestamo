@@ -58,17 +58,17 @@ function datDC(id) {
             for (var i = 0; i < lista.length; i++) {
                 $("#idocente").attr("value", lista[i].persona);
                 var url = "loan?mt=list";
-                var data = "op=4&idpersona="+id;      
+                var data = "op=4&idpersona=" + id;
                 $.post(url, data, function (objJson) {
                     var lista = objJson.lista;
                     if (lista.length === 0) {
-                        $(".eav").attr("class","callout callout-success eav");
-                        $(".eadv").attr("class","eadv hidden");
+                        $(".eav").attr("class", "callout callout-success eav");
+                        $(".eadv").attr("class", "eadv hidden");
                         $("#regp").removeAttr("disabled");
-                    }else{
-                        $("#regp").attr("disabled","");
-                        $(".eadv").attr("class","callout callout-danger eadv");
-                        $(".eav").attr("class","eav hidden");
+                    } else {
+                        $("#regp").attr("disabled", "");
+                        $(".eadv").attr("class", "callout callout-danger eadv");
+                        $(".eav").attr("class", "eav hidden");
                     }
                 });
                 $("#docenteModal").modal("hide");
@@ -155,10 +155,10 @@ function canloan() {
         if (isConfirm) {
             var filas = document.getElementById('datapres').rows.length;
             if (filas > 0) {
-                deleteeq($("#idprest").val(), filas);
+                deleteeq($("#iprestamo").val(), filas);
             } else {
                 var url = "loan?mt=remove&op=3";
-                var data = "id=" + $("#idprest").val();
+                var data = "id=" + $("#iprestamo").val();
                 $.post(url, data, function (objJson) {
                     if (objJson.rp) {
                         swal({title: "Prestamo Eliminado",
@@ -179,7 +179,36 @@ function canloan() {
     });
 }
 function deleteeq(id, nf) {
-
+    for (var i = 0; i < nf; i++) {
+        var a = document.getElementById('datapres').rows[i].cells[5].innerHTML.split('onclick="removeeq(');
+        var b = a[1].split(')"');
+        var ide = b[0];
+        var url = "loan?mt=update&op=1";
+        var data = "estado=1&iddet=" + ide;
+        alert(data);
+        $.post(url, data, function (objJson) {
+            if (objJson.resp === false) {
+                swal("Error al devolver", "Ocurrió un error al devolver el equipo", "error");
+            }
+        });
+    }
+    var url = "loan?mt=remove&op=3";
+    var data = "id=" + id;
+    $.post(url, data, function (objJson) {
+        if (objJson.rp) {
+            swal({title: "Prestamo Eliminado",
+                text: "El prestamo fue cancelado exitosamente",
+                type: "info",
+                closeOnConfirm: true},
+            function (isConfirm) {
+                if (isConfirm) {
+                    location.href = "main?op=1&id=" + $("#idprest").val();
+                }
+            });
+        } else {
+            alert("Ocurrió un error");
+        }
+    });
 }
 
 function validar() {

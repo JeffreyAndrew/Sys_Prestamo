@@ -138,7 +138,7 @@ public class PrestamoController extends HttpServlet {
                         case 1:
                             iddeteq = Integer.parseInt(request.getParameter("iddet"));
                             String est = request.getParameter("estado");
-                            pD.changeestatus(est, iddeteq);
+                            mp.put("resp",pD.changeestatus(est, iddeteq));
                             break;
                         case 2:
                             comentarioa = request.getParameter("com");

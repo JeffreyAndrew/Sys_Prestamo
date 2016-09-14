@@ -147,7 +147,7 @@ public class PrestamoDAO {
             cn = conexion.getConexion();
             cs = cn.prepareCall(sql);
             cs.setInt(1, id);
-            rs = cs.executeQuery();
+            cs.executeQuery();
             m = true;
         } catch (Exception e) {
             System.out.println("Error al eliminar prestamo " + e);

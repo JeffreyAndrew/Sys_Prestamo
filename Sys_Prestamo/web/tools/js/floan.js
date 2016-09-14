@@ -1,6 +1,6 @@
 function listardoc() {
     var url = "loan?mt=list";
-    var data = "op=4";
+    var data = "op=6&idrol=3";
     $.post(url, data, function (objJson) {
         var lista = objJson.lista;
         if (lista.length > 0) {
@@ -9,7 +9,7 @@ function listardoc() {
             $("#conTDoc").attr("class", "box");
             for (var i = 0; i < lista.length; i++) {
                 m += '<tr>';
-                m += '<td>' + lista[i].persona + '</td>';
+                m += '<td>' + lista[i].nombre + ' ' + lista[i].apellidos + '</td>';
                 m += '<td>' + lista[i].dni + '</td>';
                 m += '<td><button type="button" onclick="datDC(' + lista[i].idpersona + ')" class="btn btn-success"><i class="fa fa-check"></i></button></td>';
                 m += '</tr>';
@@ -48,7 +48,34 @@ function listardoc() {
         }
     });
 }
-
+function datDC(id) {
+    $("#iddoc").attr("value", id);
+    var url = "loan?mt=list";
+    var data = "op=5&idpersona=" + id;
+    $.post(url, data, function (objJson) {
+        var lista = objJson.lista;
+        if (lista.length > 0) {
+            for (var i = 0; i < lista.length; i++) {
+                $("#idocente").attr("value", lista[i].persona);
+                var url = "loan?mt=list";
+                var data = "op=4&idpersona="+id;      
+                $.post(url, data, function (objJson) {
+                    var lista = objJson.lista;
+                    if (lista.length === 0) {
+                        $(".eav").attr("class","callout callout-success eav");
+                        $(".eadv").attr("class","eadv hidden");
+                        $("#regp").removeAttr("disabled");
+                    }else{
+                        $("#regp").attr("disabled","");
+                        $(".eadv").attr("class","callout callout-danger eadv");
+                        $(".eav").attr("class","eav hidden");
+                    }
+                });
+                $("#docenteModal").modal("hide");
+            }
+        }
+    });
+}
 function confirmloan(prest, doc, lug, hora) {
     $("#regp").attr("class", "hidden");
     $("#idescd").attr("class", "hidden");
@@ -140,10 +167,10 @@ function canloan() {
                             closeOnConfirm: true},
                         function (isConfirm) {
                             if (isConfirm) {
-                                location.href="main?op=1&id="+$("#idprest").val();
+                                location.href = "main?op=1&id=" + $("#idprest").val();
                             }
                         });
-                    }else{
+                    } else {
                         alert("Ocurrió un error");
                     }
                 });

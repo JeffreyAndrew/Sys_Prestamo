@@ -65,8 +65,11 @@
                     </div>
                 </div>                    
                 <div class="col-md-12 adv">
-                    <div class="callout callout-success">
-                        <p><i class="fa fa-warning"></i>    Para poder escoger el/los equipo(s) debe confirmar los datos del prestamo, revise bien antes de confirmar</p>
+                    <div class="callout callout-success eav">
+                        <p><i class="fa fa-info-circle"></i>    Para poder escoger el/los equipo(s) debe confirmar los datos del prestamo, revise bien antes de confirmar</p>
+                    </div>
+                    <div class="eadv hidden">
+                        <p><i class="fa fa-warning"></i>    Este docente no puede realizar un prestamo porque aún tiene un prestamo activo</p>
                     </div>
                     <center><button id="regp" type="button" class="btn btn-instagram" ><i class="fa fa-check"></i>   Confirmar</button>  </center>
                 </div>

@@ -221,23 +221,17 @@ public class PrestamoDAO {
         return lista;
     }
 
-    public ArrayList<Map<String, ?>> listdh() {
-        sql = "SELECT DISTINCT(P.IDPERSONA),P.NOMBRE,P.APELLIDOS,P.DNI "
-                + "FROM PERSONA P LEFT OUTER JOIN PRESTAMO E  "
-                + "ON P.IDPERSONA=E.IDPERSONA "
-                + "WHERE P.IDROL=3 "
-                + "AND (E.IDPERSONA IS NULL) "
-                + "OR (P.IDPERSONA IS NULL OR E.ESTADO=0);";
+    public ArrayList<Map<String, ?>> listdh(int id) {
+        sql = "SELECT * FROM PRESTAMO WHERE IDPERSONA=? AND ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> m = new HashMap<>();
                 m.put("idpersona", rs.getInt("IDPERSONA"));
-                m.put("persona", rs.getString("NOMBRE") + " " + rs.getString("APELLIDOS"));
-                m.put("dni", rs.getString("DNI"));
                 lista.add(m);
             }
         } catch (Exception e) {

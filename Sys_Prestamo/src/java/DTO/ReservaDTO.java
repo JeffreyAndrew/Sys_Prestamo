@@ -13,11 +13,12 @@ public class ReservaDTO {
     private int id_reserva;
     private int id_usuario;
     private int id_docente;
-    private int id_detequipo;
     private String fecha_reserva;
     private String fecha_inicio;
     private String fecha_fin;
     private String dia;
+    private String hora_ini;
+    private String hora_fin;
 
     public int getId_reserva() {
         return id_reserva;
@@ -41,14 +42,6 @@ public class ReservaDTO {
 
     public void setId_docente(int id_docente) {
         this.id_docente = id_docente;
-    }
-
-    public int getId_detequipo() {
-        return id_detequipo;
-    }
-
-    public void setId_detequipo(int id_detequipo) {
-        this.id_detequipo = id_detequipo;
     }
 
     public String getFecha_reserva() {
@@ -83,25 +76,43 @@ public class ReservaDTO {
         this.dia = dia;
     }
 
-    public ReservaDTO(int id_reserva, int id_usuario, int id_docente, int id_detequipo, String fecha_reserva, String fecha_inicio, String fecha_fin, String dia) {
+    public String getHora_ini() {
+        return hora_ini;
+    }
+
+    public void setHora_ini(String hora_ini) {
+        this.hora_ini = hora_ini;
+    }
+
+    public String getHora_fin() {
+        return hora_fin;
+    }
+
+    public void setHora_fin(String hora_fin) {
+        this.hora_fin = hora_fin;
+    }
+
+    public ReservaDTO(int id_reserva, int id_usuario, int id_docente, int id_detequipo, String fecha_reserva, String fecha_inicio, String fecha_fin, String dia,String hora_ini,String hora_fin) {
         this.id_reserva = id_reserva;
         this.id_usuario = id_usuario;
         this.id_docente = id_docente;
-        this.id_detequipo = id_detequipo;
         this.fecha_reserva = fecha_reserva;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.dia = dia;
+        this.hora_ini = hora_ini;
+        this.hora_fin = hora_fin;
     }
 
-    public ReservaDTO(int id_usuario, int id_docente, int id_detequipo, String fecha_reserva, String fecha_inicio, String fecha_fin, String dia) {
+    public ReservaDTO(int id_usuario, int id_docente, int id_detequipo, String fecha_reserva, String fecha_inicio, String fecha_fin, String dia,String hora_ini,String hora_fin) {
         this.id_usuario = id_usuario;
         this.id_docente = id_docente;
-        this.id_detequipo = id_detequipo;
         this.fecha_reserva = fecha_reserva;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.dia = dia;
+        this.hora_ini = hora_ini;
+        this.hora_fin = hora_fin;
     }
 
     public ReservaDTO() {

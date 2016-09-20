@@ -3,27 +3,63 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var eqsel = [];
 
+var i = 0;
 function selectdoc(nombre, id) {
     $("#docente").val(nombre);
     $("#idocente").val(id);
 }
-
+$("#breserve").click(function(){
+    $.post("rc",{
+            'eqsel[]':eqsel,
+            gr:3,
+            fechas:$("#reservation").val(),
+            idocente:$("#idocente").val(),
+            dia:$("#dia").val(),
+            hinicio:$("#hinicio").val(),
+            hfinal:$("#hfinal").val(),
+            idprest:$("#idprest").val()
+    },function(responseText){
+        $(location).attr('href',responseText);
+    });
+    return false;
+});
 function selecteq(marca, serie, tipo, codigo, descripcion, id) {
-    var i = 0;
-    var m = "";
-    $("#selected").empty();
-    m += '<tr id="eq' + id + '">';
+    deleteeq(id);
+    var m = '<tr id="eq' + id + '">';
+    $("#deqselected .odd").remove();
     m += '<td>' + marca + '</td>';
     m += '<td>' + serie + '</td>';
     m += '<td>' + tipo + '</td>';
     m += '<td>' + codigo + '</td>';
     m += '<td>' + descripcion + '</td>';
-    m += '<td><button type="button" onclick="deleteeq()"  class="btn btn-danger"><i class="fa fa-close"></i></button></td>';
+    m += '<td><button type="button" onclick="deleteeq(' + id + ')"  class="btn btn-danger"><i class="fa fa-close"></i></button></td>';
     m += '</tr>';
+    var a = 0;
+    if (eqsel.length == 0) {
+        eqsel.push(id);
+    } else {
+        for (i = 0; i < eqsel.length; i++) {
+            if (eqsel[i] == id) {
+                a = 1;
+            }
+        }
+        if (a == 0) {
+            eqsel.push(id);
+        }
+    }
     $("#selected").append(m);
 }
 
+function deleteeq(ideq) {
+    $("#deqselected #eq" + ideq).remove();
+    for (i = 0; i < eqsel.length; i++) {
+        if (eqsel[i] == ideq) {
+            eqsel.splice(i, 1);
+        }
+    }
+}
 
 $(function () {
     $('#inventario, #availableDoc').DataTable({

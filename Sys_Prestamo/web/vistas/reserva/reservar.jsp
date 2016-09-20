@@ -4,6 +4,7 @@
     Author     : CESAR
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
 <%@page import="DTO.EquipoDTO"%>
 <%@page import="DTO.Det_EquipoDTO"%>
 <%@page import="DTO.Det_EquipoDTO"%>
@@ -12,6 +13,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="listdoc" scope="session" class="java.util.ArrayList"/>
 <jsp:useBean id="listdeq" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean id="listp" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,29 +24,12 @@
         <%@include file="/WEB-INF/jspf/impbts.jspf" %>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <!-- Bootstrap 3.3.6 -->
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- daterange picker -->
-        <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-        <!-- bootstrap datepicker -->
-        <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-        <!-- Bootstrap time Picker -->
-        <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css">
-        <!-- DataTables -->
-        <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-        <!-- Select2 -->
-        <link rel="stylesheet" href="plugins/select2/select2.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
-        <!-- Hola! -->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -73,11 +58,13 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" method="post" action="rc">
+                        <form id="doreserve" role="form" method="post" action="rc">
                             <div class="box-body" style="margin:40px 20px 0px 30px; width: 50%;height: 50%; margin: 0 auto;">
                                 <div class="form-group">
-
-                                    <input id="idprest" type="hidden" class="form-control" disabled value=""><br>
+                                    <%
+                                        List<UsuarioDTO> list = (List<UsuarioDTO>) listp;
+                                    %>
+                                    <input id="idprest" type="hidden" value="<%=list.get(0).getIdusuario()%>"><br>
 
                                     <div class="form-group">
                                         <label>Docente :</label>
@@ -97,7 +84,7 @@
 
                                     <label>Equipos</label>
                                     <div class="input-group">
-                                        <table id="deqselected" class="table table-bordered table-striped">
+                                        <table id="deqselected" class="table table-bordered table-striped table-responsive">
                                             <thead>
                                                 <tr>
                                                     <th>Marca</th>
@@ -143,10 +130,6 @@
                                         <option value="SATURDAY">Sábado</option>
                                     </select>
                                 </div>
-
-                                <div class="form-group">
-                                    <input type="hidden" name="gr" value="3">
-                                </div>
                                 <div class="row">
                                     <!-- time Picker -->
                                     <div class="bootstrap-timepicker col-md-6">
@@ -154,7 +137,7 @@
                                             <label>Desde: </label>
 
                                             <div class="input-group">
-                                                <input type="text" class="form-control timepicker">
+                                                <input id="hinicio" type="text" class="form-control timepicker">
 
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
@@ -170,7 +153,7 @@
                                             <label>Hasta: </label>
 
                                             <div class="input-group">
-                                                <input type="text" class="form-control timepicker">
+                                                <input id="hfinal" type="text" class="form-control timepicker">
 
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
@@ -197,7 +180,7 @@
                                                 <h2 style="text-align: justify">¿Esta seguro de que desea realizar esta reserva? Si es necesario verifique los campos nuevamente.</h2>
                                             </div>
                                             <div class="modal-footer">
-                                                <input type="submit" onsubmit="enviar()" class="btn btn-default btn-lg" value="Reservar">
+                                                <input id="breserve" type="submit" class="btn btn-default btn-lg" value="Reservar">
                                                 <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
                                             </div>
                                         </div>
@@ -262,7 +245,7 @@
                                     <h3 class="box-title">Lista de Docentes habilitados</h3>
                                 </div>
                                 <div id="iboxd" class="box-body">
-                                    <table id="availableDoc" class="table table-bordered table-striped">
+                                    <table id="availableDoc" class="table table-bordered table-striped table-responsive">
                                         <thead>
                                             <tr>
                                                 <th>Nombres y Apellidos</th>
@@ -272,13 +255,14 @@
                                         </thead>
                                         <tbody>
                                             <%
-                                                while (i < listdoc.size()) {
-                                                    PersonaDTO pdto = (PersonaDTO) listdoc.get(i);
+                                                i = 0;
+                                                List<PersonaDTO> listd = (List<PersonaDTO>) listdoc;
+                                                while (i < listd.size()) {
                                             %>
                                             <tr>
-                                                <td><%=pdto.getNombre() + " " + pdto.getApellidos()%></td>
-                                                <td><%=pdto.getDni()%></td>
-                                                <td><a data-dismiss="modal" onclick="selectdoc('<%=pdto.getNombre() + " " + pdto.getApellidos()%>', '<%=pdto.getIdPersona()%>')"><span class="glyphicon glyphicon-check"></span></a></td>
+                                                <td><%=listd.get(i).getNombre() + " " + listd.get(i).getApellidos()%></td>
+                                                <td><%=listd.get(i).getDni()%></td>
+                                                <td><a data-dismiss="modal" onclick="selectdoc('<%=listd.get(i).getNombre() + " " + listd.get(i).getApellidos()%>', '<%=listd.get(i).getIdPersona()%>')"><span class="glyphicon glyphicon-check"></span></a></td>
                                             </tr>
                                             <%
                                                     i++;
@@ -358,7 +342,7 @@
                                                 <td><%=eq.getTipo()%></td>
                                                 <td><%=deq.getCodigo()%></td>
                                                 <td><%=deq.getDescripcion()%></td>
-                                                <td><a data-dismiss="modal" onclick="selecteq('<%=eq.getMarca()%>','<%=eq.getSerie()%>','<%=eq.getTipo()%>','<%=deq.getCodigo()%>','<%=deq.getDescripcion()%>',<%=deq.getIdDet_Equipo() %>)"><span class="glyphicon glyphicon-check"></span></a></td>
+                                                <td><a data-dismiss="modal" onclick="selecteq('<%=eq.getMarca()%>', '<%=eq.getSerie()%>', '<%=eq.getTipo()%>', '<%=deq.getCodigo()%>', '<%=deq.getDescripcion()%>',<%=deq.getIdDet_Equipo()%>)"><span class="glyphicon glyphicon-check"></span></a></td>
                                             </tr>
                                             <%
                                                     i++;
@@ -400,8 +384,6 @@
         <script src="plugins/input-mask/jquery.inputmask.js"></script>
         <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <!-- date-range-picker -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="plugins/daterangepicker/daterangepicker.js"></script>
         <!-- DataTables -->
         <script src="plugins/datatables/jquery.dataTables.min.js"></script>
@@ -457,7 +439,8 @@
 
                                                         //Timepicker
                                                         $(".timepicker").timepicker({
-                                                            showInputs: false
+                                                            showInputs: false,
+                                                            showMeridian: false
                                                         });
                                                     });
 

@@ -4,6 +4,7 @@
     Author     : CESAR
 --%>
 
+<%@page import="DAO.ReservaDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="DTO.Det_EquipoDTO"%>
 <%@page import="DTO.EquipoDTO"%>
@@ -65,14 +66,15 @@
                                     <tr>
                                         <th>Usuario</th>
                                         <th>Docente</th>
-                                        <th>Tipo de Equipo</th>
-                                        <th>Código</th>
                                         <th>Fecha de Reserva</th>
                                         <th>Fecha de Inicio</th>
                                         <th>Fecha Final</th>
                                         <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>N° Equipos</th>
                                         <th>Editar</th>
-                                        <th>Eliminar</th>
+                                        <th>Cancelar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,20 +83,17 @@
                                         List<ReservaDTO> list1=(List<ReservaDTO>) lista.get(0);
                                         List<UsuarioDTO> list2=(List<UsuarioDTO>) lista.get(1);
                                         List<PersonaDTO> list3=(List<PersonaDTO>) lista.get(2);
-                                        List<EquipoDTO> list4=(List<EquipoDTO>) lista.get(3);
-                                        List<Det_EquipoDTO> list5=(List<Det_EquipoDTO>) lista.get(4);
+                                        ReservaDAO rdao=new ReservaDAO();
+                                        /*List<EquipoDTO> list4=(List<EquipoDTO>) lista.get(3);
+                                        List<Det_EquipoDTO> list5=(List<Det_EquipoDTO>) lista.get(4);*/
                                         for (int i = 0; i < list1.size(); i++) {
                                             ReservaDTO rdto = list1.get(i);
                                             UsuarioDTO udto = list2.get(i);
                                             PersonaDTO pdto = list3.get(i);
-                                            EquipoDTO edto = list4.get(i);
-                                            Det_EquipoDTO ddto = list5.get(i);
                                     %>
                                     <tr>
                                         <td><%=udto.getUser()%></td>
                                         <td><%=pdto.getNombre()%></td>
-                                        <td><%=edto.getTipo()%></td>
-                                        <td><%=ddto.getCodigo()%></td>
                                         <td><%=rdto.getFecha_reserva()%></td>
                                         <td><%=rdto.getFecha_inicio()%></td>
                                         <td><%=rdto.getFecha_fin()%></td>
@@ -121,6 +120,9 @@
                                                 %><td>Lunes</td> <%
                                                 break;
                                         }%>
+                                        <td><%=rdto.getHora_ini()%></td>
+                                        <td><%=rdto.getHora_fin()%></td>
+                                        <td><%=rdao.counteq(rdto.getId_reserva()).get(0) %></td>
                                         <td><a href="rc?ge=3&id=<%=rdto.getId_reserva() %>"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                         <td><a data-toggle="modal" data-target="#delete<%=rdto.getId_reserva() %>"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 <div class="modal modal-warning fade" id="delete<%=rdto.getId_reserva() %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -150,14 +152,15 @@
                                     <tr>
                                         <th>Usuario</th>
                                         <th>Docente</th>
-                                        <th>Tipo de Equipo</th>
-                                        <th>Código</th>
                                         <th>Fecha de Reserva</th>
                                         <th>Fecha de Inicio</th>
                                         <th>Fecha Final</th>
                                         <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>N° Equipos</th>
                                         <th>Editar</th>
-                                        <th>Eliminar</th>
+                                        <th>Cancelar</th>
                                     </tr>
                                 </tfoot>
                             </table>

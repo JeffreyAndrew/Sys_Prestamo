@@ -154,6 +154,7 @@ public class UsuarioDAO implements Operaciones<UsuarioDTO> {
             while (rs.next()) {
                 UsuarioDTO us = new UsuarioDTO();
                 us.setIdusuario(rs.getInt("idUsuario"));
+                us.setIdpersona(rs.getInt("idPersona"));
                 us.setUser(rs.getString("usuario"));
                 us.setPassword(rs.getString("clave"));
                 list.add(us);

@@ -43,7 +43,6 @@ public class test2 {
         rdto.setDia("SUNDAY");
         rdto.setFecha_inicio("2016-05-06");
         rdto.setFecha_fin("2016-05-06");
-        rdto.setId_detequipo(1);
         rdto.setId_docente(2);
         rdto.setId_usuario(1);
         if(rdao.create(rdto)){

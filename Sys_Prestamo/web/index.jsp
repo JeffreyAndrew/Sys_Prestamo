@@ -110,7 +110,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a target="box" href="rc?gr=2"><i class="fa fa-circle-o"></i> Hacer una Reserva</a></li>
+                                <li><a target="box" href="rc?gr=2&id=<%= u.getIdPersona()%>"><i class="fa fa-circle-o"></i> Hacer una Reserva</a></li>
                                 <li><a target="box" href="rc?gr=1"><i class="fa fa-circle-o"></i> Lista de Reservas</a></li>
                             </ul>
                         </li>

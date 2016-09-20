@@ -30,17 +30,18 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
     public boolean create(ReservaDTO e) {
         boolean m = false;
         sql = "INSERT INTO reserva(id_reserva,id_usuario,"
-                + "id_docente,id_detequipo,fecha_reserva,fecha_inicio,fecha_fin,dia)"
-                + " VALUES(NULL, ? , ? , ? , (SELECT SYSDATE()) , ? , ? , ? )";
+                + "id_docente,fecha_reserva,fecha_inicio,fecha_fin,dia,hora_ini,hora_fin)"
+                + " VALUES (NULL, ? , ? , (SELECT CURDATE()) , ? , ? , ? , TIME_FORMAT(?,'%T'), TIME_FORMAT(?,'%T') )";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setInt(1, e.getId_usuario());
             ps.setInt(2, e.getId_docente());
-            ps.setInt(3, e.getId_detequipo());
-            ps.setString(4, e.getFecha_inicio());
-            ps.setString(5, e.getFecha_fin());
-            ps.setString(6, e.getDia().toUpperCase());
+            ps.setString(3, e.getFecha_inicio());
+            ps.setString(4, e.getFecha_fin());
+            ps.setString(5, e.getDia().toUpperCase());
+            ps.setString(6, e.getHora_ini());
+            ps.setString(7, e.getHora_fin());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -65,11 +66,12 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
                 dto.setId_reserva(rs.getInt("id_reserva"));
                 dto.setId_usuario(rs.getInt("id_usuario"));
                 dto.setId_docente(rs.getInt("id_docente"));
-                dto.setId_detequipo(rs.getInt("id_detequipo"));
                 dto.setFecha_reserva(rs.getString("fecha_reserva"));
                 dto.setFecha_inicio(rs.getString("fecha_inicio"));
                 dto.setFecha_fin(rs.getString("fecha_fin"));
                 dto.setDia(rs.getString("dia"));
+                dto.setHora_ini(rs.getString("hora_ini"));
+                dto.setHora_fin(rs.getString("hora_fin"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
@@ -99,17 +101,18 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
     @Override
     public boolean update(ReservaDTO e) {
         boolean m = false;
-        sql = "update reserva set id_usuario= ? ,id_docente= ? ,id_detequipo= ? ,fecha_reserva= (SELECT SYSDATE()) ,fecha_inicio= ? ,fecha_fin= ? ,dia= ? where id_reserva= ? ";
+        sql = "update reserva set id_usuario= ? ,id_docente= ? ,fecha_reserva= (SELECT CURRENT_DATE()) ,fecha_inicio= ? ,fecha_fin= ? ,dia= ?,hora_ini= TIME_FORMAT(?,'%T'),hora_fin= TIME_FORMAT(?,'%T') where id_reserva= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);
             ps.setInt(1, e.getId_usuario());
             ps.setInt(2, e.getId_docente());
-            ps.setInt(3, e.getId_detequipo());
-            ps.setString(4, e.getFecha_inicio());
-            ps.setString(5, e.getFecha_fin());
-            ps.setString(6, e.getDia().toUpperCase());
-            ps.setInt(7, e.getId_reserva());
+            ps.setString(3, e.getFecha_inicio());
+            ps.setString(4, e.getFecha_fin());
+            ps.setString(5, e.getDia().toUpperCase());
+            ps.setString(6, e.getHora_ini());
+            ps.setString(7, e.getHora_fin());
+            ps.setInt(8, e.getId_reserva());
             int a = ps.executeUpdate();
             if (a > 0) {
                 m = true;
@@ -133,11 +136,12 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
                 dto.setId_reserva(rs.getInt("id_reserva"));
                 dto.setId_usuario(rs.getInt("id_usuario"));
                 dto.setId_docente(rs.getInt("id_docente"));
-                dto.setId_detequipo(rs.getInt("id_detequipo"));
                 dto.setFecha_reserva(rs.getString("fecha_reserva"));
                 dto.setFecha_inicio(rs.getString("fecha_inicio"));
                 dto.setFecha_fin(rs.getString("fecha_fin"));
                 dto.setDia(rs.getString("dia"));
+                dto.setHora_ini(rs.getString("hora_ini"));
+                dto.setHora_fin(rs.getString("hora_fin"));
                 lista.add(dto);
             }
         } catch (Exception ex) {
@@ -148,7 +152,6 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
 
     public List<PersonaDTO> docvalidated() {
         List<PersonaDTO> lista = new ArrayList();
-        PersonaDTO pdto = new PersonaDTO();
         sql = "SELECT P.IDPERSONA,P.NOMBRE,P.APELLIDOS,P.DNI "
                 + "FROM PERSONA P LEFT OUTER JOIN PRESTAMO E "
                 + "ON P.IDPERSONA=E.IDPERSONA "
@@ -160,11 +163,54 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
             ps = cn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                PersonaDTO pdto = new PersonaDTO();
                 pdto.setIdPersona(rs.getInt("IDPERSONA"));
                 pdto.setNombre(rs.getString("NOMBRE"));
                 pdto.setApellidos(rs.getString("APELLIDOS"));
                 pdto.setDni(rs.getInt("DNI"));
                 lista.add(pdto);
+            }
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return lista;
+    }
+
+    public List<Integer> counteq(int key) {
+        List<Integer> lista = new ArrayList();
+        sql = "select count(det_reserva.id_reserva) as numero from "
+                + "det_reserva where det_reserva.id_reserva= ?";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, key);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                lista.add(rs.getInt("numero"));
+            }
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return lista;
+    }
+
+    public List<Integer> especifiedread(ReservaDTO e) {
+        List<Integer> lista = new ArrayList();
+        sql = "select id_reserva from reserva where id_usuario=? and id_docente=? and fecha_reserva=(SELECT CURRENT_DATE()) and "
+                + "fecha_inicio=? and fecha_fin=? and dia=? and hora_ini=TIME_FORMAT(?,'%T') and hora_fin=TIME_FORMAT(?,'%T')";
+        try {
+            cn = conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, e.getId_usuario());
+            ps.setInt(2, e.getId_docente());
+            ps.setString(3, e.getFecha_inicio());
+            ps.setString(4, e.getFecha_fin());
+            ps.setString(5, e.getDia().toUpperCase());
+            ps.setString(6, e.getHora_ini());
+            ps.setString(7, e.getHora_fin());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                lista.add(rs.getInt("id_reserva"));
             }
         } catch (Exception ex) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

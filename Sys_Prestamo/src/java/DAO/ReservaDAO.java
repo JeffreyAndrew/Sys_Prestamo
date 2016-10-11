@@ -56,7 +56,9 @@ public class ReservaDAO implements Operaciones<ReservaDTO> {
     public List<ReservaDTO> read(int key) {
         List<ReservaDTO> lista = new ArrayList();
         ReservaDTO dto = new ReservaDTO();
-        sql = "select * from reserva where id_reserva= ? ";
+        sql = "select id_reserva,id_usuario,"
+                + "id_docente,fecha_reserva,date_format(fecha_inicio,'%Y/%m/%d') as 'fecha_inicio',date_format(fecha_fin,'%Y/%m/%d') as 'fecha_fin',dia,"
+                + "time_format(hora_ini,'%H:%i') as 'hora_ini',time_format(hora_fin,'%H:%i')  as 'hora_fin' from reserva where id_reserva= ? ";
         try {
             cn = conexion.getConexion();
             ps = cn.prepareStatement(sql);

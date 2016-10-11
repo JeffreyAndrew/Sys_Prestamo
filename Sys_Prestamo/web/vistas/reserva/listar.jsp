@@ -13,6 +13,7 @@
 <%@page import="DTO.ReservaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean id="listper" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,6 +62,10 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <%
+                                List<PersonaDTO> listp = (List<PersonaDTO>) listper;
+                                int idp=listp.get(0).getIdPersona();
+                            %>
                             <table id="inventario" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -80,10 +85,10 @@
                                 <tbody>
 
                                     <%
-                                        List<ReservaDTO> list1=(List<ReservaDTO>) lista.get(0);
-                                        List<UsuarioDTO> list2=(List<UsuarioDTO>) lista.get(1);
-                                        List<PersonaDTO> list3=(List<PersonaDTO>) lista.get(2);
-                                        ReservaDAO rdao=new ReservaDAO();
+                                        List<ReservaDTO> list1 = (List<ReservaDTO>) lista.get(0);
+                                        List<UsuarioDTO> list2 = (List<UsuarioDTO>) lista.get(1);
+                                        List<PersonaDTO> list3 = (List<PersonaDTO>) lista.get(2);
+                                        ReservaDAO rdao = new ReservaDAO();
                                         /*List<EquipoDTO> list4=(List<EquipoDTO>) lista.get(3);
                                         List<Det_EquipoDTO> list5=(List<Det_EquipoDTO>) lista.get(4);*/
                                         for (int i = 0; i < list1.size(); i++) {
@@ -97,35 +102,35 @@
                                         <td><%=rdto.getFecha_reserva()%></td>
                                         <td><%=rdto.getFecha_inicio()%></td>
                                         <td><%=rdto.getFecha_fin()%></td>
-                                        <% switch(rdto.getDia()){
-                                            case "SUNDAY":
-                                                %><td>Domingo</td> <%
-                                                break;
-                                            case "MONDAY":
-                                                %><td>Lunes</td> <%
-                                                break;
-                                            case "TUESDAY":
-                                                %><td>Martes</td> <%
-                                                break;
-                                            case "WEDNESDAY":
-                                                %><td>Lunes</td> <%
-                                                break;
-                                            case "THURSDAY":
-                                                %><td>Lunes</td> <%
-                                                break;
-                                            case "FRIDAY":
-                                                %><td>Lunes</td> <%
-                                                break;
-                                            case "SATURDAY":
-                                                %><td>Lunes</td> <%
-                                                break;
-                                        }%>
+                                        <% switch (rdto.getDia()) {
+                                                case "SUNDAY":
+                                        %><td>Domingo</td> <%
+                                                        break;
+                                                    case "MONDAY":
+                                        %><td>Lunes</td> <%
+                                                        break;
+                                                    case "TUESDAY":
+                                        %><td>Martes</td> <%
+                                                        break;
+                                                    case "WEDNESDAY":
+                                        %><td>Lunes</td> <%
+                                                        break;
+                                                    case "THURSDAY":
+                                        %><td>Lunes</td> <%
+                                                        break;
+                                                    case "FRIDAY":
+                                        %><td>Lunes</td> <%
+                                                        break;
+                                                    case "SATURDAY":
+                                        %><td>Lunes</td> <%
+                                                            break;
+                                                    }%>
                                         <td><%=rdto.getHora_ini()%></td>
                                         <td><%=rdto.getHora_fin()%></td>
-                                        <td><%=rdao.counteq(rdto.getId_reserva()).get(0) %></td>
-                                        <td><a href="rc?ge=3&id=<%=rdto.getId_reserva() %>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                        <td><a data-toggle="modal" data-target="#delete<%=rdto.getId_reserva() %>"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                <div class="modal modal-warning fade" id="delete<%=rdto.getId_reserva() %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <td><%=rdao.counteq(rdto.getId_reserva()).get(0)%></td>
+                                        <td><a href="rc?gr=5&id=<%=rdto.getId_reserva()%>&idp=<%=idp%>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td><a data-toggle="modal" data-target="#delete<%=rdto.getId_reserva()%>"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                <div class="modal modal-warning fade" id="delete<%=rdto.getId_reserva()%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -138,7 +143,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                <a href="rc?gr=4&id=<%=rdto.getId_reserva() %>" role="button" class="btn btn-outline">Eliminar</a>
+                                                <a href="rc?gr=4&id=<%=rdto.getId_reserva()%>" role="button" class="btn btn-outline">Eliminar</a>
                                             </div>
                                         </div>
                                         <!-- /.modal-content -->

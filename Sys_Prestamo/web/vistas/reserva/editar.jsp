@@ -4,7 +4,19 @@
     Author     : CESAR
 --%>
 
+<%@page import="DTO.EquipoDTO"%>
+<%@page import="DAO.Det_EquipoDAO"%>
+<%@page import="DTO.Det_EquipoDTO"%>
+<%@page import="DTO.Det_ReservaDTO"%>
+<%@page import="DAO.EquipoDAO"%>
+<%@page import="DTO.ReservaDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="DTO.PersonaDTO"%>
+<%@page import="DAO.PersonaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="listr" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean id="listselect" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean id="listper" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,15 +69,17 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <center> <h1 class="box-title" style="font-size: 50px">Realizar una Reserva</h1> </center>
+                            <center> <h1 class="box-title" style="font-size: 50px">Editar Reserva</h1> </center>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form role="form" method="post" action="rc">
                             <div class="box-body" style="margin:40px 20px 0px 30px; width: 50%;height: 50%; margin: 0 auto;">
                                 <div class="form-group">
-
-                                    <input id="idprest" type="hidden" class="form-control" disabled value=""><br>
+                                    <%
+                                        List<PersonaDTO> listp = (List<PersonaDTO>) listper;
+                                    %>
+                                    <input id="idprest" type="hidden" class="form-control" disabled value="<%=listp.get(0).getIdPersona()%>"><br>
 
                                     <div class="form-group">
                                         <label>Docente :</label>
@@ -73,7 +87,13 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </div>
-                                            <input id="idocente" type="text" name="docente" class="form-control" value="">                                         
+                                            <%
+                                                List<ReservaDTO> lista = (List<ReservaDTO>) listr;
+                                                List<Det_ReservaDTO> lista2 = (List<Det_ReservaDTO>) listselect;
+                                                PersonaDAO pdao = new PersonaDAO();
+                                                PersonaDTO p = pdao.read(lista.get(0).getId_docente()).get(0);
+                                            %>
+                                            <input id="idocente" type="text" name="docente" class="form-control" value="<%=p.getNombre() + " " + p.getApellidos()%>">                                         
                                         </div>
                                         <button type="button" id="idescd" data-toggle="modal" data-target="#docenteModal" class="btn btn-success" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>   Elegir Docente</button>
                                     </div> 
@@ -82,15 +102,43 @@
 
                                 <div class="form-group">
 
-                                    <label for="codigo">Equipo</label>
+                                    <label>Equipos</label>
                                     <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-hdd-o"></i>
-                                        </div>
-                                        <input type="text" required="" maxlength="120" class="form-control input-lg" id="tipo" name="codigo" placeholder="Equipo">
+                                        <table id="deqselected" class="table table-bordered table-striped table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Marca</th>
+                                                    <th>Serie</th>
+                                                    <th>Tipo</th>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected">
+                                                <%
+                                                    Det_EquipoDAO dedao = new Det_EquipoDAO();
+                                                    EquipoDAO edao = new EquipoDAO();
+                                                    for (int i = 0; i < lista2.size(); i++) {
+                                                        Det_EquipoDTO deq = dedao.read(lista2.get(i).getIdDet_Equipo()).get(0);
+                                                        EquipoDTO eq = edao.read(deq.getIdEquipo()).get(0);
+                                                %>
+                                                <tr id="eq<%=deq.getIdDet_Equipo()%>">
+                                                    <td><%=eq.getMarca()%></td>
+                                                    <td><%=eq.getSerie()%></td>
+                                                    <td><%=eq.getTipo()%></td>
+                                                    <td><%=deq.getCodigo()%></td>
+                                                    <td><%=deq.getDescripcion()%></td>
+                                                    <td><button type="button" onclick="deleteeq('<%=deq.getIdDet_Equipo()%>')" class="btn btn-danger"><i class="fa fa-close"></i></button></td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
                                     </div>                                   
-                                    <button id="idaddeq" type="button" data-toggle="modal" data-target="#equipoModal" class="btn btn-warning" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>Seleccionar Equipo(s)</button><br>
-                                    
+                                    <button id="idaddeq" type="button" data-toggle="modal" data-target="#equipoModal" class="btn btn-warning" style="float: right; margin-top: 10px"><i class="fa fa-search"></i>Escoger Equipo(s)</button><br>
+
                                 </div>
 
                                 <div class="form-group">
@@ -111,18 +159,118 @@
                                 <div class="form-group">
                                     <label for="dia">Día</label>
                                     <select id="dia" name="dia" class="form-control select2" style="width: 100%;">
-                                        <option selected="selected" value="SUNDAY">Domingo</option>
+                                        <%
+                                            switch (lista.get(0).getDia()) {
+                                                case "SUNDAY":
+                                        %>
+                                        <option value="SUNDAY" selected="selected">Domingo</option>
                                         <option value="MONDAY">Lunes</option>
                                         <option value="TUESDAY">Martes</option>
                                         <option value="WEDNESDAY">Miércoles</option>
                                         <option value="THURSDAY">Jueves</option>
                                         <option value="FRIDAY">Viernes</option>
-                                        <option value="SATURDAY">Sábado</option>
+                                        <option value="SATURDAY">Sábado</option><%
+                                                break;
+                                            case "MONDAY":
+                                        %>
+                                        <option value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY" selected="selected">Lunes</option>
+                                        <option value="TUESDAY">Martes</option>
+                                        <option value="WEDNESDAY">Miércoles</option>
+                                        <option value="THURSDAY">Jueves</option>
+                                        <option value="FRIDAY">Viernes</option>
+                                        <option value="SATURDAY">Sábado</option><%
+                                                break;
+                                            case "TUESDAY":
+                                        %>
+                                        <option value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY">Lunes</option>
+                                        <option value="TUESDAY" selected="selected">Martes</option>
+                                        <option value="WEDNESDAY">Miércoles</option>
+                                        <option value="THURSDAY">Jueves</option>
+                                        <option value="FRIDAY">Viernes</option>
+                                        <option value="SATURDAY">Sábado</option><%
+                                                break;
+                                            case "WEDNESDAY":
+                                        %>
+                                        <option value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY">Lunes</option>
+                                        <option value="TUESDAY">Martes</option>
+                                        <option value="WEDNESDAY" selected="selected">Miércoles</option>
+                                        <option value="THURSDAY">Jueves</option>
+                                        <option value="FRIDAY">Viernes</option>
+                                        <option value="SATURDAY">Sábado</option><%
+                                                break;
+                                            case "THURSDAY":
+                                        %>
+                                        <option value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY">Lunes</option>
+                                        <option value="TUESDAY">Martes</option>
+                                        <option value="WEDNESDAY">Miércoles</option>
+                                        <option value="THURSDAY" selected="selected">Jueves</option>
+                                        <option value="FRIDAY">Viernes</option>
+                                        <option value="SATURDAY">Sábado</option><%
+                                                break;
+                                            case "FRIDAY":
+                                        %>
+                                        <option value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY">Lunes</option>
+                                        <option value="TUESDAY">Martes</option>
+                                        <option value="WEDNESDAY">Miércoles</option>
+                                        <option value="THURSDAY">Jueves</option>
+                                        <option value="FRIDAY" selected="selected">Viernes</option>
+                                        <option value="SATURDAY">Sábado</option><%
+                                                break;
+                                            case "SATURDAY":
+                                        %>
+                                        <option value="SUNDAY">Domingo</option>
+                                        <option value="MONDAY">Lunes</option>
+                                        <option value="TUESDAY">Martes</option>
+                                        <option value="WEDNESDAY">Miércoles</option>
+                                        <option value="THURSDAY">Jueves</option>
+                                        <option value="FRIDAY">Viernes</option>
+                                        <option value="SATURDAY" selected="selected">Sábado</option><%
+                                                    break;
+                                            }
+                                        %>
                                     </select>
                                 </div>
+                                <div class="row">
+                                    <!-- time Picker -->
+                                    <div class="bootstrap-timepicker col-md-6">
+                                        <div class="form-group">
+                                            <label>Desde: </label>
 
+                                            <div class="input-group">
+                                                <input id="hinicio" type="text" class="form-control timepicker">
+
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                        <!-- /.form group -->
+                                    </div>
+
+                                    <div class="bootstrap-timepicker col-md-6">
+                                        <div class="form-group">
+                                            <label>Hasta: </label>
+
+                                            <div class="input-group">
+                                                <input id="hfinal" type="text" class="form-control timepicker2">
+
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                        <!-- /.form group -->
+                                    </div>
+                                </div>    
                                 <div class="form-group">
-                                    <input type="hidden" name="gr" value="3">
+                                    <input type="hidden" name="gr" value="6">
                                 </div>
 
                                 <div class="box-footer">
@@ -130,7 +278,7 @@
                                     <button type="button" class="btn btn-info pull-right" href="#reservar" data-toggle="modal">Reservar</button>
                                 </div> 
 
-                                <div class="modal fade" id="reservar">
+                                <div class="modal modal-primary fade" id="reservar">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -138,10 +286,10 @@
                                                 <center><h1 class="modal-title">Atención</h1></center>
                                             </div>
                                             <div class="modal-body">
-                                                <h2 style="text-align: justify">¿Esta seguro de que desea realizar esta reserva? Si es necesario verifique los campos nuevamente.</h2>
+                                                <h2 style="text-align: justify">¿Esta seguro de que desea actualizar los cambios efectuados en esta reserva? Si es necesario verifique los campos nuevamente.</h2>
                                             </div>
                                             <div class="modal-footer">
-                                                <input type="submit" onsubmit="enviar()" class="btn btn-default btn-lg" value="Reservar">
+                                                <input id="breserve" type="submit" class="btn btn-default btn-lg" value="Reservar">
                                                 <button type="button" class="btn btn-danger btn- btn-lg" data-dismiss="modal">Cerrar</button>                                                        
                                             </div>
                                         </div>
@@ -156,7 +304,7 @@
                                                 <center><h1 class="modal-title">Atención</h1></center>
                                             </div>
                                             <div class="modal-body">
-                                                <h2 style="text-align: justify">Esta seguro de que desea cancelar el registro.</h2>
+                                                <h2 style="text-align: justify">¿Esta seguro de que desea cancelar la  edición de datos de esta reserva?</h2>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" >No</button>
@@ -180,7 +328,7 @@
             </div>
             <!-- /.row -->
         </section>
-        
+
 
         <div class="modal fade" id="docenteModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -212,15 +360,15 @@
             </div>
         </div>
         <div class="modal fade" id="equipoModal" tabindex="-1" >
-            
+
             <div class="modal-dialog">
                 <div class="modal-content">
-                    
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Escoger Equipo(s)</h4>
                     </div>
-                    
+
                     <div class="modal-body">
                         <div class="box-body">
                             <div id="iadvice" class="callout callout-danger">
@@ -236,31 +384,26 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </div>     
-        <script src="tools/js/functionsloan.js" type="text/javascript"></script>  
         <!-- jQuery 2.2.3 -->
         <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- Select2 -->
         <script src="plugins/select2/select2.full.min.js"></script>
-        <!-- InputMask -->
-        <script src="plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <!-- date-range-picker -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- bootstrap datepicker -->
-        <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+        <!-- bootstrap time picker -->
+        <script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
         <!-- FastClick -->
         <script src="plugins/fastclick/fastclick.js"></script>
         <!-- AdminLTE App -->
@@ -271,42 +414,41 @@
         <script>
 
 
-                                                    var startDate;
-                                                    var endDate;
-                                                    $(document).ready(function () {
-                                                        //Initialize Select2 Elements
-                                                        $(".select2").select2();
+                                                        $(document).ready(function () {
+                                                            //Initialize Select2 Elements
+                                                            $(".select2").select2();
+                                                            var sdate = "<%=lista.get(0).getFecha_inicio()%>";
+                                                            var edate = "<%=lista.get(0).getFecha_fin()%>";
+                                                            //Date range picker
+                                                            $('#reservation').daterangepicker({
+                                                                "startDate": sdate,
+                                                                "endDate": edate,
+                                                                separator: ' hasta ',
+                                                                locale: {
+                                                                    applyLabel: 'Enviar',
+                                                                    fromLabel: 'Desde',
+                                                                    toLabel: 'Hasta',
+                                                                    customRangeLabel: 'Rango Personalizado',
+                                                                    daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                                                                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                                    firstDay: 1,
+                                                                    format: 'YYYY/MM/DD'
+                                                                }
+                                                            });
 
-                                                        //Datemask dd/mm/yyyy
-                                                        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-                                                        //Datemask2 mm/dd/yyyy
-                                                        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-                                                        //Money Euro
-                                                        $("[data-mask]").inputmask();
 
-                                                        //Date range picker
-                                                        $('#reservation').daterangepicker({
-                                                            separator: ' hasta ',
-                                                            locale: {
-                                                                applyLabel: 'Enviar',
-                                                                fromLabel: 'Desde',
-                                                                toLabel: 'Hasta',
-                                                                customRangeLabel: 'Rango Personalizado',
-                                                                daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-                                                                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                                                firstDay: 1,
-                                                                format: 'YYYY/MM/DD'
-                                                            }
+                                                            //Timepicker
+                                                            $(".timepicker").timepicker({
+                                                                showInputs: false,
+                                                                showMeridian: false,
+                                                                defaultTime:"<%=lista.get(0).getHora_ini()%>"
+                                                            });
+                                                            $(".timepicker2").timepicker({
+                                                                showInputs: false,
+                                                                showMeridian: false,
+                                                                defaultTime:"<%=lista.get(0).getHora_fin()%>"
+                                                            });
                                                         });
-                                                        //Date range picker with time picker
-                                                        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-
-
-                                                        //Date picker
-                                                        $('#datepicker').datepicker({
-                                                            autoclose: true
-                                                        });
-                                                    });
 
 
         </script>

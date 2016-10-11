@@ -67,11 +67,14 @@ public class ReservaController extends HttpServlet {
         List<EquipoDTO> lista4 = new ArrayList();
         List<Det_EquipoDTO> lista5 = new ArrayList();
         ArrayList lista6 = new ArrayList();
+        int idp;
         int i = 0;
         try {
             switch (gr) {
                 case 1:
                     lista = rdao.readall();
+                    idp = Integer.parseInt(request.getParameter("id"));
+                    List<PersonaDTO> listper=pdao.read(idp);
                     while (i < lista.size()) {
                         lista2.add(udao.read(lista.get(i).getId_usuario()).get(0));
                         lista3.add(pdao.read(lista.get(i).getId_docente()).get(0));
@@ -85,13 +88,14 @@ public class ReservaController extends HttpServlet {
 //                    lista6.add(lista4);
 //                    lista6.add(lista5);
                     session.setAttribute("lista", lista6);
+                    session.setAttribute("listper", listper);
                     pagina = "/vistas/reserva/listar.jsp";
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                     break;
                 case 2:
                     pagina = "/vistas/reserva/reservar.jsp";
-                    int idp = Integer.parseInt(request.getParameter("id"));
+                    idp = Integer.parseInt(request.getParameter("id"));
                     List<PersonaDTO> listdoc = rdao.docvalidated();
                     List<UsuarioDTO> listp = new ArrayList();
                     ArrayList listdeq = ddao.especifiedreadall();
@@ -149,9 +153,24 @@ public class ReservaController extends HttpServlet {
                 case 4:
                     pagina = "/rc?gr=1";
                     int id = Integer.parseInt(request.getParameter("id"));
+                    drdao.delete(id);
                     rdao.delete(id);
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
+                    break;
+                
+                case 5:
+                    pagina = "/vistas/reserva/editar.jsp";
+                    idp = Integer.parseInt(request.getParameter("idp"));
+                    id = Integer.parseInt(request.getParameter("id"));
+                    session.setAttribute("listr",rdao.read(id));
+                    session.setAttribute("listselect",drdao.read(id));
+                    System.out.println("revision: "+rdao.read(id).get(0).getFecha_inicio());
+                    listper=pdao.read(idp);
+                    session.setAttribute("listp",listper);
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                    break;
             }
         } catch (ServletException | IOException | NumberFormatException | SQLException e) {
             System.out.println("Errooooor: "+e);

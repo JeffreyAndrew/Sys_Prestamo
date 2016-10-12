@@ -15,6 +15,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>SPE || UPeU</title>
+        <link rel="icon" href="images/ico/laptopa.png">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <%@include file="WEB-INF/jspf/import.jspf" %>
         <jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
@@ -22,6 +23,14 @@
         <jsp:useBean id="roles" class="DAO.RolDAO"/>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
+        <style>
+            a{
+                color: white;
+            }
+            li{
+                color: white;
+            }
+        </style>
         <%
             for (int i = 0; i < lista.size(); i++) {
                 PersonaDTO u = new PersonaDTO();
@@ -31,14 +40,14 @@
         %>
         <div class="wrapper">
 
-            <header class="main-header">
+            <header class="main-header" style="background: #b71c1c;">
                 <a href="#" class="logo">
-                    <span class="logo-mini">SPE</span>
-                    <span class="logo-lg"><b>SPE</b>UPeU</span>
+                    <span class="logo-mini" style="color:white;">SPE</span>
+                    <span class="logo-lg" style="color:white;"><b>SPE</b>UPeU</span>
                 </a>
-                <nav class="navbar navbar-static-top">
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
+                <nav class="navbar navbar-static-top" style="color:white;">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="color:white;">
+                        <span class="sr-only" style="color:white;">Toggle navigation</span>
                     </a>
 
                     <div class="navbar-custom-menu">
@@ -46,23 +55,23 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="dist/img/<%=rol + u.getSexo()%>.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><%= u.getNombre() + " " + u.getApellidos()%></span>
+                                    <span class="hidden-xs" ><%= u.getNombre() + " " + u.getApellidos()%></span>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="background: #757575;">
                                     <li class="user-header">
                                         <img src="dist/img/<%=rol + u.getSexo()%>.jpg" class="img-circle" alt="User Image">
 
-                                        <p>
+                                        <p style="color:white;">
                                             <%= u.getNombre() + " " + u.getApellidos()%>
                                             <small><%= rol%></small>
                                         </p>
                                     </li>
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="ci?op=2&id=<%=u.getIdPersona()%>" target="box" class="btn btn-default btn-flat">Perfil</a>
+                                            <a style="color:black;" href="ci?op=2&id=<%=u.getIdPersona()%>" target="box" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="login?act=out" class="btn btn-default btn-flat">Salir</a>
+                                            <a style="color:black;" href="login?act=out" class="btn btn-default btn-flat">Salir</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -71,7 +80,7 @@
                     </div>
                 </nav>
             </header>
-            <aside class="main-sidebar">
+            <aside class="main-sidebar" style="background: #757575;color: white;">
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
@@ -79,19 +88,19 @@
                         </div>
                         <div class="pull-left info">
                             <p><%= u.getNombre()%></p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
+                            <a href="#" style="color: white;"><i class="fa fa-circle text-success"></i> Activo</a>
                         </div>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="header">MENÚ</li>
                         <li>
-                            <a href="ci?op=2&id=<%=u.getIdPersona()%>" target="box">
+                            <a href="ci?op=2&id=<%=u.getIdPersona()%>" target="box" style="color: white;">
                                 <i class="fa fa-user"></i> <span>Perfil</span>
                             </a>
                         </li>
                         <%if (irol == 1 || irol == 2) {%>
                         <li class="treeview">
-                            <a href="#">
+                            <a href="#" style="color: white;">
                                 <i class="fa fa-laptop"></i> <span>Gestión Prestamo</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
@@ -213,14 +222,13 @@
             </div>
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0.0
+                    <b>Version</b> 1.0
                 </div>
-                <strong>Copyright &copy;Ingeniería de Sistemas IV CICLO || 2016-II</strong> All rights
-                reserved.
+                <strong>Copyright &copy; Ingeniería de Sistemas IV CICLO || 2016-II</strong> 
             </footer>
 
 
-        </div>  
+        </div>   
         <%}%>
     </body>
 </html>
